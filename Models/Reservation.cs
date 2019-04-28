@@ -20,6 +20,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Atnaujinimo laikas")]
         public DateTime UpdatedOn { get; set; }
 
+        [Display(Name = "Komentaras")]
+        public string Comment { get; set; }
+
         [Display(Name = "Rezervacijos būsena")]
         public byte ReservationStatusId { get; set; }
         public ReservationStatus ReservationStatus { get; set; }
