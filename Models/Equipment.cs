@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HardwareReservationAndAccountingSystem.Models
@@ -20,5 +21,7 @@ namespace HardwareReservationAndAccountingSystem.Models
         public int EquipmentTypeId { get; set; }
 
         public EquipmentType EquipmentType { get; set; }
+
+        public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
     }
 }
