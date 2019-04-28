@@ -22,7 +22,7 @@ namespace HardwareReservationAndAccountingSystem.Data
                 // .HasKey(e => new { e.EquipmentId, e.EquipmentBundleId });
         }
 
-        // public DbSet<EquipmentType> EquipmentTypes { get; set; }
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
         // public DbSet<Equipment> Equipments { get; set; }
         // public DbSet<EquipmentBundle> EquipmentBundles { get; set; }
         // public DbSet<EquipmentsInBundles> EquipmentsInBundles { get; set; }
