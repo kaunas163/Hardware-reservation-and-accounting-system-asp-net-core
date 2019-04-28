@@ -22,6 +22,6 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         public EquipmentType EquipmentType { get; set; }
 
-        // public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
+        public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
     }
 }
