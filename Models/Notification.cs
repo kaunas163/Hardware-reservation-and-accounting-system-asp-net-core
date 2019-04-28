@@ -25,5 +25,9 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Ar archyvuotas?")]
         public bool IsArchived { get; set; }
+
+        [Display(Name = "Rezervacija")]
+        public int? ReservationId { get; set; }
+        public Reservation Reservation { get; set; }
     }
 }

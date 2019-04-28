@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HardwareReservationAndAccountingSystem.Models
@@ -26,5 +27,8 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Įrangos komplektas")]
         public int EquipmentBundleId { get; set; }
         public EquipmentBundle EquipmentBundle { get; set; }
+
+        [Display(Name = "Pranešimai")]
+        public List<Notification> Notifications { get; set; }
     }
 }
