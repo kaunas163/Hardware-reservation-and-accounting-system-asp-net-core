@@ -31,5 +31,6 @@ namespace HardwareReservationAndAccountingSystem.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
     }
 }
