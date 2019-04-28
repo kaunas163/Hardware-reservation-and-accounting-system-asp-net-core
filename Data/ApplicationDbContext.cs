@@ -37,5 +37,6 @@ namespace HardwareReservationAndAccountingSystem.Data
         public DbSet<EquipmentBundle> EquipmentBundles { get; set; }
         public DbSet<EquipmentsInBundles> EquipmentsInBundles { get; set; }
         public DbSet<ReservationStatus> ReservationStatuses { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
