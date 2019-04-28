@@ -16,5 +16,6 @@ namespace HardwareReservationAndAccountingSystem.Data
 
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentBundle> EquipmentBundles { get; set; }
     }
 }
