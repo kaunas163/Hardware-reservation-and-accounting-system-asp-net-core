@@ -29,5 +29,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Rezervacija")]
         public int? ReservationId { get; set; }
         public Reservation Reservation { get; set; }
+
+        [Display(Name = "Renginys")]
+        public int? EventId { get; set; }
+        public Event Event { get; set; }
     }
 }
