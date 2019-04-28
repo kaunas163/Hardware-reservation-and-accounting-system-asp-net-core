@@ -1,0 +1,62 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model IEnumerable<EquipmentType>
+
+@{
+    ViewData["Title"] = "Įrangos tipai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section PageHeaderTitle {
+    <h2>Įrangos tipai</h2>
+}
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var equipmentType in Model)
+        {
+            <div class="col-md-12 add-margin">
+                <div class="content-block list-view equipment-type" style="border-left: 5px solid">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="heading">
+                                <p>@equipmentType.Title</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 options">
+                            @*<a href="#" class="btn btn-secondary">Žiūrėti</a>*@
+
+                            <div class="dropdown">
+                                <a class="btn btn-secondary more-options dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editEquipmentTypeModal_@equipmentType.Id">Atnaujinti</a>
+                                    @*<a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12 add-margin">
+            <div class="content-block empty-content">
+                <div class="title">
+                    <h3>Nieko nerasta</h3>
+                </div>
+                <div class="content">
+                    <p>Šiuo metu nėra pridėto jokio įrangos tipo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

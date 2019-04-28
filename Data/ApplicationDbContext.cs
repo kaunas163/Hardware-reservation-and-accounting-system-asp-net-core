@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using HardwareReservationAndAccountingSystem.Models;
 
 namespace HardwareReservationAndAccountingSystem.Data
 {
@@ -12,5 +13,7 @@ namespace HardwareReservationAndAccountingSystem.Data
             : base(options)
         {
         }
+
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
     }
 }
