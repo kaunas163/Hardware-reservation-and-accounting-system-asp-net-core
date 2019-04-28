@@ -31,8 +31,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pranešimai")]
         public List<Notification> Notifications { get; set; }
 
-        // [Display(Name = "Vartotojas")]
-        // public string UserId { get; set; }
-        // public ApplicationUser User { get; set; }
+        [Required]
+        [Display(Name = "Vartotojas")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

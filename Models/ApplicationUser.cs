@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
@@ -12,5 +13,8 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pavardė")]
         [MaxLength(50)]
         public string Surname { get; set; }
+
+        [Display(Name = "Rezervacijos")]
+        public List<Reservation> Reservations { get; set; }
     }
 }
