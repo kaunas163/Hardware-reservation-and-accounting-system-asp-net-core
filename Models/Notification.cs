@@ -33,5 +33,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Renginys")]
         public int? EventId { get; set; }
         public Event Event { get; set; }
+
+        [Display(Name = "Įrangos vienetas")]
+        public int? EquipmentId { get; set; }
+        public Equipment Equipment { get; set; }
     }
 }
