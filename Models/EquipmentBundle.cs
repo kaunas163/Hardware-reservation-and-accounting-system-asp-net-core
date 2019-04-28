@@ -18,5 +18,7 @@ namespace HardwareReservationAndAccountingSystem.Models
         public bool IsPublic { get; set; }
 
         public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
+
+        public List<Reservation> Reservations { get; set; }
     }
 }

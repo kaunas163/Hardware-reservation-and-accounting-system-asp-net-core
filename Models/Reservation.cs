@@ -21,7 +21,10 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Rezervacijos būsena")]
         public byte ReservationStatusId { get; set; }
-
         public ReservationStatus ReservationStatus { get; set; }
+
+        [Display(Name = "Įrangos komplektas")]
+        public int EquipmentBundleId { get; set; }
+        public EquipmentBundle EquipmentBundle { get; set; }
     }
 }
