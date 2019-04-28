@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HardwareReservationAndAccountingSystem.Models
@@ -13,5 +14,8 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Ar įrangos tipas archyvuotas?")]
         public bool IsArchived { get; set; }
+
+        [Display(Name = "Įrangos vienetai")]
+        public List<Equipment> Equipments { get; set; }
     }
 }
