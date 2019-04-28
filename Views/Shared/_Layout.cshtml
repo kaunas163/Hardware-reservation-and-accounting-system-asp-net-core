@@ -7,7 +7,32 @@
     <link rel="stylesheet" href="~/css/styles.min.css" />
 </head>
 <body>
-    <header>
+    <div class="container-fluid layout">
+        <div class="row">
+            <div class="col-lg-2 col-md-12 left-sidebar">
+                @Html.Partial("_LeftSidebar")
+            </div>
+            <div class="col-lg-10 col-md-12 page-content-container">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col page-title">
+                            @RenderSection("PageHeaderTitle")
+                        </div>
+                        <div class="col page-sub-nav">
+                            @RenderSection("PageHeaderSubNavLinks", required: false)
+                        </div>
+                    </div>
+                    @RenderSection("PageHeaderFilters", required: false)
+                </div>
+
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Techninės įrangos rezervacija</a>
@@ -28,21 +53,22 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
+    </header> -->
+    <!-- <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div> -->
 
-    <footer class="border-top footer text-muted">
+    <partial name="_CookieConsentPartial" />
+
+    <!-- <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Techninės įrangos rezervacija - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - Techninės įrangos rezervacija - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> -->
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- <script src="~/js/site.js" asp-append-version="true"></script> -->
 
     @RenderSection("Scripts", required: false)
 </body>

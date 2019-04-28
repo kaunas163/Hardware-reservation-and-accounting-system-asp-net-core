@@ -1,8 +1,188 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Pradžia";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section PageHeaderTitle {
+    <h2>Techninės įrangos rezervacija</h2>
+}
+
+<div class="row home-page">
+    <div class="col-md-5 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>@Html.ActionLink("Pranešimai", "Index", "Notifications")</h3>
+            </div>
+            <div class="content">
+                <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-16 21:10</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" buvo patvirtinta.</a></p>
+                <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-15 15:14</span> Priminimas apie negrąžintą įrangą "Komplektas pradedanči...</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-10 13:20</span> Priminimas apie artėjančią įrangos "Pradedantysis operatorius" wggdr.</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim wetggdrgrd.</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sggrd.</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-02 14:26</span> Jūsų rezervacija įrangai "Dvi kameros" buvo atšaukta. Priežastis afsdgtdf</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-02-27 15:09</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimafsgdfh.</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim aewt setgdrg</a></p>
+                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sawr set.</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>@Html.ActionLink("Rezervacijos", "Index", "Rezervations")</h3>
+            </div>
+            <div class="content">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="newest-tab" data-toggle="tab" href="#newest" role="tab" aria-controls="newest" aria-selected="true">Naujausios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="todays-tab" data-toggle="tab" href="#todays" role="tab" aria-controls="todays" aria-selected="false">Šiandienos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="week-tab" data-toggle="tab" href="#week" role="tab" aria-controls="week" aria-selected="false">Savaitės</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="old-tab" data-toggle="tab" href="#old" role="tab" aria-controls="old" aria-selected="false">Praėjusios</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="newest" role="tabpanel" aria-labelledby="newest-tab">
+                        <div class="flex-table">
+                            <div class="headings">
+                                <p>Būsena</p>
+                                <p>Nuo</p>
+                                <p>Iki</p>
+                                <p>Užsakovas</p>
+                                <p>Įranga</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation waiting-approval">@Html.ActionLink("Laukianti patvirtinimo", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-10 10:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-15 12:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Komplektas renginio filmavimui", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation approved">@Html.ActionLink("Patvirtinta", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-12 09:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-13 09:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Pradedančiojo operatoriaus komplektas", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation canceled">@Html.ActionLink("Atšaukta", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-10 14:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-12 10:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Komplektas renginio filmavimui", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation waiting-approval">@Html.ActionLink("Laukianti patvirtinimo", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-15 12:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-16 18:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Dvi fotokameros ir fotografo įrankiai", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation waiting-approval">@Html.ActionLink("Laukianti patvirtinimo", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-04-08 09:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-04-10 15:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Sony kamera ir priedai", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation approved">@Html.ActionLink("Patvirtinta", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-18 17:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-20 20:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Audio įrašymo įranga", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation in-progress">@Html.ActionLink("Vykdoma", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-01 10:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-03-07 15:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Pažengusio operatoriaus įrankiai", "Index", "Equipments")</p>
+                            </div>
+                            <div class="data-row">
+                                <p class="reservation waiting-approval">@Html.ActionLink("Laukianti patvirtinimo", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-10 10:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("2019-02-15 12:00", "Index", "Rezervations")</p>
+                                <p>@Html.ActionLink("Julijus Jakutavičius", "Index", "Users")</p>
+                                <p>@Html.ActionLink("Komplektas renginio filmavimui", "Index", "Equipments")</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="todays" role="tabpanel" aria-labelledby="todays-tab">
+                        <p>Šiandienos</p>
+                    </div>
+                    <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="week-tab">
+                        <p>Savaitės</p>
+                    </div>
+                    <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tab">
+                        <p>Praėjusios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>@Html.ActionLink("Renginiai", "Index", "Events")</h3>
+            </div>
+            <div class="content">
+                <p><a href="#"><span>2019-03-20 09:00</span> Karjeros dienos</a></p>
+                <p><a href="#"><span>2019-04-10 10:00</span> Google Hackaton</a></p>
+                <p><a href="#"><span>2019-04-15 09:00</span> KTU pristatymas moksleiviams</a></p>
+                <p><a href="#"><span>2019-04-20 12:00</span> C# konferencija</a></p>
+                <p><a href="#"><span>2019-05-10 10:00</span> Interviu iš Petro Petraičio</a></p>
+                <p><a href="#"><span>2019-06-06 09:00</span> Baigiamųjų darbų gynimai</a></p>
+                <p><a href="#"><span>2019-06-07 09:00</span> Baigiamųjų darbų gynimai</a></p>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-4 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>@Html.ActionLink("Kalendorius", "Index", "Calendar")</h3>
+            </div>
+            <div class="content">
+                <p>some content</p>
+            </div>
+        </div>
+    </div>*@
+    @*@if (User.IsInRole("admin"))
+    {
+        <div class="col-md-4 col-sm-12 add-margin">
+            <div class="content-block">
+                <div class="title">
+                    <h3>@Html.ActionLink("Įranga", "Index", "Equipments")</h3>
+                </div>
+                <div class="content">
+                    <p>some content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 add-margin">
+            <div class="content-block">
+                <div class="title">
+                    <h3>@Html.ActionLink("Įrangos tipai", "Index", "EquipmentTypes")</h3>
+                </div>
+                <div class="content">
+                    <p>some content</p>
+                </div>
+            </div>
+        </div>
+    }*@
+    @*<div class="col-md-4 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>@Html.ActionLink("Įrangos komplektai", "Index", "EquipmentBundles")</h3>
+            </div>
+            <div class="content">
+                <p>some content</p>
+            </div>
+        </div>
+    </div>*@
 </div>
