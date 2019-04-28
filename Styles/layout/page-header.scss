@@ -1,0 +1,154 @@
+﻿.layout .page-content-container .page-header {
+    padding: 1em 0;
+    margin-bottom: 2em;
+    // border-bottom: 1px solid rgba($colorTextSecondary, 0.1);
+
+    .page-title {
+        h2 {
+            // font-size: 1.5em;
+            font-size: 24px;
+            margin: 0;
+            color: #344750;
+            font-weight: 600;
+        }
+    }
+
+    .page-sub-nav {
+        text-align: right;
+
+        // ul {
+        //     padding-left: 0;
+        //     margin-bottom: 0;
+
+        //     li {
+        //         list-style: none;
+        //         display: inline-block;
+
+        //         a {
+        //             color: $colorTextSecondary;
+        //             display: block;
+        //             border-bottom: 3px solid transparent;
+        //             margin-left: 1.5em;
+
+        //             &:hover {
+        //                 text-decoration: none;
+        //                 color: $colorTextPrimary;
+        //                 border-bottom-color: $colorTextPrimary;
+        //             }
+        //         }
+
+        //         &.active {
+        //             a {
+        //                 color: $colorTextPrimary;
+        //                 border-bottom-color: $colorTextPrimary;
+        //             }
+        //         }
+        //     }
+        // }
+    }
+
+    // TODO: move to components
+    // .page-filters {
+    //     margin: 1.5em 0 0;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: flex-start;
+
+    //     input {
+    //         max-width: 300px;
+    //         font-size: 0.85em;
+    //     }
+
+    //     .grid-options {
+    //         margin-left: 2em;
+    //         flex-shrink: 0;
+
+    //         .fa-th-large,
+    //         .fa-th-list {
+    //             margin: 0 5px;
+    //             font-size: 1.25em;
+    //             color: $colorTextSecondary;
+
+    //             &:hover {
+    //                 cursor: pointer;
+    //             }
+
+    //             &.active {
+    //                 color: $colorTextPrimary;
+    //             }
+    //         }
+    //     }
+
+    //     .equipment-types {
+    //         margin-left: 1em;
+
+    //         span {
+    //             background: white;
+    //             padding: 5px 10px;
+    //             margin-left: 1em;
+    //             border-radius: 5px;
+    //             font-size: 0.6em;
+    //             text-transform: uppercase;
+    //             letter-spacing: 2px;
+    //             cursor: pointer;
+    //             display: inline-block;
+    //             margin-bottom: 0.5em;
+    //             border-left-width: 5px;
+    //             border-left-style: solid;
+
+    //             &.disabled {
+    //                 text-decoration: line-through;
+    //                 opacity: 0.25;
+    //             }
+    //         }
+    //     }
+    // }
+
+    .page-filters {
+        margin-top: 1.5em;
+
+        .filter-type-text {
+            color: #344750;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        & > * {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 0;
+
+            & > * {
+                margin-right: 10px;
+            }
+
+            .btn {
+                font-size: 12px;
+                color: #929CA1;
+                font-weight: 400;
+                border-radius: 14px;
+                padding: 2px 15px;
+                background: white;
+            }
+        }
+
+        // .filters {}
+
+        .view-mode {
+            .mode {
+                i {
+                    margin-right: 5px;
+                }
+                
+                &.active {
+                    font-weight: 700;
+                    color: #344750;
+                    background: white;
+                }
+            }
+        }
+    }
+}

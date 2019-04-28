@@ -1,0 +1,35 @@
+.btn {
+    border-radius: 0;
+    padding: 4px 15px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #4696FF;
+    border-color: #4696FF;
+}
+
+.btn-secondary {
+    background-color: #929CA1;
+    border-color: #929CA1;
+}
+
+.btn-dark {
+    background-color: #344750;
+    border-color: #344750;
+}
+
+.btn-success {
+    background-color: #36AE46;
+    border-color: #36AE46;
+}
+
+.btn-link {
+    color: #929CA1;
+
+    &:hover {
+        color: #344750;
+        text-decoration: none;
+    }
+}
+

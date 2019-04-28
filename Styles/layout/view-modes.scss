@@ -1,0 +1,6 @@
+.view-mode-content-block {
+    &:not(.active) {
+        display: none;
+    }
+}
+

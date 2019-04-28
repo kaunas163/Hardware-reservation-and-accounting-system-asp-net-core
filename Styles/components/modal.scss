@@ -1,0 +1,48 @@
+.modal {
+    .modal-content {
+        border-radius: 0;
+        border: none;
+        box-shadow: 0 3px 6px rgba(black, 0.16);
+
+        & > * {
+            padding: 1rem 1.5rem;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #D5DADE;
+
+            .modal-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: #344750;
+            }
+
+            .close {
+                color: #D5DADE;
+            }
+        }
+
+        //.modal-body {}
+
+        .modal-footer {
+            border-top: 1px solid #D5DADE;
+        }
+    }
+    
+    &.export-modal {
+        .modal-body {
+            .filter-group {
+                text-align: center;
+
+                .question {
+                    font-weight: 700;
+                    font-size: 14px;
+                    color: #344750;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+}
+
+

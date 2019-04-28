@@ -1,0 +1,33 @@
+﻿.equipment-or-bundle-list-with-selection {
+    .column {
+        margin-bottom: 1em;
+
+        .equipment-or-bundle-list-item-with-selection {
+            padding: 20px;
+            height: 100%;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.active {
+                background: $colorGreen;
+
+                p {
+                    color: white;
+                }
+            }
+
+            input {
+                opacity: 0;
+                position: absolute;
+            }
+
+            img {
+                width: 100%;
+                max-height: 200px;
+                object-fit: cover;
+            }
+        }
+    }
+}

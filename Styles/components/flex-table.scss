@@ -1,0 +1,41 @@
+.flex-table {
+    & > * {
+        display: flex;
+
+        & > * {
+            flex: 1;
+        }
+    }
+
+    .headings {
+        p {
+            font-weight: 700;
+            font-size: 14px;
+        }
+    }
+
+    &.styled-table {
+        p {
+            margin: 0;
+        }
+
+        & > * {
+            padding: 10px 20px;
+        }
+
+        .headings {
+            background: #F6F6F6;
+
+            p {
+                color: #344750;
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+
+        .data-row:nth-child(even) {
+            background: #F8F8F8;
+        }
+    }
+}
+

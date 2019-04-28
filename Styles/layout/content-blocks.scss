@@ -1,0 +1,110 @@
+﻿.content-block {
+    background: $colorAlmostWhite;
+    padding: 2.25em 2.5em;
+    // border-radius: 5px;
+    // transition: 0.3s all;
+    height: 100%;
+    box-shadow: 2px 2px 5px rgba(black, 0.05);
+
+    // &:hover {
+    //     box-shadow: 0 0 12px 2px rgba(black, 0.1);
+    // }
+
+    &.empty-content {
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    & > .title {
+        margin-bottom: 1.2em;
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #344750;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            a {
+                text-decoration: none;
+            }
+
+            &::before {
+                content: '';
+                width: 12px;
+                height: 12px;
+                background: #4696FF;
+                display: block;
+                margin-right: 0.75em;
+            }
+        }
+
+        ul.sub-info {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 0;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                display: block;
+                color: #929CA1;
+                font-size: 12px;
+
+                &:not(:last-child)::after {
+                    content: '';
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    background: #929CA1;
+                    border-radius: 50%;
+                    margin: 2px 8px;
+                }
+
+                &.important {
+                    color: #FF0000;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+
+    & > .content {
+        font-size: 14px;
+        font-weight: 400px;
+        
+        p {
+            color: #929CA1;
+        }
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &.important {
+        border: 2px solid #FF8F8F;
+        // box-shadow: 0 0 10px #FF8F8F;
+        // border-left: 3px solid red;
+
+        & > .title {
+            h3 {
+                font-weight: 700;
+
+                a:hover {
+                    color: #FF0000;
+                }
+
+                &::before {
+                    background: #FF0000;
+                }
+            }
+        }
+    }
+}

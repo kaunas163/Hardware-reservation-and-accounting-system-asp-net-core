@@ -1,0 +1,45 @@
+﻿.home-page {
+    .content-block {
+        & > .content {
+            p {
+                margin-bottom: 7px;
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                span {
+                    font-weight: 200;
+                    width: 100px;
+                    display: inline-block;
+                    font-size: 12px;
+                }
+
+                &.new {
+                    font-weight: 700;
+                }
+
+                &.waiting-approval {
+                    color: #FFA200;
+                }
+
+                &.approved {
+                    color: #36AE46;
+                }
+
+                &.canceled,
+                &.stolen {
+                    color: #FF0000;
+                }
+
+                &.in-progress {
+                    color: #4696FF;
+                }
+
+                &.old {
+                    color: #929CA1;
+                }
+            }
+        }
+    }
+}

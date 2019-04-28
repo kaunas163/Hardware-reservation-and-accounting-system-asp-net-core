@@ -1,0 +1,15 @@
+﻿.authentication-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .centered-content {
+        background: white;
+        width: 60%;
+        padding: 3em 4em;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+}
