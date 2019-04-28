@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HardwareReservationAndAccountingSystem.Models
@@ -15,5 +16,7 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Aprašymas")]
         public string Description { get; set; }
+
+        public List<Reservation> Reservations { get; set; }
     }
 }
