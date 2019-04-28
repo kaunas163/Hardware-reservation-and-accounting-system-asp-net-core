@@ -17,6 +17,6 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Ar paskelbtas ir leidžiamas rezervuoti?")]
         public bool IsPublic { get; set; }
 
-        public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
+        // public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
     }
 }
