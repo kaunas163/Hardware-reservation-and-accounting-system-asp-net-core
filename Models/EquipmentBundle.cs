@@ -19,6 +19,10 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
 
+        [Display(Name = "Rezervacijos")]
         public List<Reservation> Reservations { get; set; }
+
+        [Display(Name = "Pranešimai")]
+        public List<Notification> Notifications { get; set; }
     }
 }

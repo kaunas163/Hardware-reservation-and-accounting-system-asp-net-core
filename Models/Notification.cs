@@ -37,5 +37,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Įrangos vienetas")]
         public int? EquipmentId { get; set; }
         public Equipment Equipment { get; set; }
+
+        [Display(Name = "Įrangos komplektas")]
+        public int? EquipmentBundleId { get; set; }
+        public EquipmentBundle EquipmentBundle { get; set; }
     }
 }
