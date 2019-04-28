@@ -8,7 +8,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 {
     public class EquipmentsController : Controller
     {
-        public ApplicationDbContext _context { get; set; }
+        private readonly ApplicationDbContext _context;
 
         public EquipmentsController(ApplicationDbContext context)
         {
