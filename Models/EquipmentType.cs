@@ -10,5 +10,8 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pavadinimas")]
         [MaxLength(50)]
         public string Title { get; set; }
+
+        [Display(Name = "Ar įrangos tipas archyvuotas?")]
+        public bool IsArchived { get; set; }
     }
 }
