@@ -17,11 +17,11 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Ar paskelbtas ir leidžiamas rezervuoti?")]
         public bool IsPublic { get; set; }
 
-        [Display(Name = "Įrangos tipas")]
-        public int EquipmentTypeId { get; set; }
+        // [Display(Name = "Įrangos tipas")]
+        // public int EquipmentTypeId { get; set; }
 
-        public EquipmentType EquipmentType { get; set; }
+        // public EquipmentType EquipmentType { get; set; }
 
-        public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
+        // public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
     }
 }
