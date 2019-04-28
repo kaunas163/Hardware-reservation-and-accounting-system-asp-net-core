@@ -41,5 +41,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Įrangos komplektas")]
         public int? EquipmentBundleId { get; set; }
         public EquipmentBundle EquipmentBundle { get; set; }
+
+        [Display(Name = "Pranešimo tipas")]
+        public int NotificationTypeId { get; set; }
+        public NotificationType NotificationType { get; set; }
     }
 }
