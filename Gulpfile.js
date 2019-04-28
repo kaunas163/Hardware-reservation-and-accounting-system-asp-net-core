@@ -28,23 +28,23 @@ function styles(done) {
     done();
 }
 
-// function scripts(done) {
-//     gulp.src([
-//         './node_modules/jquery/dist/jquery.slim.js',
-//         './node_modules/jquery-validation/dist/jquery.validate.js', // TODO: include localization of this
-//         './node_modules/popper.js/dist/umd/popper.js',
-//         './node_modules/bootstrap/dist/js/bootstrap.js',
-//         './node_modules/@fullcalendar/core/main.js',
-//         './node_modules/@fullcalendar/daygrid/main.js',
-//         './node_modules/lightbox2/src/js/lightbox.js',
-//         './Content/scripts/index.js'
-//     ])
-//     .pipe(concat('scripts.js'))
-//     .pipe(uglify())
-//     .pipe(rename({ suffix: '.min' }))
-//     .pipe(gulp.dest('./assets/'));
-//     done();
-// }
+function scripts(done) {
+    gulp.src([
+        './node_modules/jquery/dist/jquery.slim.js',
+        './node_modules/jquery-validation/dist/jquery.validate.js', // TODO: include localization of this
+        './node_modules/popper.js/dist/umd/popper.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js',
+        // './node_modules/@fullcalendar/core/main.js',
+        // './node_modules/@fullcalendar/daygrid/main.js',
+        './node_modules/lightbox2/src/js/lightbox.js',
+        // './Content/scripts/index.js'
+    ])
+    .pipe(concat('scripts.js'))
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('./wwwroot/js/'));
+    done();
+}
 
 function watch(done) {
     gulp.watch('./Styles/**/*.scss', gulp.series(styles));
@@ -54,4 +54,4 @@ function watch(done) {
 
 // exports.default = gulp.series(gulp.parallel(fonts, styles, scripts), watch);
 
-exports.default = gulp.series(gulp.parallel(styles), watch);
+exports.default = gulp.series(gulp.parallel(styles, scripts), watch);
