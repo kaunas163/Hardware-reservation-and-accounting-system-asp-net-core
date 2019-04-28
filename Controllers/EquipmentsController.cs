@@ -17,8 +17,9 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            var equipments = _context.Equipments.ToList();
-            return View(equipments);
+            // var equipments = _context.Equipments.ToList();
+            // return View(equipments);
+            return View();
         }
     }
 }

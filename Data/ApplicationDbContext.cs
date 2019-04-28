@@ -18,26 +18,17 @@ namespace HardwareReservationAndAccountingSystem.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<EquipmentsInBundles>()
-                .HasKey(e => new { e.EquipmentId, e.EquipmentBundleId });
-
-        //     modelBuilder.Entity<EquipmentsInBundles>()
-        //         .HasOne(pt => pt.Equipment)
-        //         .WithMany(p => p.EquipmentsInBundles)
-        //         .HasForeignKey(pt => pt.EquipmentId);
-
-        //     modelBuilder.Entity<EquipmentsInBundles>()
-        //         .HasOne(pt => pt.EquipmentBundle)
-        //         .WithMany(t => t.EquipmentsInBundles)
-        //         .HasForeignKey(pt => pt.EquipmentBundleId);
+            // modelBuilder.Entity<EquipmentsInBundles>()
+                // .HasKey(e => new { e.EquipmentId, e.EquipmentBundleId });
         }
 
-        public DbSet<EquipmentType> EquipmentTypes { get; set; }
-        public DbSet<Equipment> Equipments { get; set; }
-        public DbSet<EquipmentBundle> EquipmentBundles { get; set; }
-        public DbSet<EquipmentsInBundles> EquipmentsInBundles { get; set; }
-        public DbSet<ReservationStatus> ReservationStatuses { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Event> Events { get; set; }
+        // public DbSet<EquipmentType> EquipmentTypes { get; set; }
+        // public DbSet<Equipment> Equipments { get; set; }
+        // public DbSet<EquipmentBundle> EquipmentBundles { get; set; }
+        // public DbSet<EquipmentsInBundles> EquipmentsInBundles { get; set; }
+        // public DbSet<ReservationStatus> ReservationStatuses { get; set; }
+        // public DbSet<Notification> Notifications { get; set; }
+        // public DbSet<Event> Events { get; set; }
+        // public DbSet<Reservation> Reservations { get; set; }
     }
 }
