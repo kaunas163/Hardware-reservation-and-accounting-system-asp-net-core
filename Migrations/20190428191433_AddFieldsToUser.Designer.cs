@@ -4,14 +4,16 @@ using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HardwareReservationAndAccountingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190428191433_AddFieldsToUser")]
+    partial class AddFieldsToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,11 +367,9 @@ namespace HardwareReservationAndAccountingSystem.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(50);
+                    b.Property<string>("Name");
 
-                    b.Property<string>("Surname")
-                        .HasMaxLength(50);
+                    b.Property<string>("Surname");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
