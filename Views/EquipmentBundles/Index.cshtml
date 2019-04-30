@@ -1,0 +1,12 @@
+@model IEnumerable<EquipmentBundle>
+
+@{
+    ViewData["Title"] = "Įrangos komplektai";
+}
+
+@section PageHeaderTitle {
+    <h2>Įrangos komplektai</h2>
+}
+
+@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")
+

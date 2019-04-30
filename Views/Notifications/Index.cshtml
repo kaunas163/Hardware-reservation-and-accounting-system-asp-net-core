@@ -1,0 +1,12 @@
+@model IEnumerable<Notification>
+
+@{
+    ViewData["Title"] = "Pranešimai";
+}
+
+@section PageHeaderTitle {
+    <h2>Pranešimai</h2>
+}
+
+@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių, jums skirtų, pranešimų.")
+

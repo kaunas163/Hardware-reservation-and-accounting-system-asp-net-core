@@ -1,0 +1,12 @@
+@model IEnumerable<Event>
+
+@{
+    ViewData["Title"] = "Renginiai";
+}
+
+@section PageHeaderTitle {
+    <h2>Renginiai</h2>
+}
+
+@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")
+
