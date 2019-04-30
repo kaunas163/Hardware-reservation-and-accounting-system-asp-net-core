@@ -15,17 +15,5 @@
 }
 else
 {*@
-    <div class="row">
-        <div class="col-md-12 add-margin">
-            <div class="content-block empty-content">
-                <div class="title">
-                    <h3>Nieko nerasta</h3>
-                </div>
-                <div class="content">
-                    <p>Šiuo metu nėra pridėta jokios įrangos.</p>
-                    <!-- <p><button class="btn btn-primary">Pridėkite dabar</button></p> -->
-                </div>
-            </div>
-        </div>
-    </div>
+    @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokios įrangos.")
 @*}*@
