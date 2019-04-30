@@ -1,0 +1,12 @@
+@model IEnumerable<Reservation>
+
+@{
+    ViewData["Title"] = "Rezervacijos";
+}
+
+@section PageHeaderTitle {
+    <h2>Rezervacijos</h2>
+}
+
+@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių rezervacijų.")
+

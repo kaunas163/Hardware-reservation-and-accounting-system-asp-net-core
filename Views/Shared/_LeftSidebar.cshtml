@@ -15,8 +15,8 @@
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Notifications" ? "active" : "")">
             <a href="@Url.Action("Index", "Notifications")">Pranešimai <span class="badge badge-secondary">2</span></a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Rezervations" ? "active" : "")">
-            @Html.ActionLink("Rezervacijos", "Index", "Rezervations")
+        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Reservations" ? "active" : "")">
+            @Html.ActionLink("Rezervacijos", "Index", "Reservations")
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Equipments" ? "active" : "")">
             @Html.ActionLink("Įranga", "Index", "Equipments")
