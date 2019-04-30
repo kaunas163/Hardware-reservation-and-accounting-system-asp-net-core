@@ -3,19 +3,18 @@
 
 @{
     ViewData["Title"] = "Įranga";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section PageHeaderTitle {
     <h2>Įranga</h2>
 }
 
-@if (Model.Any())
+@*@if (Model.Any())
 {
     <div class="row"></div>
 }
 else
-{
+{*@
     <div class="row">
         <div class="col-md-12 add-margin">
             <div class="content-block empty-content">
@@ -24,8 +23,9 @@ else
                 </div>
                 <div class="content">
                     <p>Šiuo metu nėra pridėta jokios įrangos.</p>
+                    <!-- <p><button class="btn btn-primary">Pridėkite dabar</button></p> -->
                 </div>
             </div>
         </div>
     </div>
-}
+@*}*@
