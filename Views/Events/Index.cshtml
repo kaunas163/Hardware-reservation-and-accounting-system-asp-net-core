@@ -8,20 +8,60 @@
     <h2>Renginiai</h2>
 }
 
-<div class="row">
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>Kalendorius</h3>
+@section PageHeaderSubNavLinks {
+    @Html.ActionLink("Visi renginiai", "Index", "Events", null, new { @class = "btn btn-dark" })
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal">Naujas</button>
+}
+
+@section PageHeaderFilters {
+    <div class="page-filters">
+        <div class="filters">
+            <p class="filter-type-text">Filtruoti renginius:</p>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Paieškos frazė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
             </div>
-            <div class="content">
-                <div id="calendar">
-                    <calendar />
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Laikotarpis
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="view-mode">
+            <p class="filter-type-text">Peržiūros būdas:</p>
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="[tableViewMode, {active: initialViewMode}]">
+                <i class="fas fa-table"></i>
+                Lentelė
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('calendar')" :class="calendarViewMode">
+                <i class="far fa-calendar-alt"></i>
+                Kalendorius
+            </button>
+        </div>
     </div>
-</div>
+}
 
-@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")
+@await Html.PartialAsync("~/Views/Events/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/Events/_ViewModeCalendar.cshtml")
+
+@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")*@
+
+@await Html.PartialAsync("~/Views/Events/_ExportModal.cshtml")
+@await Html.PartialAsync("~/Views/Events/_NewModal.cshtml")
 
