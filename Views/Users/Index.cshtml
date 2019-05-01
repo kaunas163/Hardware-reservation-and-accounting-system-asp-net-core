@@ -5,6 +5,84 @@
 @section PageHeaderTitle {
     <h2>Vartotojai</h2>
 }
+@section PageHeaderSubNavLinks {
+    @Html.ActionLink("Visi vartotojai", "Index", "Users", null, new { @class = "btn btn-dark" })
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
+    <!-- <button type="button" class="btn btn-success" >Naujas</button> -->
+}
 
-@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu sistemoje nėra jokių registruotų vartotojų.")
+@section PageHeaderFilters {
+    <div class="page-filters">
+        <div class="filters">
+            <p class="filter-type-text">Filtruoti vartotojus:</p>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Paieškos frazė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Vardas, pavardė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        El. pašto adresas
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rolė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-mode">
+            <p class="filter-type-text">Peržiūros būdas:</p>
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="[tableViewMode, {active: initialViewMode}]">
+                <i class="fas fa-table"></i>
+                Lentelė
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('grid')" :class="gridViewMode">
+                <i class="fas fa-th"></i>
+                Blokai
+            </button>
+        </div>
+    </div>
+}
+
+@await Html.PartialAsync("~/Views/Users/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/Users/_ViewModeGrid.cshtml")
+
+@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")*@
+
+@await Html.PartialAsync("~/Views/Users/_ExportModal.cshtml")
+@await Html.PartialAsync("~/Views/Users/_EditRoleModal.cshtml")
 
