@@ -71,6 +71,40 @@ Vue.component('calendar', {
     }
 });
 
+Vue.component('export-modal', {
+    data() {
+        return {
+            exportData: 'all',
+            fileFormat: 'pdf',
+        }
+    },
+    methods: {
+        toggleExportDataButtons(element) {
+            this.exportData = element;
+        },
+        toggleFileFormatButtons(element) {
+            this.fileFormat = element;
+        }
+    },
+    computed: {
+        exportAllData() {
+            return this.exportData == 'all' ? 'btn-dark' : 'btn-link';
+        },
+        exportFilteredData() {
+            return this.exportData == 'filtered' ? 'btn-dark' : 'btn-link';
+        },
+        pdfFileFormat() {
+            return this.fileFormat == 'pdf' ? 'btn-dark' : 'btn-link';
+        },
+        csvFileFormat() {
+            return this.fileFormat == 'csv' ? 'btn-dark' : 'btn-link';
+        },
+        jsonFileFormat() {
+            return this.fileFormat == 'json' ? 'btn-dark' : 'btn-link';
+        },
+    }
+});
+
 new Vue({
     el: '#app-root'
 });
