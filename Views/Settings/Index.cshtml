@@ -6,5 +6,61 @@
     <h2>Nustatymai</h2>
 }
 
-@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Nustatymai šiuo metu nėra sukonfigūruoti.")
+@section PageHeaderFilters {
+    <div class="page-filters">
+        <div class="filters">
+            <p class="filter-type-text">Filtruoti nustatymus:</p>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Paieškos frazė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Grupė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        any other ideas?
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-mode">
+            <p class="filter-type-text">Peržiūros būdas:</p>
+            <button class="btn btn-light mode" @@click="changeViewMode('list')" :class="[listViewMode, {active: initialViewMode}]">
+                <i class="fas fa-list"></i>
+                Sąrašas
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="tableViewMode">
+                <i class="fas fa-table"></i>
+                Lentelė
+            </button>
+        </div>
+    </div>
+}
+
+@await Html.PartialAsync("~/Views/Settings/_ViewModeList.cshtml")
+@await Html.PartialAsync("~/Views/Settings/_ViewModeTable.cshtml")
 
