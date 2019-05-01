@@ -25,8 +25,9 @@ function styles(done) {
         './node_modules/@fortawesome/fontawesome-free/scss/regular.scss',
         './node_modules/@fortawesome/fontawesome-free/scss/solid.scss',
         './node_modules/@fortawesome/fontawesome-free/scss/brands.scss',
-        // './node_modules/@fullcalendar/core/main.css',
-        // './node_modules/@fullcalendar/daygrid/main.css',
+        './node_modules/@fullcalendar/core/main.css',
+        './node_modules/@fullcalendar/daygrid/main.css',
+        './node_modules/@fullcalendar/timegrid/main.css',
         './node_modules/lightbox2/src/css/lightbox.css',
         './Styles/main.scss'
     ])
@@ -45,12 +46,19 @@ function cleanTemp(done) {
 
 function es6common(done) {
     fs.ensureDirSync('./wwwroot/temp');
+
+    // gulp.src([
+    //     './Scripts/*.vue'
+    // ])
+    // .pipe(gulp.dest('./wwwroot/temp/'));
+
     gulp.src([
         './Scripts/*.js',
         '/Scripts/**/*.js',
     ])
     .pipe(babel())
     .pipe(gulp.dest('./wwwroot/temp/'));
+
     done();
 }
 
@@ -61,6 +69,7 @@ function scripts(done) {
         './node_modules/popper.js/dist/umd/popper.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
         './node_modules/lightbox2/src/js/lightbox.js',
+        // './node_modules/vue/dist/vue.js',
         './wwwroot/temp/index.js',
     ])
     .bundle()
@@ -74,15 +83,18 @@ function scripts(done) {
 
 function watch(done) {
     gulp.watch('./Styles/**/*.scss', gulp.series(styles));
-    gulp.watch('./Scripts/**/*.js', gulp.series(scripts));
+    gulp.watch('./Scripts/**/*.js', gulp.series(es6common, scripts, cleanTemp));
     done();
 }
 
+exports.es6common = es6common;
+
 exports.fonts = fonts;
 exports.styles = styles;
-exports.es6common = es6common;
 exports.scripts = scripts;
-exports.watch = watch;
+
 exports.cleanTemp = cleanTemp;
+
+exports.watch = watch;
 
 exports.default = gulp.series(es6common, gulp.parallel(fonts, styles, scripts), gulp.parallel(cleanTemp, watch));

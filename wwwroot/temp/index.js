@@ -1,0 +1,113 @@
+"use strict";
+
+var _vue = _interopRequireDefault(require("vue/dist/vue.js"));
+
+var _vue2 = _interopRequireDefault(require("@fullcalendar/vue"));
+
+var _daygrid = _interopRequireDefault(require("@fullcalendar/daygrid"));
+
+var _timegrid = _interopRequireDefault(require("@fullcalendar/timegrid"));
+
+var _interaction = _interopRequireDefault(require("@fullcalendar/interaction"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+// import Calendar from './Calendar.js'
+// new Vue({
+//     render: h => h(Calendar)
+// }).$mount('#calendar')
+// Vue.component('calendar');
+_vue["default"].component('calendar', {
+  template: "\n        <FullCalendar\n            class='demo-app-calendar'\n            ref=\"fullCalendar\"\n            defaultView=\"dayGridMonth\"\n            :header=\"{\n                left: 'prev,next today',\n                center: 'title',\n                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'\n            }\"\n            :plugins=\"calendarPlugins\"\n            :weekends=\"calendarWeekends\"\n            :events=\"calendarEvents\"\n            @@dateClick=\"handleDateClick\"\n        />\n    ",
+  components: {
+    FullCalendar: _vue2["default"] // make the <FullCalendar> tag available
+
+  },
+  data: function data() {
+    return {
+      calendarPlugins: [// plugins must be defined in the JS
+      _daygrid["default"], _timegrid["default"], _interaction["default"] // needed for dateClick
+      ],
+      calendarWeekends: true,
+      calendarEvents: [// initial event data
+      {
+        title: 'Event Now',
+        start: new Date()
+      }]
+    };
+  },
+  methods: {
+    toggleWeekends: function toggleWeekends() {
+      this.calendarWeekends = !this.calendarWeekends; // update a property
+    },
+    gotoPast: function gotoPast() {
+      var calendarApi = this.$refs.fullCalendar.getApi(); // from the ref="..."
+
+      calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+    },
+    handleDateClick: function handleDateClick(arg) {
+      if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
+        this.calendarEvents.push({
+          // add new event data
+          title: 'New Event',
+          start: arg.date,
+          allDay: arg.allDay
+        });
+      }
+    }
+  }
+});
+
+new _vue["default"]({
+  el: '#app-root'
+}); // new Vue({
+//     el: '#calendar',
+//     components: {
+//         FullCalendar
+//     },
+//     data: function() {
+//         return {
+//                 calendarPlugins: [ // plugins must be defined in the JS
+//                 dayGridPlugin,
+//                 timeGridPlugin,
+//                 interactionPlugin // needed for dateClick
+//             ],
+//             calendarWeekends: true,
+//             calendarEvents: [ // initial event data
+//                 { title: 'Event Now', start: new Date() }
+//             ]
+//         }
+//     },
+//     methods: {
+//         toggleWeekends() {
+//             this.calendarWeekends = !this.calendarWeekends // update a property
+//         },
+//         gotoPast() {
+//             let calendarApi = this.$refs.fullCalendar.getApi() // from the ref="..."
+//             calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
+//         },
+//         handleDateClick(arg) {
+//             if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
+//                 this.calendarEvents.push({ // add new event data
+//                     title: 'New Event',
+//                     start: arg.date,
+//                     allDay: arg.allDay
+//                 })
+//             }
+//         }
+//     }
+// });
+// import Calendar from './Calendar.vue'
+// Vue.component('Calendar');
+// new Vue({
+// el: '#demo-app-placeholder'
+// });
+// new Vue({
+//     render: h => h(Calendar)
+// }).$mount('#demo-app-placeholder')
+// new Vue({
+//     el: '#demo-app-placeholder',
+//     render: function (h) {
+//         return h(require('./Calendar.vue'));
+//     }
+// });
