@@ -65,14 +65,6 @@ _vue["default"].component('export-modal', {
       fileFormat: 'pdf'
     };
   },
-  methods: {
-    toggleExportDataButtons: function toggleExportDataButtons(element) {
-      this.exportData = element;
-    },
-    toggleFileFormatButtons: function toggleFileFormatButtons(element) {
-      this.fileFormat = element;
-    }
-  },
   computed: {
     exportAllData: function exportAllData() {
       return this.exportData == 'all' ? 'btn-dark' : 'btn-link';
@@ -88,12 +80,34 @@ _vue["default"].component('export-modal', {
     },
     jsonFileFormat: function jsonFileFormat() {
       return this.fileFormat == 'json' ? 'btn-dark' : 'btn-link';
+    },
+    exportDataClass: function exportDataClass(element) {
+      return this.exportData == element ? 'btn-dark' : 'btn-link';
     }
   }
 });
 
 new _vue["default"]({
-  el: '#app-root'
+  el: '#app-root',
+  data: function data() {
+    return {
+      currentViewMode: 'list'
+    };
+  },
+  computed: {
+    listViewMode: function listViewMode() {
+      return this.currentViewMode == 'list' ? 'active' : '';
+    },
+    tableViewMode: function tableViewMode() {
+      return this.currentViewMode == 'table' ? 'active' : '';
+    },
+    calendarViewMode: function calendarViewMode() {
+      return this.currentViewMode == 'calendar' ? 'active' : '';
+    },
+    gridViewMode: function gridViewMode() {
+      return this.currentViewMode == 'grid' ? 'active' : '';
+    }
+  }
 }); // new Vue({
 //     el: '#calendar',
 //     components: {

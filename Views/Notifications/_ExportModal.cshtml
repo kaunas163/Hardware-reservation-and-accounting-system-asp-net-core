@@ -14,16 +14,16 @@
                             <div class="filter-group">
                                 <p class="question">Kuriuos pranešimus norite eksportuoti?</p>
                                 <p class="buttons-group">
-                                    <button @@click="toggleExportDataButtons('all')" class="btn" :class="exportAllData">Visus</button>
-                                    <button @@click="toggleExportDataButtons('filtered')" class="btn" :class="exportFilteredData">Išfiltruotus</button>
+                                    <button @@click="exportData = 'all'" class="btn" :class="exportAllData">Visus</button>
+                                    <button @@click="exportData = 'filtered'" class="btn" :class="exportFilteredData">Išfiltruotus</button>
                                 </p>
                             </div>
                             <div class="filter-group">
                                 <p class="question">Norimas failo formatas?</p>
                                 <p class="buttons-group">
-                                    <button @@click="toggleFileFormatButtons('pdf')" class="btn" :class="pdfFileFormat">*.pdf</button>
-                                    <button @@click="toggleFileFormatButtons('csv')" class="btn" :class="csvFileFormat">*.csv</button>
-                                    <button @@click="toggleFileFormatButtons('json')" class="btn" :class="jsonFileFormat">*.json</button>
+                                    <button @@click="fileFormat = 'pdf'" class="btn" :class="pdfFileFormat">*.pdf</button>
+                                    <button @@click="fileFormat = 'csv'" class="btn" :class="csvFileFormat">*.csv</button>
+                                    <button @@click="fileFormat = 'json'" class="btn" :class="jsonFileFormat">*.json</button>
                                 </p>
                             </div>
                         </div>

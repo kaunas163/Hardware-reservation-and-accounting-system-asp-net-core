@@ -93,11 +93,11 @@
         </div>
         <div class="view-mode">
             <p class="filter-type-text">Peržiūros būdas:</p>
-            <button class="btn btn-light mode mode-list active">
+            <button class="btn btn-light mode mode-list" @@click="currentViewMode = 'list'" :class="listViewMode">
                 <i class="fas fa-list"></i>
                 Sąrašas
             </button>
-            <button class="btn btn-light mode mode-table">
+            <button class="btn btn-light mode mode-table" @@click="currentViewMode = 'table'" :class="tableViewMode">
                 <i class="fas fa-table"></i>
                 Lentelė
             </button>
@@ -108,7 +108,7 @@
 @await Html.PartialAsync("~/Views/Notifications/_ViewModeList.cshtml")
 @await Html.PartialAsync("~/Views/Notifications/_ViewModeTable.cshtml")
 
-@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")
+@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")*@
 
 @await Html.PartialAsync("~/Views/Notifications/_ExportModal.cshtml")
 @await Html.PartialAsync("~/Views/Notifications/_NewModal.cshtml")
