@@ -38,10 +38,11 @@ function scripts(done) {
         './node_modules/jquery-validation/dist/jquery.validate.js', // TODO: include localization of this
         './node_modules/popper.js/dist/umd/popper.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
+        './node_modules/vue/dist/vue.js',
         // './node_modules/@fullcalendar/core/main.js',
         // './node_modules/@fullcalendar/daygrid/main.js',
         './node_modules/lightbox2/src/js/lightbox.js',
-        // './Content/scripts/index.js'
+        './Scripts/index.js',
     ])
     .pipe(concat('scripts.js'))
     .pipe(uglify())
@@ -52,7 +53,7 @@ function scripts(done) {
 
 function watch(done) {
     gulp.watch('./Styles/**/*.scss', gulp.series(styles));
-    // gulp.watch('./Content/scripts/**/*.js', gulp.series(scripts));
+    gulp.watch('./Scripts/**/*.js', gulp.series(scripts));
     done();
 }
 
