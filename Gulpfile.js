@@ -6,15 +6,19 @@ const cleanCss  = require('gulp-clean-css');
 const uglify    = require('gulp-uglify');
 const rename    = require("gulp-rename");
 
-// function fonts(done) {
-//     gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
-//         .pipe(gulp.dest('./assets/webfonts'));
-//     done();
-// }
+function fonts(done) {
+    gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
+        .pipe(gulp.dest('./wwwroot/webfonts/'));
+    done();
+}
 
 function styles(done) {
     gulp.src([
         './node_modules/bootstrap/scss/bootstrap.scss',
+        './node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss',
+        './node_modules/@fortawesome/fontawesome-free/scss/regular.scss',
+        './node_modules/@fortawesome/fontawesome-free/scss/solid.scss',
+        './node_modules/@fortawesome/fontawesome-free/scss/brands.scss',
         // './node_modules/@fullcalendar/core/main.css',
         // './node_modules/@fullcalendar/daygrid/main.css',
         './node_modules/lightbox2/src/css/lightbox.css',
@@ -52,6 +56,4 @@ function watch(done) {
     done();
 }
 
-// exports.default = gulp.series(gulp.parallel(fonts, styles, scripts), watch);
-
-exports.default = gulp.series(gulp.parallel(styles, scripts), watch);
+exports.default = gulp.series(gulp.parallel(fonts, styles, scripts), watch);
