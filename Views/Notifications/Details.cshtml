@@ -1,0 +1,59 @@
+@model Notification
+
+@{
+    ViewData["Title"] = "Pranešimas";
+}
+
+@section PageHeaderTitle {
+    <h2>Pranešimas</h2>
+}
+
+@section PageHeaderSubNavLinks {
+    @Html.ActionLink("Visi pranešimai", "Index", "Notifications", null, new { @class = "btn btn-dark" })
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal">Naujas</button>
+}
+
+<div class="row align-items-start">
+    <div class="col-md-8 col-sm-12 add-margin">
+        <div class="row">
+            <div class="col add-margin">
+                <div class="content-block">
+                    <div class="title">
+                        <h3>Įrangos nebus galima rezervuoti per KTU karjeros dienas</h3>
+                    </div>
+                    <div class="content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit. Cur tantas regiones barbarorum pedibus obiit, tot maria transmisit? Pollicetur certe. Quo minus animus a se ipse dissidens secumque discordans gustare partem ullam liquidae voluptatis et liberae potest. Duo Reges: constructio interrete. Tollitur beneficium, tollitur gratia, quae sunt vincla concordiae. A villa enim, credo, et: Si ibi te esse scissem, ad te ipse venissem. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col add-margin">
+                <div class="content-block">
+                    <div class="title">
+                        <h3>Pranešimas susijęs su renginiu</h3>
+                    </div>
+                    <div class="content">
+                        <p>text</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Informacija</h3>
+            </div>
+            <div class="content">
+                <p>some text</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Notifications/_ExportModal.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_NewModal.cshtml")
