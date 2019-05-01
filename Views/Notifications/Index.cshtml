@@ -93,11 +93,11 @@
         </div>
         <div class="view-mode">
             <p class="filter-type-text">Peržiūros būdas:</p>
-            <button class="btn btn-light mode mode-list" @@click="currentViewMode = 'list'" :class="listViewMode">
+            <button class="btn btn-light mode" @@click="changeViewMode('list')" :class="[listViewMode, {active: initialViewMode}]">
                 <i class="fas fa-list"></i>
                 Sąrašas
             </button>
-            <button class="btn btn-light mode mode-table" @@click="currentViewMode = 'table'" :class="tableViewMode">
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="tableViewMode">
                 <i class="fas fa-table"></i>
                 Lentelė
             </button>

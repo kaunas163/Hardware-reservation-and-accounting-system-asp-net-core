@@ -104,7 +104,14 @@ new Vue({
     el: '#app-root',
     data() {
         return {
-            currentViewMode: 'list',
+            currentViewMode: '',
+            initialViewMode: true,
+        }
+    },
+    methods: {
+        changeViewMode(mode) {
+            this.initialViewMode = false;
+            this.currentViewMode = mode;
         }
     },
     computed: {

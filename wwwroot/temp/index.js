@@ -91,8 +91,15 @@ new _vue["default"]({
   el: '#app-root',
   data: function data() {
     return {
-      currentViewMode: 'list'
+      currentViewMode: '',
+      initialViewMode: true
     };
+  },
+  methods: {
+    changeViewMode: function changeViewMode(mode) {
+      this.initialViewMode = false;
+      this.currentViewMode = mode;
+    }
   },
   computed: {
     listViewMode: function listViewMode() {
