@@ -12,9 +12,13 @@ const buffer    = require('vinyl-buffer');
 const del       = require('del');
 const fs        = require('fs-extra');
 
-function fonts(done) {
+function copyFiles(done) {
     gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
-        .pipe(gulp.dest('./wwwroot/webfonts/'));
+    .pipe(gulp.dest('./wwwroot/webfonts/'));
+
+    gulp.src('./node_modules/lightbox2/dist/images/*')
+    .pipe(gulp.dest('./wwwroot/images/'));
+
     done();
 }
 
@@ -46,11 +50,6 @@ function cleanTemp(done) {
 
 function es6common(done) {
     fs.ensureDirSync('./wwwroot/temp');
-
-    // gulp.src([
-    //     './Scripts/*.vue'
-    // ])
-    // .pipe(gulp.dest('./wwwroot/temp/'));
 
     gulp.src([
         './Scripts/*.js',
@@ -89,7 +88,7 @@ function watch(done) {
 
 exports.es6common = es6common;
 
-exports.fonts = fonts;
+exports.copyFiles = copyFiles;
 exports.styles = styles;
 exports.scripts = scripts;
 
@@ -97,4 +96,4 @@ exports.cleanTemp = cleanTemp;
 
 exports.watch = watch;
 
-exports.default = gulp.series(es6common, gulp.parallel(fonts, styles, scripts), gulp.parallel(cleanTemp, watch));
+exports.default = gulp.series(es6common, gulp.parallel(copyFiles, styles, scripts), gulp.parallel(cleanTemp, watch));
