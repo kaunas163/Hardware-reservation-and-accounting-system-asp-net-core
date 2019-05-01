@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Vartotojo informacija";
+}
+
+@section PageHeaderTitle {
+    <h2>Vartotojo informacija</h2>
+}
+@section PageHeaderSubNavLinks {
+    @Html.ActionLink("Visi vartotojai", "Index", "Users", null, new { @class = "btn btn-dark" })
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
+}
+
+<div class="row">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Pagrindinė informacija</h3>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>
+                            <img src="https://via.placeholder.com/200">
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Vardas Pavardė</p>
+                        <p>El. pašto adresas</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><a href="#" data-toggle="modal" data-target="#editRoleModal">Rolė <i class="far fa-edit"></i></a></p>
+                        <p>Komentaras</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Rezervacijos</h3>
+            </div>
+            <div class="content">
+                <p>Rezervacijų sąrašas</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Kas dar?</h3>
+            </div>
+            <div class="content">
+                <p>...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/Users/_ExportModal.cshtml")
+@await Html.PartialAsync("~/Views/Users/_EditRoleModal.cshtml")
+
