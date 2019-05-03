@@ -4,14 +4,16 @@ using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HardwareReservationAndAccountingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190503202152_RemoveFieldsFromNotifications")]
+    partial class RemoveFieldsFromNotifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,25 +164,6 @@ namespace HardwareReservationAndAccountingSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NotificationTypes");
-                });
-
-            modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.NotificationsForUsers", b =>
-                {
-                    b.Property<int>("NotificationId");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<bool>("IsArchived");
-
-                    b.Property<bool>("IsRead");
-
-                    b.Property<DateTime?>("ReadOn");
-
-                    b.HasKey("NotificationId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("NotificationsForUsers");
                 });
 
             modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.Reservation", b =>
@@ -460,19 +443,6 @@ namespace HardwareReservationAndAccountingSystem.Migrations
                     b.HasOne("HardwareReservationAndAccountingSystem.Models.Reservation", "Reservation")
                         .WithMany("Notifications")
                         .HasForeignKey("ReservationId");
-                });
-
-            modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.NotificationsForUsers", b =>
-                {
-                    b.HasOne("HardwareReservationAndAccountingSystem.Models.Notification", "Notification")
-                        .WithMany("NotificationsForUsers")
-                        .HasForeignKey("NotificationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HardwareReservationAndAccountingSystem.Models.ApplicationUser", "User")
-                        .WithMany("NotificationsForUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.Reservation", b =>

@@ -20,6 +20,8 @@ namespace HardwareReservationAndAccountingSystem.Data
 
             modelBuilder.Entity<EquipmentsInBundles>()
                 .HasKey(e => new { e.EquipmentId, e.EquipmentBundleId });
+            modelBuilder.Entity<NotificationsForUsers>()
+                .HasKey(e => new { e.NotificationId, e.UserId });
         }
 
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
@@ -32,5 +34,6 @@ namespace HardwareReservationAndAccountingSystem.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<NotificationType> NotificationTypes { get; set; }
+        public DbSet<NotificationsForUsers> NotificationsForUsers { get; set; }
     }
 }

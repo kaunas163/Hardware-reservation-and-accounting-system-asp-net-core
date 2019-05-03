@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HardwareReservationAndAccountingSystem.Models
@@ -16,15 +17,6 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Sukūrimo data")]
         public DateTime CreatedOn { get; set; }
-
-        [Display(Name = "Ar perskaitytas?")]
-        public bool IsRead { get; set; }
-
-        [Display(Name = "Perskaitymo data")]
-        public DateTime? ReadOn { get; set; }
-
-        [Display(Name = "Ar archyvuotas?")]
-        public bool IsArchived { get; set; }
 
         [Display(Name = "Rezervacija")]
         public int? ReservationId { get; set; }
@@ -45,5 +37,7 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pranešimo tipas")]
         public int NotificationTypeId { get; set; }
         public NotificationType NotificationType { get; set; }
+
+        public List<NotificationsForUsers> NotificationsForUsers { get; set; }
     }
 }

@@ -16,5 +16,7 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Rezervacijos")]
         public List<Reservation> Reservations { get; set; }
+
+        public List<NotificationsForUsers> NotificationsForUsers { get; set; }
     }
 }
