@@ -70,6 +70,11 @@
                 text-decoration: none;
                 transition: 100ms all;
 
+                i {
+                    width: 25px;
+                    font-size: 1.2em;
+                }
+
                 span.badge {
                     font-size: 12px;
                     margin-left: 10px;
@@ -95,7 +100,8 @@
             &.first-level {
                 & > li {
                     &.active {
-                        border-left-color: #FF6F11;
+                        border-left-color: #2f6df3;
+                        // background: #dde8ff;
 
                         a {
                             color: #344750;

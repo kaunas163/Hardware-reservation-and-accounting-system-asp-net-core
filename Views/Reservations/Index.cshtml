@@ -11,7 +11,7 @@
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Reservations")" class="btn btn-dark"><i class="fas fa-calendar-check"></i> Visos rezervacijos</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Nauja</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
 @section PageHeaderFilters {
@@ -124,3 +124,4 @@
 
 @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml")
