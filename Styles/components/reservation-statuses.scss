@@ -1,0 +1,36 @@
+p.reservation {
+    &.waiting-approval {
+        &, a {
+            color: #FFA200;
+        }
+    }
+
+    &.approved {
+        &, a {
+            color: #36AE46;
+        }
+    }
+
+    &.canceled,
+    &.stolen {
+        &, a {
+            color: #FF0000;
+        }
+    }
+
+    &.in-progress {
+        &, a {
+            color: #4696ff;
+        }
+    }
+
+    &.late {
+        color: #ff6600;
+    }
+
+    &.old {
+        &, a {
+            color: #929CA1;
+        }
+    }
+}

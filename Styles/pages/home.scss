@@ -18,27 +18,6 @@
                 &.new {
                     font-weight: 700;
                 }
-
-                &.waiting-approval {
-                    color: #FFA200;
-                }
-
-                &.approved {
-                    color: #36AE46;
-                }
-
-                &.canceled,
-                &.stolen {
-                    color: #FF0000;
-                }
-
-                &.in-progress {
-                    color: #0073ea;
-                }
-
-                &.old {
-                    color: #929CA1;
-                }
             }
         }
     }
