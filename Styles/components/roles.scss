@@ -1,0 +1,19 @@
+p.role {
+    &.admin {
+        &, a {
+            color: red;
+        }
+    }
+
+    &.moderator {
+        &, a {
+            color: #4696ff;
+        }
+    }
+
+    // &.user {
+    //     &, a {
+    //         color: grey;
+    //     }
+    // }
+}
