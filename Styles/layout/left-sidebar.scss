@@ -65,7 +65,8 @@
             a {
                 display: block;
                 padding: 12px 2.5em;
-                text-transform: uppercase;
+                // text-transform: uppercase;
+                letter-spacing: 1px;
                 font-size: 14px;
                 text-decoration: none;
                 transition: 100ms all;
@@ -100,15 +101,18 @@
             &.first-level {
                 & > li {
                     &.active {
-                        border-left-color: #2f6df3;
+                        // border-left-color: #2f6df3;
                         // background: #dde8ff;
+                        border-left-color: #0073ea;
+                        background: #ecf3fd;
 
                         a {
-                            color: #344750;
+                            // color: #344750;
+                            color: #0073ea;
                             font-weight: 700;
 
                             span.badge {
-                                background-color: #344750;
+                                background-color: #0073ea;
                             }
                         }
                     }
