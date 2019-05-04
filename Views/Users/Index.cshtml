@@ -5,9 +5,10 @@
 @section PageHeaderTitle {
     <h2>Vartotojai</h2>
 }
+
 @section PageHeaderSubNavLinks {
-    @Html.ActionLink("Visi vartotojai", "Index", "Users", null, new { @class = "btn btn-dark" })
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
+    <a href="@Url.Action("Index", "Users")" class="btn btn-dark"><i class="fas fa-user"></i> Visi vartotojai</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     <!-- <button type="button" class="btn btn-success" >Naujas</button> -->
 }
 

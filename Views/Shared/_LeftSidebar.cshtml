@@ -10,28 +10,28 @@
 <div class="navbar-links">
     <ul class="first-level">
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
-            @Html.ActionLink("Pradžia", "Index", "Home")
+            <a href="@Url.Action("Index", "Home")"><i class="fas fa-home"></i> Pradžia</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Notifications" ? "active" : "")">
-            <a href="@Url.Action("Index", "Notifications")">Pranešimai <span class="badge badge-secondary">2</span></a>
+            <a href="@Url.Action("Index", "Notifications")"><i class="fas fa-bell"></i> Pranešimai <span class="badge badge-secondary">2</span></a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Reservations" ? "active" : "")">
-            @Html.ActionLink("Rezervacijos", "Index", "Reservations")
+            <a href="@Url.Action("Index", "Reservations")"><i class="fas fa-calendar-check"></i> Rezervacijos</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Equipments" ? "active" : "")">
-            @Html.ActionLink("Įranga", "Index", "Equipments")
+            <a href="@Url.Action("Index", "Equipments")"><i class="fas fa-camera"></i> Įranga</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Events" ? "active" : "")">
-            @Html.ActionLink("Renginiai", "Index", "Events")
+            <a href="@Url.Action("Index", "Events")"><i class="fas fa-calendar-day"></i> Renginiai</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Calendar" ? "active" : "")">
-            @Html.ActionLink("Kalendorius", "Index", "Calendar")
+            <a href="@Url.Action("Index", "Calendar")"><i class="fas fa-calendar-alt"></i> Kalendorius</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Users" ? "active" : "")">
-            @Html.ActionLink("Vartotojai", "Index", "Users")
+            <a href="@Url.Action("Index", "Users")"><i class="fas fa-user"></i> Vartotojai</a>
         </li>
         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Settings" ? "active" : "")">
-            @Html.ActionLink("Nustatymai", "Index", "Settings")
+            <a href="@Url.Action("Index", "Settings")"><i class="fas fa-wrench"></i> Nustatymai</a>
         </li>
         @*@if (User.IsInRole("admin"))
         {

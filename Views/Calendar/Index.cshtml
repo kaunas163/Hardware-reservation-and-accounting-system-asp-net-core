@@ -7,11 +7,10 @@
 }
 
 @section PageHeaderSubNavLinks {
-    @Html.ActionLink("Kalendorius", "Index", "Calendar", null, new { @class = "btn btn-dark" })
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
-    <button type="button" class="btn btn-success">Sinchronizuoti</button>
+    <a href="@Url.Action("Index", "Calendar")" class="btn btn-dark"><i class="fas fa-calendar-alt"></i> Kalendorius</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-success"><i class="fas fa-sync-alt"></i> Sinchronizuoti</button>
 }
-
 
 @section PageHeaderFilters {
     <div class="page-filters">

@@ -9,9 +9,9 @@
 }
 
 @section PageHeaderSubNavLinks {
-    @Html.ActionLink("Visos rezervacijos", "Index", "Reservations", null, new { @class = "btn btn-dark" })
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Eksportuoti</button>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal">Nauja</button>
+    <a href="@Url.Action("Index", "Reservations")" class="btn btn-dark"><i class="fas fa-calendar-check"></i> Visos rezervacijos</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Nauja</button>
 }
 
 @section PageHeaderFilters {
