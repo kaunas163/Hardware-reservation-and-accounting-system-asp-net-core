@@ -131,13 +131,15 @@
                                 }
                             }
 
+                            &:not(:last-child) {
+                                & > a {
+                                    padding-bottom: 8px;
+                                }
+                            }
+
                             & > a {
                                 margin-left: 25px;
-                                padding-top: 6px;
-
-                                &:not(:last-child) {
-                                    padding-bottom: 6px;
-                                }
+                                padding-top: 8px;
                             }
                         }
                     }
