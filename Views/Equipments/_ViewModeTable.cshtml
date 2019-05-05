@@ -1,0 +1,61 @@
+<div class="row view-mode-content-block" :class="tableViewMode">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Atskira įranga</h3>
+            </div>
+            <div class="content">
+                <div class="flex-table styled-table">
+                    <div class="headings">
+                        <p>Pavadinimas <i class="fas fa-sort"></i></p>
+                        <p>Aprašymas <i class="fas fa-sort"></i></p>
+                        <p>Ar paskelbta? <i class="fas fa-sort"></i></p>
+                        <p>Įrangos tipas <i class="fas fa-sort"></i></p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
+                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
+                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
+                        <p>@Html.ActionLink("Ausinės", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
+                        <p>@Html.ActionLink("Monitorius", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
+                        <p>@Html.ActionLink("Veiksmo kamera", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
+                        <p>@Html.ActionLink("Mikrofonas", "Details", "Equipments")</p>
+                    </div>
+                    <div class="data-row">
+                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
+                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
+                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
+                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

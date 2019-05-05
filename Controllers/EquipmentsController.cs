@@ -21,5 +21,10 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             // return View(equipments);
             return View();
         }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,9 @@
+p.is-public {
+    &.yes {
+        color: #36ae46;
+    }
+
+    &.no {
+        color: red;
+    }
+}
