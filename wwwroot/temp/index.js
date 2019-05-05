@@ -92,7 +92,8 @@ new _vue["default"]({
   data: function data() {
     return {
       currentViewMode: '',
-      initialViewMode: true
+      initialViewMode: true,
+      sidebarEquipmentActive: false
     };
   },
   methods: {

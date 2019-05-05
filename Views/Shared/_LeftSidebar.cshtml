@@ -7,39 +7,51 @@
     <partial name="_LoginPartial" />
 </div>
 
+@{
+    var currentController = ViewContext.RouteData.Values["Controller"].ToString();
+}
+
 <div class="navbar-links">
     <ul class="first-level">
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
+        <li class="@(currentController == "Home" ? "active" : "")">
             <a href="@Url.Action("Index", "Home")"><i class="fas fa-home"></i> Pradžia</a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Notifications" ? "active" : "")">
+        <li class="@(currentController == "Notifications" ? "active" : "")">
             <a href="@Url.Action("Index", "Notifications")"><i class="fas fa-bell"></i> Pranešimai <span class="badge badge-secondary">2</span></a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Reservations" ? "active" : "")">
+        <li class="@(currentController == "Reservations" ? "active" : "")">
             <a href="@Url.Action("Index", "Reservations")"><i class="fas fa-calendar-check"></i> Rezervacijos</a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Equipments" ? "active" : "")">
-            <a href="@Url.Action("Index", "Equipments")"><i class="fas fa-camera"></i> Įranga</a>
+        @{
+            var equipmentActive = currentController == "Equipments" || currentController == "EquipmentBundles";
+        }
+        <li class="@(equipmentActive ? "active" : "")">
+            @*<a href="@Url.Action("Index", "Equipments")"><i class="fas fa-camera"></i> Įranga</a>*@
+            <a href="#" @@click.prevent="sidebarEquipmentActive = !sidebarEquipmentActive" class="with-sub-links"><i class="fas fa-camera"></i> Įranga</a>
+            <ul class="second-level @(equipmentActive ? "active" : "")" :class="{active: sidebarEquipmentActive}">
+                <li class="@(currentController == "Equipments" ? "active" : "")">@Html.ActionLink("Atskira įranga", "Index", "Equipments")</li>
+                <li class="@(currentController == "EquipmentBundles" ? "active" : "")">@Html.ActionLink("Įrangos komplektai", "Index", "EquipmentBundles")</li>
+            </ul>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Events" ? "active" : "")">
+        <li class="@(currentController == "Events" ? "active" : "")">
             <a href="@Url.Action("Index", "Events")"><i class="fas fa-calendar-day"></i> Renginiai</a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Calendar" ? "active" : "")">
+        <li class="@(currentController == "Calendar" ? "active" : "")">
             <a href="@Url.Action("Index", "Calendar")"><i class="fas fa-calendar-alt"></i> Kalendorius</a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Users" ? "active" : "")">
+        <li class="@(currentController == "Users" ? "active" : "")">
             <a href="@Url.Action("Index", "Users")"><i class="fas fa-user"></i> Vartotojai</a>
         </li>
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Settings" ? "active" : "")">
+        <li class="@(currentController == "Settings" ? "active" : "")">
             <a href="@Url.Action("Index", "Settings")"><i class="fas fa-wrench"></i> Nustatymai</a>
         </li>
         @*@if (User.IsInRole("admin"))
         {
-            <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "EquipmentTypes" ? "active" : "")">
+            <li class="@(currentController == "EquipmentTypes" ? "active" : "")">
                 @Html.ActionLink("Įrangos tipai", "Index", "EquipmentTypes")
             </li>
         }
-        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "EquipmentBundles" ? "active" : "")">
+        <li class="@(currentController == "EquipmentBundles" ? "active" : "")">
             @Html.ActionLink("Įrangos komplektai", "Index", "EquipmentBundles")
         </li>*@
     </ul>

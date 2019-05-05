@@ -106,13 +106,14 @@ new Vue({
         return {
             currentViewMode: '',
             initialViewMode: true,
+            sidebarEquipmentActive: false,
         }
     },
     methods: {
         changeViewMode(mode) {
             this.initialViewMode = false;
             this.currentViewMode = mode;
-        }
+        },
     },
     computed: {
         listViewMode() {
