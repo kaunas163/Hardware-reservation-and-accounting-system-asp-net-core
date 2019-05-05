@@ -133,7 +133,11 @@
 
                             & > a {
                                 margin-left: 25px;
-                                // font-size: 12px;
+                                padding-top: 6px;
+
+                                &:not(:last-child) {
+                                    padding-bottom: 6px;
+                                }
                             }
                         }
                     }
