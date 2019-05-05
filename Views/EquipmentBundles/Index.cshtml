@@ -8,5 +8,77 @@
     <h2>Įrangos komplektai</h2>
 }
 
-@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")
+@section PageHeaderSubNavLinks {
+    <a href="@Url.Action("Index", "EquipmentBundles")" class="btn btn-dark"><i class="fas fa-camera"></i> Visi komplektai</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
+}
+
+@section PageHeaderFilters {
+    <div class="page-filters">
+        <div class="filters">
+            <p class="filter-type-text">Filtruoti įrangą:</p>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Paieškos frazė
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Paskelbimo būsena
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Įranga
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-mode">
+            <p class="filter-type-text">Peržiūros būdas:</p>
+            <button class="btn btn-light mode" @@click="changeViewMode('grid')" :class="[gridViewMode, {active: initialViewMode}]">
+                <i class="fas fa-th"></i>
+                Blokai
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('list')" :class="listViewMode">
+                <i class="fas fa-list"></i>
+                Sąrašas
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="tableViewMode">
+                <i class="fas fa-table"></i>
+                Lentelė
+            </button>
+        </div>
+    </div>
+}
+
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeList.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeTable.cshtml")
+
+@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")*@
+
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml")
 

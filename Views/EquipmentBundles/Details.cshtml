@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Įrangos komplekto informacija";
+}
+
+@section PageHeaderTitle {
+    <h2>Įrangos komplekto informacija</h2>
+}
+
+@section PageHeaderSubNavLinks {
+    <a href="@Url.Action("Index", "EquipmentBundles")" class="btn btn-dark"><i class="fas fa-camera"></i> Visi komplektai</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
+}
+
+<div class="row">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Pagrindinė informacija</h3>
+            </div>
+            <div class="content">
+                <p>some text</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Galerija</h3>
+            </div>
+            <div class="content">
+                <p>some text</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Rezervacijos</h3>
+            </div>
+            <div class="content">
+                <p>tiek list tiek kalendorius, tik nžn ar tame pačiame baltame bloke, ar atskiruose</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml")
