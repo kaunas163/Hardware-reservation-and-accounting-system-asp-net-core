@@ -2,11 +2,16 @@
     .content-block {
         & > .content {
             p {
-                margin-bottom: 7px;
+                margin-bottom: 0;
                 width: 100%;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
+
+                a {
+                    padding: 5px 0;
+                    display: block;
+                }
 
                 span {
                     font-weight: 200;
