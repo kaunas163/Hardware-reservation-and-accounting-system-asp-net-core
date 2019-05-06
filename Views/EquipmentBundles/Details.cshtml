@@ -9,40 +9,33 @@
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "EquipmentBundles")" class="btn btn-dark"><i class="fas fa-camera"></i> Visi komplektai</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
 <div class="row">
-    <div class="col-md-6 col-sm-12 add-margin">
+    <div class="col-md-12 add-margin">
         <div class="content-block">
-            <div class="title">
+            <div class="title with-edit">
                 <h3>Pagrindinė informacija</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editMainInfoModal"><i class="far fa-edit"></i></button>
+                </div>
             </div>
             <div class="content">
-                <p>some text</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-sm-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>Galerija</h3>
-            </div>
-            <div class="content">
-                <p>some text</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>Įranga</h3>
-            </div>
-            <div class="content">
-                <p>įrangos sąrašas</p>
+                <p><strong>Sukūrimo laikas:</strong> 2018-10-15 14:35:40</p>
+                <p><strong>Pavadinimas:</strong> Toks ir toks</p>
+                <p>
+                    <strong>Aprašymas:</strong>
+                    Verum enim diceret, idque Socratem, qui voluptatem nullo loco numerat, audio dicentem, cibi condimentum esse famem,
+                    potionis sitim. Itaque dicunt nec dubitant: mihi sic usus est, tibi ut opus est facto, fac. Nam quicquid quaeritur, id
+                    habet aut generis ipsius sine personis temporibusque aut his adiunctis facti aut iuris aut nominis controversiam. Duo Reges:
+                    constructio interrete. Semovenda est igitur voluptas, non solum ut recta sequamini, sed etiam ut loqui deceat frugaliter. Hi
+                    curatione adhibita levantur in dies, valet alter plus cotidie, alter videt. Totum autem id externum est, et quod externum, id
+                    in casu est. Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Ut placet, inquit,
+                    etsi enim illud erat aptius, aequum cuique concedere. Quae iam oratio non a philosopho aliquo, sed a censore opprimenda est.
+                </p>
             </div>
         </div>
     </div>
@@ -52,14 +45,117 @@
     <div class="col-md-12 add-margin">
         <div class="content-block">
             <div class="title">
-                <h3>Rezervacijos</h3>
+                <h3>Įrangos sąrašas</h3>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-margin">
+                        <a href="@Url.Action("Details", "Equipments")">
+                            <img src="http://via.placeholder.com/500x250">
+                        </a>
+                        <h4><a href="@Url.Action("Details", "Equipments")">Įrangos pavadinimas</a></h4>
+                        <p>Trumpas įrangos aprašymas</p>
+                    </div>
+                    <div class="col-md-4 small-equipment-block add-equipment add-margin">
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addEquipmentModal">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Pridėti daugiau įrangos</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Komplekto užimtumas</h3>
             </div>
             <div class="content">
                 <p>tiek list tiek kalendorius, tik nžn ar tame pačiame baltame bloke, ar atskiruose</p>
+                <p>taip pat, šioje vietoje galima pasakyti, kad kalendorius yra interaktyvus ir kad galima rezervuoti šią įrangą tiesiai iš čia</p>
+                <div id="calendar">
+                    <calendar />
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Pasikeitimų istorija?</h3>
+            </div>
+            <div class="content">
+                <p>kada sukurta, kada pakeista būsena, kada išimta ar pan...?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Kas dar?</h3>
+            </div>
+            <div class="content">
+                <p>...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEditMainInfo.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEdit.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalArchive.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalAddEquipment.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml")
