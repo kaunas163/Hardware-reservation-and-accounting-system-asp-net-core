@@ -9,37 +9,71 @@
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Equipments")" class="btn btn-dark"><i class="fas fa-camera"></i> Visa įranga</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
 <div class="row">
-    <div class="col-md-12 add-margin">
+    <div class="col-md-6 col-sm-12 add-margin">
         <div class="content-block">
-            <div class="title">
+            <div class="title with-edit">
                 <h3>Pagrindinė informacija</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editMainInfoModal"><i class="far fa-edit"></i></button>
+                </div>
             </div>
             <div class="content">
-                <p>some text</p>
+                <p><strong>Sukūrimo laikas:</strong> 2018-10-15 14:35:40</p>
+                <p><strong>Pavadinimas:</strong> Toks ir toks</p>
+                <p>
+                    <strong>Aprašymas:</strong>
+                    Verum enim diceret, idque Socratem, qui voluptatem nullo loco numerat, audio dicentem, cibi condimentum esse famem,
+                    potionis sitim. Itaque dicunt nec dubitant: mihi sic usus est, tibi ut opus est facto, fac. Nam quicquid quaeritur, id
+                    habet aut generis ipsius sine personis temporibusque aut his adiunctis facti aut iuris aut nominis controversiam. Duo Reges:
+                    constructio interrete. Semovenda est igitur voluptas, non solum ut recta sequamini, sed etiam ut loqui deceat frugaliter. Hi
+                    curatione adhibita levantur in dies, valet alter plus cotidie, alter videt. Totum autem id externum est, et quod externum, id
+                    in casu est. Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Ut placet, inquit,
+                    etsi enim illud erat aptius, aequum cuique concedere. Quae iam oratio non a philosopho aliquo, sed a censore opprimenda est.
+                </p>
             </div>
         </div>
     </div>
-    <div class="col-md-12 add-margin">
+    <div class="col-md-6 col-sm-12 add-margin">
         <div class="content-block">
-            <div class="title">
-                <h3>Galerija?</h3>
+            <div class="title with-edit">
+                <h3>Galerija</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editGalleryModal"><i class="far fa-edit"></i></button>
+                </div>
             </div>
             <div class="content">
-                <p>...</p>
+                <div class="photo-gallery">
+                    <a href="http://via.placeholder.com/500x400" data-lightbox="equipment-gallery">
+                        <img src="http://via.placeholder.com/200x180">
+                    </a>
+                    <a href="http://via.placeholder.com/500x400" data-lightbox="equipment-gallery">
+                        <img src="http://via.placeholder.com/200x180">
+                    </a>
+                    <a href="http://via.placeholder.com/500x400" data-lightbox="equipment-gallery">
+                        <img src="http://via.placeholder.com/200x180">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="row">
     <div class="col-md-12 add-margin">
         <div class="content-block">
             <div class="title">
                 <h3>Aktyvios rezervacijos? Gal dar kalendorius?</h3>
             </div>
             <div class="content">
-                <p>...</p>
+                <div id="calendar">
+                    <calendar />
+                </div>
             </div>
         </div>
     </div>
@@ -65,5 +99,9 @@
     </div>
 </div>
 
+@await Html.PartialAsync("~/Views/Equipments/_ModalEditMainInfo.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ModalEditGallery.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ModalEdit.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ModalArchive.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml")

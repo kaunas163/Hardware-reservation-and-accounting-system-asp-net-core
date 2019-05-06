@@ -24,6 +24,18 @@
     border-color: #36AE46;
 }
 
+.btn-warning {
+    color: white;
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+
+    &:hover {
+        color: white;
+        background-color: #df6400;
+        border-color: #df6400;
+    }
+}
+
 .btn-link {
     color: #929CA1;
 

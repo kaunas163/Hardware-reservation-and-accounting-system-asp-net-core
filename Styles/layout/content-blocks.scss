@@ -19,6 +19,26 @@
     & > .title {
         margin-bottom: 1.2em;
 
+        &.with-edit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .edit-actions {
+                margin-bottom: .5rem;
+                line-height: 1.2;
+
+                button {
+                    padding: 0;
+                }
+
+                // a {
+                //     color: #929ca1;
+                //     font-size: 14px;
+                // }
+            }
+        }
+
         h3 {
             font-size: 18px;
             font-weight: 600;
