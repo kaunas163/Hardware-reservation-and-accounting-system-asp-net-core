@@ -11,8 +11,11 @@
         <div class="row">
             <div class="col add-margin">
                 <div class="content-block">
-                    <div class="title">
+                    <div class="title with-edit">
                         <h3>@Html.ActionLink("Pranešimai", "Index", "Notifications")</h3>
+                        <div class="edit-actions">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#newNotificationModal"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
                     </div>
                     <div class="content">
                         <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-16 21:10</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" buvo patvirtinta.</a></p>
@@ -149,3 +152,5 @@
         </div>
     </div>
 </div>
+
+@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
