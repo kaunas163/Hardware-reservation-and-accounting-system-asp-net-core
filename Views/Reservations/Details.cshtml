@@ -9,24 +9,54 @@
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Reservations")" class="btn btn-dark"><i class="fas fa-calendar-check"></i> Visos rezervacijos</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newReservationModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
 <div class="row">
     <div class="col-md-12 add-margin">
         <div class="content-block">
-            <div class="title">
+            <div class="title with-edit">
                 <h3>Pagrindinė informacija</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editMainInfoModal"><i class="far fa-edit"></i></button>
+                </div>
             </div>
-            <div class="content">
-                <p>some text</p>
+            <div class="content base-info">
+                <div class="row">
+                    <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
+                    <div class="col-md-10"><p>2018-10-15 14:35:40</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><p>Rezervacijos laikotarpis:</p></div>
+                    <div class="col-md-10"><p>2019-10-03 10:00 - 2019-10-05 10:00</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><p>Užsakovas:</p></div>
+                    <div class="col-md-10"><p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><p>Renginys? :O</p></div>
+                    <div class="col-md-10"><p>@Html.ActionLink("Renginio pavadinimas", "Details", "Events")</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><p>Rezervacijos būsena:</p></div>
+                    <div class="col-md-10">
+                        <p class="reservation waiting-approval">
+                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-md-12 add-margin">
         <div class="content-block">
-            <div class="title">
+            <div class="title with-edit less-margin">
                 <h3>@Html.ActionLink("Rezervuotas įrangos komplektas: bla bla", "Details", "EquipmentBundles")</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editEquipmentBundleModal"><i class="far fa-edit"></i></button>
+                </div>
             </div>
             <div class="content">
                 <p>
@@ -37,6 +67,17 @@
                     ribeye ground round sausage cow.  Alcatra pastrami bacon venison ground round, beef tail capicola turkey
                     buffalo shank drumstick ham.  Flank jerky bacon, rump frankfurter pastrami shank salami.
                 </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
+                <h3>Kalendorius</h3>
+            </div>
+            <div class="content">
+                <p>Ar šioje vietoje reikalingas kalendorius?</p>
+                <p>Gal dėl vieno įrašo jame nelabai apsimoka, bet jei reik vizualaus atvaizdavimo tai sure, galima būtų įdėti</p>
             </div>
         </div>
     </div>
@@ -55,3 +96,6 @@
 @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalEditMainInfo.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalEdit.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalEditEquipmentBundle.cshtml")
