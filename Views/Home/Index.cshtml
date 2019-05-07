@@ -55,8 +55,11 @@
     </div>
     <div class="col-md-7 col-sm-12 add-margin">
         <div class="content-block">
-            <div class="title">
+            <div class="title with-edit">
                 <h3>@Html.ActionLink("Rezervacijos", "Index", "Reservations")</h3>
+                <div class="edit-actions">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#newReservationModal"><i class="fas fa-pencil-alt"></i></button>
+                </div>
             </div>
             <div class="content">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -158,3 +161,4 @@
 
 @await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml")
