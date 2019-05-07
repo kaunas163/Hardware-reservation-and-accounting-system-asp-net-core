@@ -102,6 +102,10 @@
         p {
             color: #929CA1;
 
+            &.secondary-text {
+                font-size: 12px;
+            }
+
             strong {
                 color: #344750;
             }

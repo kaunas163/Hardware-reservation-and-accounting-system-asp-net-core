@@ -1,0 +1,15 @@
+.base-info {
+    & > .row {
+        & > *:first-child {
+            p {
+                font-weight: 700;
+                color: #344750;
+                text-align: right;
+            }
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    }
+}

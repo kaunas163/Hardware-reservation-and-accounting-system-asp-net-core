@@ -11,6 +11,7 @@
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Notifications")" class="btn btn-dark"><i class="fas fa-bell"></i> Visi pranešimai</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -34,10 +35,17 @@
             <div class="col add-margin">
                 <div class="content-block">
                     <div class="title">
-                        <h3>Pranešimas susijęs su renginiu</h3>
+                        <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su renginiu "bla bla"</a></h3>
                     </div>
                     <div class="content">
-                        <p>text</p>
+                        <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
+                            Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
+                            id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
+                            inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
+                            natum esse et suis voluptatibus? 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -48,12 +56,28 @@
             <div class="title">
                 <h3>Pagrindinė informacija</h3>
             </div>
-            <div class="content">
-                <p>some text</p>
+            <div class="content base-info">
+                <div class="row">
+                    <div class="col-5"><p>Pranešimas sukurtas:</p></div>
+                    <div class="col-7"><p>2018-09-10 10:35:48</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-5"><p>Pranešimą sukūrė:</p></div>
+                    <div class="col-7"><p>@Html.ActionLink("Administratorius", "Details", "Users")</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-5"><p>Pranešimo būsena:</p></div>
+                    <div class="col-7"><p>Naujas pranešimas</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-5"><p>Pranešimo tipas:</p></div>
+                    <div class="col-7"><p>Pasikeitimai rezervacijose</p></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @await Html.PartialAsync("~/Views/Notifications/_ModalExport.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_ModalArchive.cshtml")
 @await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
