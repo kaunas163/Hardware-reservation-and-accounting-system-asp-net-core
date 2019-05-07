@@ -34,8 +34,11 @@
         <div class="row">
             <div class="col add-margin">
                 <div class="content-block">
-                    <div class="title">
+                    <div class="title with-edit">
                         <h3>@Html.ActionLink("Renginiai", "Index", "Events")</h3>
+                        <div class="edit-actions">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#newEventModal"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
                     </div>
                     <div class="content">
                         <p><a href="@Url.Action("Details", "Events")"><span>2019-03-20 09:00</span> Karjeros dienos</a></a></p>
@@ -154,3 +157,4 @@
 </div>
 
 @await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml")
