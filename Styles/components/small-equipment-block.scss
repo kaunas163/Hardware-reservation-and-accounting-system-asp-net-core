@@ -10,19 +10,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px dotted #d2d2d3;
-        padding: 0;
-        transition: 0.3s all;
         height: 250px;
-
-        &:hover {
-            background: #ececec;
-        }
 
         button {
             width: 100%;
             height: 100%;
             text-decoration: none;
+            border: 1px dotted #d2d2d3;
+            transition: 0.3s all;
+
+            &:hover {
+                background: #ececec;
+            }
 
             i {
                 font-size: 5em;
