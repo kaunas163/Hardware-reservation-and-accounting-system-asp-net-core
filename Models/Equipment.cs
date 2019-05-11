@@ -14,9 +14,6 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Aprašymas")]
         public string Description { get; set; }
 
-        [Display(Name = "Ar paskelbtas ir leidžiamas rezervuoti?")]
-        public bool IsPublic { get; set; }
-
         [Display(Name = "Įrangos tipas")]
         public int EquipmentTypeId { get; set; }
 
