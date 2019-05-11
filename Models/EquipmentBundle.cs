@@ -32,5 +32,9 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Pranešimai")]
         public List<Notification> Notifications { get; set; }
+
+        [Display(Name = "Pradinis įrangos komplekto įrašas")]
+        public int? OriginalEquipmentBundleId { get; set; }
+        public EquipmentBundle OriginalEquipmentBundle { get; set; }
     }
 }
