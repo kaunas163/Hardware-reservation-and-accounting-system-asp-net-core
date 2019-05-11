@@ -34,5 +34,9 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Pranešimai")]
         public List<Notification> Notifications { get; set; }
+
+        [Display(Name = "Pradinis įrangos įrašas")]
+        public int? OriginalEquipmentId { get; set; }
+        public Equipment OriginalEquipment { get; set; }
     }
 }
