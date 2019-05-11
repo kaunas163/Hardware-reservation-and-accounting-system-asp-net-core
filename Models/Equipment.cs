@@ -41,5 +41,8 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Nerezervuojami laikai")]
         public List<Unavailability> Unavailabilities { get; set; }
+
+        [Display(Name = "Nuotraukos")]
+        public List<Picture> Pictures { get; set; }
     }
 }

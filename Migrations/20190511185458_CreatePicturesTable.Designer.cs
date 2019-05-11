@@ -4,14 +4,16 @@ using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HardwareReservationAndAccountingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190511185458_CreatePicturesTable")]
+    partial class CreatePicturesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,15 +213,11 @@ namespace HardwareReservationAndAccountingSystem.Migrations
 
                     b.Property<string>("Caption");
 
-                    b.Property<int>("EquipmentId");
-
                     b.Property<string>("FullSizeUrl");
 
                     b.Property<string>("ThumbnailUrl");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EquipmentId");
 
                     b.ToTable("Pictures");
                 });
@@ -540,14 +538,6 @@ namespace HardwareReservationAndAccountingSystem.Migrations
                     b.HasOne("HardwareReservationAndAccountingSystem.Models.ApplicationUser", "User")
                         .WithMany("NotificationsForUsers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.Picture", b =>
-                {
-                    b.HasOne("HardwareReservationAndAccountingSystem.Models.Equipment", "Equipment")
-                        .WithMany("Pictures")
-                        .HasForeignKey("EquipmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

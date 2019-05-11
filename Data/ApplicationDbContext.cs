@@ -35,5 +35,6 @@ namespace HardwareReservationAndAccountingSystem.Data
         public DbSet<NotificationType> NotificationTypes { get; set; }
         public DbSet<NotificationsForUsers> NotificationsForUsers { get; set; }
         public DbSet<Unavailability> Unavailabilities { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
     }
 }
