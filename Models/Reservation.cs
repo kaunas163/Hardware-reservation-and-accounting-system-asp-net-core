@@ -35,8 +35,8 @@ namespace HardwareReservationAndAccountingSystem.Models
         public List<Notification> Notifications { get; set; }
 
         [Required]
-        [Display(Name = "Vartotojas")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        [Display(Name = "Užsakovas")]
+        public string CustomerId { get; set; }
+        public ApplicationUser Customer { get; set; }
     }
 }
