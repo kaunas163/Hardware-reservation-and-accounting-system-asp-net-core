@@ -38,5 +38,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Užsakovas")]
         public string CustomerId { get; set; }
         public ApplicationUser Customer { get; set; }
+
+        [Display(Name = "Renginys")]
+        public int? EventId { get; set; }
+        public Event Event { get; set; }
     }
 }
