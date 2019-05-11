@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,6 +14,12 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Aprašymas")]
         public string Description { get; set; }
+
+        [Display(Name = "Sukūrimo laikas")]
+        public DateTime CreatedOn { get; set; }
+
+        [Display(Name = "Atnaujinimo laikas")]
+        public DateTime UpdatedOn { get; set; }
 
         [Display(Name = "Įrangos tipas")]
         public int EquipmentTypeId { get; set; }
