@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using HardwareReservationAndAccountingSystem.Enums;
 
 namespace HardwareReservationAndAccountingSystem.Models
 {
@@ -24,8 +25,7 @@ namespace HardwareReservationAndAccountingSystem.Models
         public string Comment { get; set; }
 
         [Display(Name = "Rezervacijos būsena")]
-        public byte ReservationStatusId { get; set; }
-        public ReservationStatus ReservationStatus { get; set; }
+        public ReservationStatus Status { get; set; }
 
         [Display(Name = "Įrangos komplektas")]
         public int EquipmentBundleId { get; set; }
