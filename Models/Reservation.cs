@@ -42,5 +42,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Renginys")]
         public int? EventId { get; set; }
         public Event Event { get; set; }
+
+        [Display(Name = "Pradinis rezervacijos įrašas")]
+        public int? OriginalReservationId { get; set; }
+        public Reservation OriginalReservation { get; set; }
     }
 }
