@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using HardwareReservationAndAccountingSystem.Enums;
 
 namespace HardwareReservationAndAccountingSystem.Models
 {
@@ -20,6 +21,9 @@ namespace HardwareReservationAndAccountingSystem.Models
 
         [Display(Name = "Atnaujinimo laikas")]
         public DateTime UpdatedOn { get; set; }
+
+        [Display(Name = "Būsena")]
+        public EquipmentBundleStatus Status { get; set; }
 
         public List<EquipmentsInBundles> EquipmentsInBundles { get; set; }
 
