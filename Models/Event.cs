@@ -12,6 +12,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pavadinimas")]
         public string Title { get; set; }
 
+        [Display(Name = "Lokacija")]
+        public string Location { get; set; }
+
         [Display(Name = "Pradžia")]
         public DateTime StartTime { get; set; }
 
