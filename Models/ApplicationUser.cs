@@ -18,6 +18,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Validus iki")]
         public DateTime? ValidTo { get; set; }
 
+        [Display(Name = "Profilio nuotrauka")]
+        public string ProfilePictureUrl { get; set; }
+
         [Display(Name = "Rezervacijos")]
         public List<Reservation> Reservations { get; set; }
 
