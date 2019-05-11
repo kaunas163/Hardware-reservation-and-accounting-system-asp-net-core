@@ -4,14 +4,16 @@ using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HardwareReservationAndAccountingSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190511173034_AddUnavailabilitiesToEquipment")]
+    partial class AddUnavailabilitiesToEquipment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,17 +251,13 @@ namespace HardwareReservationAndAccountingSystem.Migrations
 
                     b.Property<DateTime>("EndTime");
 
-                    b.Property<int?>("EquipmentBundleId");
-
-                    b.Property<int?>("EquipmentId");
+                    b.Property<int>("EquipmentId");
 
                     b.Property<bool>("IsForEverything");
 
                     b.Property<DateTime>("StartTime");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EquipmentBundleId");
 
                     b.HasIndex("EquipmentId");
 
@@ -541,13 +539,10 @@ namespace HardwareReservationAndAccountingSystem.Migrations
 
             modelBuilder.Entity("HardwareReservationAndAccountingSystem.Models.Unavailability", b =>
                 {
-                    b.HasOne("HardwareReservationAndAccountingSystem.Models.EquipmentBundle", "EquipmentBundle")
-                        .WithMany("Unavailabilities")
-                        .HasForeignKey("EquipmentBundleId");
-
                     b.HasOne("HardwareReservationAndAccountingSystem.Models.Equipment", "Equipment")
                         .WithMany("Unavailabilities")
-                        .HasForeignKey("EquipmentId");
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

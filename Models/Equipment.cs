@@ -38,5 +38,8 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Pradinis įrangos įrašas")]
         public int? OriginalEquipmentId { get; set; }
         public Equipment OriginalEquipment { get; set; }
+
+        [Display(Name = "Nerezervuojami laikai")]
+        public List<Unavailability> Unavailabilities { get; set; }
     }
 }
