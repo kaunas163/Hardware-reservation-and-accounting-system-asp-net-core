@@ -106,6 +106,11 @@ Vue.component('related-to-toggler', {
             togglerOn: false,
         }
     },
+    computed: {
+        togglerText() {
+            return this.togglerOn ? 'taip' : 'ne';
+        }
+    }
 });
 
 new Vue({
