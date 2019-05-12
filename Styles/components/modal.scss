@@ -27,6 +27,19 @@
                 margin: 0.5em 0;
                 color: #344750;
                 font-size: 14px;
+
+                &.info-block-mini-title {
+                    font-weight: 700;
+                    text-align: center;
+                }
+            }
+
+            .info-row {
+                div:first-child {
+                    p {
+                        text-align: right;
+                    }
+                }
             }
         }
 

@@ -1,22 +1,68 @@
 <div class="modal fade edit-status-modal" id="editStatusModal" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editStatusModalLabel">Rezervacijos būsenos keitimas</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editStatusModalLabel">Rezervacijos būsenos keitimas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="info-block-mini-title">Rezervacijos informacija</p>
+                        </div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Rezervuota nuo:</p></div>
+                        <div class="col-md-6"><p>2019-10-03 10:00</p></div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Rezervuota iki:</p></div>
+                        <div class="col-md-6"><p>2019-10-05 10:00</p></div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Užsakovas:</p></div>
+                        <div class="col-md-6"><p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p></div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Įrangos komplektas:</p></div>
+                        <div class="col-md-6"><p>@Html.ActionLink("Komplekto pavadinimas", "Details", "EquipmentBundles")</p></div>
+                    </div>
+                    <div class="row info-row add-margin">
+                        <div class="col-md-6"><p>Renginys:</p></div>
+                        <div class="col-md-6"><p>@Html.ActionLink("Renginio pavadinimas", "Details", "Events")</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="info-block-mini-title">Rezervacijos būsena</p>
+                        </div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Dabartinė būsena:</p></div>
+                        <div class="col-md-6"><p class="reservation waiting-approval">Laukianti patvirtinimo</p></div>
+                    </div>
+                    <div class="row info-row">
+                        <div class="col-md-6"><p>Nauja būsena:</p></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control" id="newReservationStatus">
+                                    <option>Patvirtinta</option>
+                                    <option>Atšaukta</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Patvirtinti</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Patvirtinti</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

@@ -1,36 +1,36 @@
 p.reservation {
     &.waiting-approval {
         &, a {
-            color: #FFA200;
+            color: #FFA200 !important;
         }
     }
 
     &.approved {
         &, a {
-            color: #36AE46;
+            color: #36AE46 !important;
         }
     }
 
     &.canceled,
     &.stolen {
         &, a {
-            color: #FF0000;
+            color: #FF0000 !important;
         }
     }
 
     &.in-progress {
         &, a {
-            color: #4696ff;
+            color: #4696ff !important;
         }
     }
 
     &.late {
-        color: #ff6600;
+        color: #ff6600 !important;
     }
 
     &.old {
         &, a {
-            color: #929CA1;
+            color: #929CA1 !important;
         }
     }
 }
