@@ -1,0 +1,64 @@
+.modal {
+    .thing-related-to {
+        .related-to-select {
+            display: flex;
+            align-items: center;
+
+            & > p {
+                margin-right: 10px;
+            }
+
+            .toggle-select {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                .toggler {
+                    background: #DEE0E3;
+                    width: 31px;
+                    height: 18px;
+                    border: 1px solid #D5DADE;
+                    border-radius: 12px;
+                    margin-right: 7px;
+                    position: relative;
+                    transition: 0.2s all;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: -1px;
+                        top: -1px;
+                        width: 18px;
+                        height: 18px;
+                        background: white;
+                        border: 1px solid #D5DADE;
+                        border-radius: 12px;
+                        transition: 0.2s all;
+                    }
+                }
+
+                &.active {
+                    .toggler {
+                        background: #36AE46;
+                        border-color: #2A9539;
+
+                        &::after {
+                            left: 12px;
+                            border-color: #2A9539;
+                        }
+                    }
+                }
+
+                p {
+                    color: #929CA1;
+                }
+            }
+        }
+
+        .related-to-content {
+            &:not(.active) {
+                display: none;
+            }
+        }
+    }
+}

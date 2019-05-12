@@ -6,6 +6,7 @@
 @import 'globals/buttons';
 @import 'globals/links';
 @import 'globals/badges';
+@import 'globals/forms';
 
 // layout
 @import "layout/generic-layout-styles";
@@ -23,11 +24,13 @@
 @import 'components/tabs';
 @import 'components/flex-table';
 @import 'components/modal';
+@import 'components/accordion';
 @import 'components/reservation-statuses';
 @import 'components/roles';
 @import 'components/is-public';
 @import 'components/small-equipment-block';
 @import 'components/base-info';
+@import 'components/new-notification';
 
 // pages
 @import "pages/home";

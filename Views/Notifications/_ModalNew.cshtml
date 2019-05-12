@@ -1,22 +1,123 @@
 <div class="modal fade export-modal" id="newNotificationModal" tabindex="-1" role="dialog" aria-labelledby="newNotificationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newNotificationModalLabel">Naujas pranešimas</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newNotificationModalLabel">Naujas pranešimas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="accordion" id="accordionNewNotification">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Pagrindinė informacija
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionNewNotification">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="notificationFor">Pranešimas skirtas:</label>
+                                            <select id="notificationFor" class="form-control">
+                                                <option selected>Visiems sistemos vartotojams</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="notificationType">Pranešimo tipas:</label>
+                                            <select id="notificationType" class="form-control">
+                                                <option selected>Naujiena</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="notificationTitle">Pranešimo pavadinimas:</label>
+                                            <input type="text" class="form-control" id="notificationTitle" placeholder="Norimas pranešimo pavadinimas">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="notificationText">Pranešimo tekstas:</label>
+                                            <textarea class="form-control" id="notificationText" rows="3" placeholder="Įrašykite norimą pranešimo tekstą"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Papildoma informacija
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionNewNotification">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Pranešimas susijęs su:</label>
+                                            <related-to-toggler inline-template>
+                                                <div class="thing-related-to">
+                                                    <div class="related-to-select">
+                                                        <p>Renginiu</p>
+                                                        <div class="toggle-select" @@click="togglerOn = !togglerOn" v-bind:class="{active: togglerOn}">
+                                                            <div class="toggler"></div>
+                                                            <p>taip</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="related-to-content" v-bind:class="{active: togglerOn}">
+                                                        <p>Pasirinkite renginį, kurį norite susieti su šiuo pranešimu.</p>
+                                                    </div>
+                                                </div>
+                                            </related-to-toggler>
+                                            <related-to-toggler inline-template>
+                                                <div class="thing-related-to">
+                                                    <div class="related-to-select">
+                                                        <p>Įranga</p>
+                                                        <div class="toggle-select" @@click="togglerOn = !togglerOn" v-bind:class="{active: togglerOn}">
+                                                            <div class="toggler"></div>
+                                                            <p>taip</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="related-to-content" v-bind:class="{active: togglerOn}">
+                                                        <p>Pasirinkite įrangą, kurią norite susieti su šiuo pranešimu.</p>
+                                                    </div>
+                                                </div>
+                                            </related-to-toggler>
+                                            <related-to-toggler inline-template>
+                                                <div class="thing-related-to">
+                                                    <div class="related-to-select">
+                                                        <p>Įrangos komplektu</p>
+                                                        <div class="toggle-select" @@click="togglerOn = !togglerOn" v-bind:class="{active: togglerOn}">
+                                                            <div class="toggler"></div>
+                                                            <p>taip</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="related-to-content" v-bind:class="{active: togglerOn}">
+                                                        <p>Pasirinkite įrangos komplektą, kurį norite susieti su šiuo pranešimu.</p>
+                                                    </div>
+                                                </div>
+                                            </related-to-toggler>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Sukurti</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Sukurti</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

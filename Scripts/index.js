@@ -100,6 +100,14 @@ Vue.component('export-modal', {
     }
 });
 
+Vue.component('related-to-toggler', {
+    data() {
+        return {
+            togglerOn: false,
+        }
+    },
+});
+
 new Vue({
     el: '#app-root',
     data() {

@@ -87,6 +87,14 @@ _vue["default"].component('export-modal', {
   }
 });
 
+_vue["default"].component('related-to-toggler', {
+  data: function data() {
+    return {
+      togglerOn: false
+    };
+  }
+});
+
 new _vue["default"]({
   el: '#app-root',
   data: function data() {

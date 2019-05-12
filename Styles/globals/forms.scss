@@ -1,0 +1,18 @@
+form {
+    label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #344750;
+    }
+
+    .form-group {
+        input,
+        select,
+        textarea {
+            font-size: 12px;
+            color: #929CA1;
+            border-radius: 0;
+            border-color: #D5DADE;
+        }
+    }
+}
