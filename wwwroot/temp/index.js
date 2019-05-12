@@ -123,6 +123,10 @@ new _vue["default"]({
       return this.currentViewMode == 'table' ? 'active' : '';
     },
     calendarViewMode: function calendarViewMode() {
+      // let calendarApi = this.$refs.fullCalendar.getApi();
+      // calendarApi.render();
+      // fullCalendar.render();
+      // console.log(this.$refs);
       return this.currentViewMode == 'calendar' ? 'active' : '';
     },
     gridViewMode: function gridViewMode() {
