@@ -24,6 +24,7 @@ Vue.component('calendar', {
             class='demo-app-calendar'
             ref="fullCalendar"
             defaultView="dayGridMonth"
+            selectable="true"
             :header="{
                 left: 'prev,next today',
                 center: 'title',
@@ -138,7 +139,7 @@ new Vue({
         calendarViewMode() {
             // let calendarApi = this.$refs.fullCalendar.getApi();
             // calendarApi.render();
-            
+
             // fullCalendar.render();
 
             // console.log(this.$refs);
