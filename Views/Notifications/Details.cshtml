@@ -1,4 +1,5 @@
-@model Notification
+@using HardwareReservationAndAccountingSystem.Models;
+@model Notification;
 
 @{
     ViewData["Title"] = "Pranešimo informacija";
@@ -21,82 +22,108 @@
             <div class="col add-margin">
                 <div class="content-block">
                     <div class="title">
-                        <h3>Įrangos nebus galima rezervuoti per KTU karjeros dienas</h3>
+                        <h3>@Model.Title</h3>
                     </div>
                     <div class="content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit. Cur tantas regiones barbarorum pedibus obiit, tot maria transmisit? Pollicetur certe. Quo minus animus a se ipse dissidens secumque discordans gustare partem ullam liquidae voluptatis et liberae potest. Duo Reges: constructio interrete. Tollitur beneficium, tollitur gratia, quae sunt vincla concordiae. A villa enim, credo, et: Si ibi te esse scissem, ad te ipse venissem. Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster?
-                        </p>
+                        @if (!string.IsNullOrWhiteSpace(Model.Description))
+                        {
+                            <p>@Model.Description</p>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col add-margin">
-                <div class="content-block">
-                    <div class="title">
-                        <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su renginiu: bla bla</a></h3>
-                    </div>
-                    <div class="content">
-                        <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
-                            Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
-                            id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
-                            inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
-                            natum esse et suis voluptatibus? 
-                        </p>
+        @if (Model.ReservationId != null)
+        {
+            <div class="row">
+                <div class="col add-margin">
+                    <div class="content-block">
+                        <div class="title">
+                            <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su rezervacija: bla bla</a></h3>
+                        </div>
+                        <div class="content">
+                            <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
+                            <p>mini įrangos list</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col add-margin">
-                <div class="content-block">
-                    <div class="title">
-                        <h3><a href="@Url.Action("Details", "Equipments")">Pranešimas susijęs su įranga: bla bla</a></h3>
+        }
+        @if (Model.EventId != null)
+        {
+            <div class="row">
+                <div class="col add-margin">
+                    <div class="content-block">
+                        <div class="title">
+                            <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su renginiu: bla bla</a></h3>
+                        </div>
+                        <div class="content">
+                            <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
+                                Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
+                                id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
+                                inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
+                                natum esse et suis voluptatibus? 
+                            </p>
+                        </div>
                     </div>
-                    <div class="content">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p>
-                                    <a href="@Url.Action("Details", "Equipments")">
-                                        <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="col-md-8">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
-                                    Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
-                                    id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
-                                    inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
-                                    natum esse et suis voluptatibus? 
-                                </p>
+                </div>
+            </div>
+        }
+        @if (Model.EquipmentId != null)
+        {
+            <div class="row">
+                <div class="col add-margin">
+                    <div class="content-block">
+                        <div class="title">
+                            <h3><a href="@Url.Action("Details", "Equipments")">Pranešimas susijęs su įranga: bla bla</a></h3>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>
+                                        <a href="@Url.Action("Details", "Equipments")">
+                                            <img src="http://via.placeholder.com/500x300" class="img-fluid">
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
+                                        Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
+                                        id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
+                                        inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
+                                        natum esse et suis voluptatibus? 
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col add-margin">
-                <div class="content-block">
-                    <div class="title">
-                        <h3><a href="@Url.Action("Details", "EquipmentBundles")">Pranešimas susijęs su įrangos komplektu: bla bla</a></h3>
-                    </div>
-                    <div class="content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
-                            Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
-                            id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
-                            inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
-                            natum esse et suis voluptatibus? 
-                        </p>
+        }
+        @if (Model.EquipmentBundleId != null)
+        {
+            <div class="row">
+                <div class="col add-margin">
+                    <div class="content-block">
+                        <div class="title">
+                            <h3><a href="@Url.Action("Details", "EquipmentBundles")">Pranešimas susijęs su įrangos komplektu: bla bla</a></h3>
+                        </div>
+                        <div class="content">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
+                                Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
+                                id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
+                                inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
+                                natum esse et suis voluptatibus? 
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
     <div class="col-md-4 col-sm-12 add-margin">
         <div class="row">
@@ -108,7 +135,7 @@
                     <div class="content base-info">
                         <div class="row">
                             <div class="col-6"><p>Pranešimas sukurtas:</p></div>
-                            <div class="col-6"><p>2018-09-10 10:35:48</p></div>
+                            <div class="col-6"><p>@Model.CreatedOn</p></div>
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimą sukūrė:</p></div>

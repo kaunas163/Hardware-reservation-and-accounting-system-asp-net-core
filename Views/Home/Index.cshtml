@@ -24,7 +24,7 @@
                         @foreach (var notification in Model.Notifications)
                         {
                             <p>
-                                <a href="@Url.Action("Details", "Notifications")">
+                                <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
                                     <span>@notification.CreatedOn</span>
                                     @notification.Title
                                 </a>

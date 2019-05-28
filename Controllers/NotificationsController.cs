@@ -22,9 +22,16 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             return View();
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var model = _context.Notifications.Where(x => x.Id == id).FirstOrDefault();
+
+            if (model == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
     }
 }
