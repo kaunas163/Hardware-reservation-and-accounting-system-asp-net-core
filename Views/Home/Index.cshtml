@@ -1,4 +1,7 @@
-﻿@{
+﻿@using HardwareReservationAndAccountingSystem.ViewsModels.Home;
+@model HomeViewModel;
+
+@{
     ViewData["Title"] = "Pradžia";
 }
 
@@ -18,15 +21,16 @@
                         </div>
                     </div>
                     <div class="content">
-                        <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-16 21:10</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" buvo patvirtinta.</a></p>
-                        <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-15 15:14</span> Priminimas apie negrąžintą įrangą "Komplektas pradedanči...</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-10 13:20</span> Priminimas apie artėjančią įrangos "Pradedantysis operatorius" wggdr.</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim wetggdrgrd.</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sggrd.</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-02 14:26</span> Jūsų rezervacija įrangai "Dvi kameros" buvo atšaukta. Priežastis afsdgtdf</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-02-27 15:09</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimafsgdfh.</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim aewt setgdrg</a></p>
-                        <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sawr set.</a></p>
+                        @foreach (var notification in Model.Notifications)
+                        {
+                            <p>
+                                <a href="@Url.Action("Details", "Notifications")">
+                                    <span>@notification.CreatedOn</span>
+                                    @notification.Title
+                                </a>
+                            </p>
+                        }
+                        <!-- <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-16 21:10</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" buvo patvirtinta.</a></p> -->
                     </div>
                 </div>
             </div> 
@@ -41,13 +45,15 @@
                         </div>
                     </div>
                     <div class="content">
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-03-20 09:00</span> Karjeros dienos</a></a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-04-10 10:00</span> Google Hackaton</a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-04-15 09:00</span> KTU pristatymas moksleiviams</a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-04-20 12:00</span> C# konferencija</a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-05-10 10:00</span> Interviu iš Petro Petraičio</a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-06-06 09:00</span> Baigiamųjų darbų gynimai</a></p>
-                        <p><a href="@Url.Action("Details", "Events")"><span>2019-06-07 09:00</span> Baigiamųjų darbų gynimai</a></p>
+                        @foreach (var e in Model.Events)
+                        {
+                            <p>
+                                <a href="@Url.Action("Details", "Events")">
+                                    <span>@e.StartTime</span>
+                                    @e.Title
+                                </a>
+                            </p>
+                        }
                     </div>
                 </div>
             </div>
