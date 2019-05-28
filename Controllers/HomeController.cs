@@ -9,7 +9,7 @@ using HardwareReservationAndAccountingSystem.Models;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
