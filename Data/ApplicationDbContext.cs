@@ -19,7 +19,7 @@ namespace HardwareReservationAndAccountingSystem.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<EquipmentsInBundles>()
-                .HasKey(e => new { e.EquipmentInBundleId, e.EquipmentId, e.EquipmentBundleId });
+                .HasKey(e => new { e.EquipmentsInBundlesId, e.EquipmentId, e.EquipmentBundleId });
             modelBuilder.Entity<NotificationsForUsers>()
                 .HasKey(e => new { e.NotificationId, e.UserId });
         }
