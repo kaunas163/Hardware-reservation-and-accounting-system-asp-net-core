@@ -1,5 +1,8 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Notification>;
+
 <div class="row view-mode-content-block" :class="[listViewMode, {active: initialViewMode}]">
-    <div class="col-md-12 add-margin">
+    <!-- <div class="col-md-12 add-margin">
         <div class="content-block important">
             <div class="title">
                 <h3>
@@ -16,108 +19,34 @@
                 <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
             </div>
         </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block important">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Priminimas", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li class="important">Naujas pranešimas</li>
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Naujiena", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
+    </div> -->
+    @foreach (var notification in Model)
+    {
+        <div class="col-md-12 add-margin">
+            <div class="content-block">
+                <div class="title">
+                    <h3>
+                        @Html.ActionLink(notification.Title, "Details", "Notifications", new { id = notification.Id })
+                    </h3>
+                    <ul class="sub-info">
+                        <li>@notification.CreatedOn</li>
+                        <li>@notification.NotificationType.Title</li>
+                        <!-- <li>pranešimas nuo sistemos</li> -->
+                    </ul>
+                </div>
+                <div class="content">
+                    <p>
+                        @if (!string.IsNullOrWhiteSpace(notification.Description))
+                        {
+                            @notification.Description
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Renginys", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Rezervacija", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Naujiena", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Renginys", "Details", "Notifications")
-                </h3>
-                <ul class="sub-info">
-                    <li>2019-03-16 21:10</li>
-                    <li>rezervacijos atnaujinimas</li>
-                    <li>pranešimas nuo sistemos</li>
-                </ul>
-            </div>
-            <div class="content">
-                <p>Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" pakeista iš "Laukianti patvirtinimo" į "Patvirtinta".</p>
-            </div>
-        </div>
-    </div>
+    }
 </div>

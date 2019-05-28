@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -19,12 +20,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = _context.Notifications.Include(x => x.NotificationType).ToList();
+            return View(model);
         }
 
         public IActionResult Details(int id)
         {
-            var model = _context.Notifications.Where(x => x.Id == id).FirstOrDefault();
+            var model = _context.Notifications.Where(x => x.Id == id).Include(x => x.NotificationType).FirstOrDefault();
 
             if (model == null)
             {

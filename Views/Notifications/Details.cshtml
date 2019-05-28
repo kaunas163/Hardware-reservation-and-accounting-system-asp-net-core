@@ -29,6 +29,10 @@
                         {
                             <p>@Model.Description</p>
                         }
+                        else
+                        {
+                            <text>-</text>
+                        }
                     </div>
                 </div>
             </div>
@@ -147,7 +151,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimo tipas:</p></div>
-                            <div class="col-6"><p>Pasikeitimai rezervacijose</p></div>
+                            <div class="col-6"><p>@Model.NotificationType.Title</p></div>
                         </div>
                     </div>
                 </div>

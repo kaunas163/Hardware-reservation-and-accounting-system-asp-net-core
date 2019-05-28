@@ -1,4 +1,5 @@
-@model IEnumerable<Notification>
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Notification>
 
 @{
     ViewData["Title"] = "Pranešimai";
@@ -105,8 +106,8 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Notifications/_ViewModeList.cshtml")
-@await Html.PartialAsync("~/Views/Notifications/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_ViewModeList.cshtml", Model)
+@await Html.PartialAsync("~/Views/Notifications/_ViewModeTable.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")*@
 

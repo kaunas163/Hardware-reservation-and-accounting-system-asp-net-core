@@ -1,3 +1,6 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Notification>;
+
 <div class="row view-mode-content-block" :class="tableViewMode">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -14,118 +17,26 @@
                         <p>Pranešimą sukūrė <i class="fas fa-sort"></i></p>
                         <p>Kam skirtas <i class="fas fa-sort"></i></p>
                     </div>
-                    <div class="data-row notification-new">
+                    <!-- <div class="data-row notification-new">
                         <p class="notification-status new">@Html.ActionLink("Naujas", "Details", "Notifications")</p>
                         <p>@Html.ActionLink("2019-03-31 10:14", "Details", "Notifications")</p>
                         <p>@Html.ActionLink("Norime priminti, kad jūsų rezervacija a...", "Details", "Notifications")</p>
                         <p>@Html.ActionLink("Priminimas", "Details", "Notifications")</p>
                         <p>@Html.ActionLink("Sistema", "Details", "Notifications")</p>
                         <p>@Html.ActionLink("Visiems sistemos vartotojams", "Details", "Notifications")</p>
-                    </div>
-                    <div class="data-row notification-new">
-                        <p class="notification-status new">@Html.ActionLink("Naujas", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("2019-03-31 10:14", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Sėkmingai sukūrėte prašymą rezervaci...", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Pasikeitimai rezervacijose", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Sistema", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Notifications")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Priminimas</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Ieva Jakšaitytė</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Renginys</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Julijus Jakutavičius</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Pasikeitimai rezervacijose</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Julijus Jakutavičius</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Pasikeitimai rezervacijose</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Julijus Jakutavičius</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Pasikeitimai rezervacijose</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Petras Petrauskas</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Pasikeitimai rezervacijose</a></p>
-                        <p><a href="#">Adminstratorius</a></p>
-                        <p><a href="#">Julijus Jakutavičius</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Priminimas</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Vardas Pavardenis</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Pasikeitimai rezervacijose</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Julijus Jakutavičius</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Priminimas</a></p>
-                        <p><a href="#">Administratorius</a></p>
-                        <p><a href="#">Visiems sistemos vartotojams</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status archived"><a href="#">Archyvuotas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Renginys</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Visiems sistemos vartotojams</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status archived"><a href="#">Archyvuotas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Norime priminti, kad jūsų rezervacija art...</a></p>
-                        <p><a href="#">Priminimas</a></p>
-                        <p><a href="#">Sistema</a></p>
-                        <p><a href="#">Visiems sistemos vartotojams</a></p>
-                    </div>
-                    <div class="data-row">
-                        <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                        <p><a href="#">2019-03-31 10:14</a></p>
-                        <p><a href="#">Sėkmingai sukūrėte prašymą rezervacija...</a></p>
-                        <p><a href="#">Renginys</a></p>
-                        <p><a href="#">Administratorius</a></p>
-                        <p><a href="#">Moderatoriams</a></p>
-                    </div>
+                    </div> -->
+                    @foreach (var notification in Model)
+                    {
+                        <div class="data-row">
+                            <p class="notification-status read"><a href="#">Skaitytas</a></p>
+                            <!-- <p>@*@Html.ActionLink(notification.CreatedOn, "Details", "Notifications", new { id = notification.Id })*@</p> -->
+                            <p>aaa</p>
+                            <p><a href="#">@notification.Title</a></p>
+                            <p><a href="#">@notification.NotificationType.Title</a></p>
+                            <p><a href="#">Sistema</a></p>
+                            <p><a href="#">Ieva Jakšaitytė</a></p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
