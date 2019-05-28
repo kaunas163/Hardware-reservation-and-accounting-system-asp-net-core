@@ -49,9 +49,13 @@
             }
         }
 
-        .logoff-button {
-            font-size: 14px;
-            margin-top: 1em;
+        .logout-form {
+            justify-content: center;
+
+            .logoff-button {
+                font-size: 14px;
+                margin-top: 1em;
+            }
         }
     }
 

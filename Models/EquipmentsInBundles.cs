@@ -10,7 +10,7 @@ namespace HardwareReservationAndAccountingSystem.Models
         public int EquipmentBundleId { get; set; }
         public EquipmentBundle EquipmentBundle { get; set; }
 
-        public int? OriginalEquipmentsInBundlesId { get; set; }
-        public EquipmentsInBundles OriginalEquipmentsInBundles { get; set; }
+        // public int? OriginalEquipmentsInBundlesId { get; set; }
+        // public EquipmentsInBundles OriginalEquipmentsInBundles { get; set; }
     }
 }
