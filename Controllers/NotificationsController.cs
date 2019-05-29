@@ -38,6 +38,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         public IActionResult Details(int id)
         {
             var model = _context.Notifications
+                .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
                 .Include(x => x.NotificationType)
                 .Include(x => x.Reservation)
                 .Include(x => x.Equipment)
