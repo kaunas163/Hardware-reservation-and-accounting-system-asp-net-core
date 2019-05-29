@@ -81,26 +81,27 @@
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Equipments")">Pranešimas susijęs su įranga: bla bla</a></h3>
+                            <h3><a href="@Url.Action("Details", "Equipments", new { id = Model.Equipment.Id })">Pranešimas susijęs su įranga: @Model.Equipment.Title</a></h3>
                         </div>
                         <div class="content">
                             <div class="row">
                                 <div class="col-md-4">
                                     <p>
-                                        <a href="@Url.Action("Details", "Equipments")">
+                                        <a href="@Url.Action("Details", "Equipments", new { id = Model.Equipment.Id })">
                                             <img src="http://via.placeholder.com/500x300" class="img-fluid">
                                         </a>
                                     </p>
                                 </div>
-                                <div class="col-md-8">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
-                                        Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
-                                        id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
-                                        inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
-                                        natum esse et suis voluptatibus? 
-                                    </p>
-                                </div>
+                                @if (!string.IsNullOrWhiteSpace(Model.Equipment.Description))
+                                {
+                                    <div class="col-md-8">
+                                        <p>
+                                            @(Model.Equipment.Description.Length > 300
+                                                ? Model.Equipment.Description.Substring(0, 300) + "..."
+                                                : Model.Equipment.Description)
+                                        </p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -119,15 +120,9 @@
                         {
                             <div class="content">
                                 <p>
-                                    @if (Model.EquipmentBundle.Description.Length > 300)
-                                    {
-                                        @Model.EquipmentBundle.Description.Substring(0, 300)
-                                        <text>...</text>
-                                    }
-                                    else
-                                    {
-                                        @Model.EquipmentBundle.Description
-                                    }
+                                    @(Model.EquipmentBundle.Description.Length > 300
+                                        ? Model.EquipmentBundle.Description.Substring(0, 300) + "..."
+                                        : Model.EquipmentBundle.Description)
                                 </p>
                             </div>
                         }
