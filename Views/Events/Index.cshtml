@@ -58,8 +58,8 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Events/_ViewModeTable.cshtml")
-@await Html.PartialAsync("~/Views/Events/_ViewModeCalendar.cshtml")
+@await Html.PartialAsync("~/Views/Events/_ViewModeTable.cshtml", Model)
+@await Html.PartialAsync("~/Views/Events/_ViewModeCalendar.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")*@
 

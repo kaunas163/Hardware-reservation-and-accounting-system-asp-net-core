@@ -26,6 +26,12 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         public IActionResult Details(int id)
         {
             var ev = _context.Events.Where(x => x.Id == id).FirstOrDefault();
+
+            if (ev == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View(ev);
         }
     }
