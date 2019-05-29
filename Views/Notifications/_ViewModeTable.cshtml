@@ -28,13 +28,21 @@
                     @foreach (var notification in Model)
                     {
                         <div class="data-row">
-                            <p class="notification-status read"><a href="#">Skaitytas</a></p>
-                            <!-- <p>@*@Html.ActionLink(notification.CreatedOn, "Details", "Notifications", new { id = notification.Id })*@</p> -->
-                            <p>aaa</p>
-                            <p><a href="#">@notification.Title</a></p>
-                            <p><a href="#">@notification.NotificationType.Title</a></p>
-                            <p><a href="#">Sistema</a></p>
-                            <p><a href="#">Ieva Jakšaitytė</a></p>
+                            <p class="notification-status read">@Html.ActionLink("Skaitytas", "Details", "Notifications", new { id = notification.Id })</p>
+                            <p>@Html.ActionLink(notification.CreatedOn.ToString(), "Details", "Notifications", new { id = notification.Id })</p>
+                            <p>@Html.ActionLink(notification.Title, "Details", "Notifications", new { id = notification.Id })</p>
+                            <p>@Html.ActionLink(notification.NotificationType.Title, "Details", "Notifications", new { id = notification.Id })</p>
+                            <p>@Html.ActionLink("Administratorius", "Index", "Users")</p>
+                            @if (notification.NotificationsForUsers.Count == 1)
+                            {
+                                var userDetails = notification.NotificationsForUsers.FirstOrDefault().User;
+                                var toWhom = string.Format("{0} {1}", userDetails.Name, userDetails.Surname);
+                                <p>@Html.ActionLink(toWhom, "Details", "Users", new { id = userDetails.Id })</p>
+                            }
+                            else
+                            {
+                                <p>@Html.ActionLink("Keliems vartotojams", "Index", "Users")</p>
+                            }
                         </div>
                     }
                 </div>

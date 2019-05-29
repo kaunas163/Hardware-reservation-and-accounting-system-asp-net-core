@@ -29,6 +29,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             var notifications = _context.Notifications
                 .Include(x => x.NotificationType)
+                .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
                 .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
                 .ToList();
 
