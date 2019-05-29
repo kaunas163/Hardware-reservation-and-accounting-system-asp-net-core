@@ -1,112 +1,25 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<ApplicationUser>
+
 <div class="row view-mode-content-block" :class="gridViewMode">
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
+    @foreach (var user in Model)
+    {
+        <div class="col-md-4 add-margin">
+            <div class="content-block">
+                <div class="title">
+                    <h3>@Html.ActionLink(String.Format("{0} {1}", user.Name, user.Surname), "Details", "Users", new { id = user.Id })</h3>
+                </div>
+                <div class="content">
+                    <p>
+                        <a href="@Url.Action("Details", "Users", new { id = user.Id })">
+                            <img src="http://via.placeholder.com/400x300" class="img-fluid" />
+                        </a>
+                    </p>
+                    <p>El. pasto adresas: <a href="@Url.Action("Details", "Users", new { id = user.Id })">@user.Email</a></p>
+                    <p class="role user">Role: <a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
+                    <p>Komentaras: -</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>@Html.ActionLink("Vartotojas", "Details", "Users")</h3>
-            </div>
-            <div class="content">
-                vartotojo informacija
-            </div>
-        </div>
-    </div>
+    }
 </div>

@@ -19,12 +19,22 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var users = _context.ApplicationUsers.ToList();
+            return View(users);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(string id)
         {
-            return View();
+            var user = _context.ApplicationUsers
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                RedirectToAction("Index");
+            }
+
+            return View(user);
         }
     }
 }

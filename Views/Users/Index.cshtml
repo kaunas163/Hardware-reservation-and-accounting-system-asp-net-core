@@ -1,3 +1,6 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<ApplicationUser>
+
 @{
     ViewData["Title"] = "Vartotojai";
 }
@@ -78,8 +81,8 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Users/_ViewModeTable.cshtml")
-@await Html.PartialAsync("~/Views/Users/_ViewModeGrid.cshtml")
+@await Html.PartialAsync("~/Views/Users/_ViewModeTable.cshtml", Model)
+@await Html.PartialAsync("~/Views/Users/_ViewModeGrid.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")*@
 

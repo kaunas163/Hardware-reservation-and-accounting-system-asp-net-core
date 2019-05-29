@@ -1,3 +1,6 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<ApplicationUser>
+
 <div class="row view-mode-content-block" :class="[tableViewMode, {active: initialViewMode}]">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -12,54 +15,15 @@
                         <p>Rolė <i class="fas fa-sort"></i></p>
                         <p>Komentaras <i class="fas fa-sort"></i></p>
                     </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role admin">Administratorius</p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role moderator"><a href="#" data-toggle="modal" data-target="#editRoleModal">Moderatorius <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role moderator"><a href="#" data-toggle="modal" data-target="#editRoleModal">Moderatorius <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role moderator"><a href="#" data-toggle="modal" data-target="#editRoleModal">Moderatorius <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p>@Html.ActionLink("aaaa", "Details", "Users")</p>
-                        <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
-                        <p>aaaa</p>
-                    </div>
+                    @foreach (var user in Model)
+                    {
+                        <div class="data-row">
+                            <p>@Html.ActionLink(String.Format("{0} {1}", user.Name, user.Surname), "Details", "Users", new { id = user.Id })</p>
+                            <p>@Html.ActionLink(user.Email, "Details", "Users", new { id = user.Id })</p>
+                            <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
+                            <p>-</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
