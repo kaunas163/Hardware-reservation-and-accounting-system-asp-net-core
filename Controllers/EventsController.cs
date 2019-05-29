@@ -19,12 +19,14 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var events = _context.Events.ToList();
+            return View(events);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var ev = _context.Events.Where(x => x.Id == id).FirstOrDefault();
+            return View(ev);
         }
     }
 }

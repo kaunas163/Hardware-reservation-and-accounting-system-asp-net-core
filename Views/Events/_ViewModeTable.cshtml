@@ -1,3 +1,6 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Event>
+
 <div class="row view-mode-content-block" :class="[tableViewMode, {active: initialViewMode}]">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -11,46 +14,15 @@
                         <p>Data <i class="fas fa-sort"></i></p>
                         <p>Komentaras <i class="fas fa-sort"></i></p>
                     </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("-", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("turi buti visa komanda", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("lan party", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("-", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("baigiam7j7 darbu gybimai", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("reik skubiai", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("-", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("komentaras", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("-", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Ktu karjeros dienos", "Details", "Events")</p>
-                        <p>@Html.ActionLink("2019-03-31", "Details", "Events")</p>
-                        <p>@Html.ActionLink("-", "Details", "Events")</p>
-                    </div>
+                    @foreach (var ev in Model)
+                    {
+                        var comment = !string.IsNullOrWhiteSpace(ev.Comment) ? ev.Comment : "-";
+                        <div class="data-row">
+                            <p>@Html.ActionLink(ev.Title, "Details", "Events", new { id = ev.Id })</p>
+                            <p>@Html.ActionLink(ev.StartTime.ToString(), "Details", "Events", new { id = ev.Id })</p>
+                            <p>@Html.ActionLink(comment, "Details", "Events", new { id = ev.Id })</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
