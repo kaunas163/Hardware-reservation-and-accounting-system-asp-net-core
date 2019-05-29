@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -19,7 +20,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            var equipments = _context.Equipments.ToList();
+            var equipments = _context.Equipments.Include(x => x.EquipmentType).ToList();
             return View(equipments);
         }
 

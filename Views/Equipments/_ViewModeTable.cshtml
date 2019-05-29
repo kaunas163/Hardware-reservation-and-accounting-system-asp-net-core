@@ -1,3 +1,4 @@
+@using HardwareReservationAndAccountingSystem.Enums;
 @using HardwareReservationAndAccountingSystem.Models;
 @model List<Equipment>
 
@@ -15,48 +16,37 @@
                         <p>Ar paskelbta? <i class="fas fa-sort"></i></p>
                         <p>Įrangos tipas <i class="fas fa-sort"></i></p>
                     </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
-                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
-                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
-                        <p>@Html.ActionLink("Ausinės", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
-                        <p>@Html.ActionLink("Monitorius", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
-                        <p>@Html.ActionLink("Veiksmo kamera", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-times"></i></a></p>
-                        <p>@Html.ActionLink("Mikrofonas", "Details", "Equipments")</p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "Equipments")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "Equipments")"><i class="fas fa-check"></i></a></p>
-                        <p>@Html.ActionLink("Kamera", "Details", "Equipments")</p>
-                    </div>
+                    @foreach (var equipment in Model)
+                    {
+                        <div class="data-row">
+                            <p>@Html.ActionLink(equipment.Title, "Details", "Equipments", new { id = equipment.Id })</p>
+                            @{ 
+                                var description = "-";
+
+                                if (!string.IsNullOrWhiteSpace(equipment.Description))
+                                {
+                                    if (equipment.Description.Length > 40)
+                                    {
+                                        description = equipment.Description.Substring(0, 40) + "...";
+                                    }
+                                    else
+                                    {
+                                        description = equipment.Description;
+                                    }
+                                }
+                            }
+                            <p>@Html.ActionLink(description, "Details", "Equipments", new { id = equipment.Id })</p>
+                            @if (equipment.Status == EquipmentStatus.Public)
+                            {
+                                <p class="is-public yes"><a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })"><i class="fas fa-check"></i></a></p>
+                            }
+                            else
+                            {
+                                <p class="is-public no"><a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })"><i class="fas fa-times"></i></a></p>
+                            }
+                            <p>@Html.ActionLink(equipment.EquipmentType.Title, "Details", "Equipments", new { id = equipment.Id })</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
