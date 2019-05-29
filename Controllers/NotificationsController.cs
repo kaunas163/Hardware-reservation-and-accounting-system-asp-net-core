@@ -41,7 +41,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             var model = _context.Notifications
                 .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
                 .Include(x => x.NotificationType)
-                .Include(x => x.Reservation)
+                .Include(x => x.Reservation).ThenInclude(b => b.EquipmentBundle)
                 .Include(x => x.Equipment)
                 .Include(x => x.EquipmentBundle)
                 .Include(x => x.Event)

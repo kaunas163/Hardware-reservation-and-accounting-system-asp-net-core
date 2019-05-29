@@ -43,11 +43,11 @@
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su rezervacija: bla bla</a></h3>
+                            <h3><a href="@Url.Action("Details", "Reservations", new { id = Model.Reservation.Id })">Pranešimas susijęs su rezervacija</a></h3>
                         </div>
                         <div class="content">
-                            <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
-                            <p>mini įrangos list</p>
+                            <p class="secondary-text">@Model.Reservation.StartTime - @Model.Reservation.EndTime</p>
+                            <p><strong>Įrangos komplektas: </strong> @Html.ActionLink(Model.Reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.Reservation.EquipmentBundle.Id })</p>
                         </div>
                     </div>
                 </div>
