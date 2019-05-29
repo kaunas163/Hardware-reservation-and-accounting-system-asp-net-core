@@ -60,9 +60,22 @@
                 <h3>Su renginiu susiję pranešimai</h3>
             </div>
             <div class="content">
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-10 13:20</span> Priminimas apie artėjančią įrangos "Pradedantysis operatorius" wggdr.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim wetggdrgrd.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim aewt setgdrg</a></p>
+                @if (Model.Notifications.Any())
+                {
+                    foreach (var notification in Model.Notifications)
+                    {
+                        <p>
+                            <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
+                                <span>@notification.CreatedOn</span>
+                                @notification.Title
+                            </a>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>Pranešimų nėra</p>
+                }
             </div>
         </div>
     </div>

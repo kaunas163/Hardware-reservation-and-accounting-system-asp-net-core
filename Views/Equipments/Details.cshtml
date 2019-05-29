@@ -159,7 +159,7 @@
             <div class="content">
                 @if (Model.Notifications.Any())
                 {
-                    @foreach (var notification in Model.Notifications)
+                    foreach (var notification in Model.Notifications)
                     {
                         <p>
                             <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">

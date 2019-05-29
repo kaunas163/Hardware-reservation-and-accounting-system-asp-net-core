@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -25,7 +26,9 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var ev = _context.Events.FirstOrDefault(x => x.Id == id);
+            var ev = _context.Events
+                .Include(x => x.Notifications)
+                .FirstOrDefault(x => x.Id == id);
 
             if (ev == null)
             {
