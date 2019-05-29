@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using HardwareReservationAndAccountingSystem.Models;
 
 namespace HardwareReservationAndAccountingSystem
 {
@@ -38,7 +39,8 @@ namespace HardwareReservationAndAccountingSystem
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SQLServerConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            //services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

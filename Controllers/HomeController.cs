@@ -9,6 +9,7 @@ using HardwareReservationAndAccountingSystem.Models;
 using HardwareReservationAndAccountingSystem.Data;
 using HardwareReservationAndAccountingSystem.ViewsModels.Home;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -16,17 +17,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
             var notifications = _context.Notifications
-                .Include(x => x.NotificationsForUsers)
-                // .Where(x => x.NotificationsForUsers.IsArchived == true)
-                // .Where(x => x.NotificationsForUsers.User.UserId == "68736d16-9a33-4471-b5ad-0b018df0b7e8")
+                .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
                 .ToList();
 
             var model = new HomeViewModel
