@@ -28,6 +28,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             var bundle = _context.EquipmentBundles
                 .Include(m => m.EquipmentsInBundles).ThenInclude(e => e.Equipment)
+                .Include(b => b.Notifications)
                 .FirstOrDefault(b => b.Id == id);
 
             if (bundle == null)
