@@ -48,7 +48,7 @@
                         @foreach (var e in Model.Events)
                         {
                             <p>
-                                <a href="@Url.Action("Details", "Events")">
+                                <a href="@Url.Action("Details", "Events", new { id = e.Id })">
                                     <span>@e.StartTime</span>
                                     @e.Title
                                 </a>

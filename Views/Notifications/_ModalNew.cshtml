@@ -67,6 +67,20 @@
                                             <related-to-toggler inline-template>
                                                 <div class="thing-related-to">
                                                     <div class="related-to-select">
+                                                        <p>Rezervacija</p>
+                                                        <div class="toggle-select" @@click="togglerOn = !togglerOn" v-bind:class="{active: togglerOn}">
+                                                            <div class="toggler"></div>
+                                                            <p>{{ togglerText }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="related-to-content" v-bind:class="{active: togglerOn}">
+                                                        <p>Pasirinkite rezervaciją, kurią norite susieti su šiuo pranešimu.</p>
+                                                    </div>
+                                                </div>
+                                            </related-to-toggler>
+                                            <related-to-toggler inline-template>
+                                                <div class="thing-related-to">
+                                                    <div class="related-to-select">
                                                         <p>Renginiu</p>
                                                         <div class="toggle-select" @@click="togglerOn = !togglerOn" v-bind:class="{active: togglerOn}">
                                                             <div class="toggler"></div>
