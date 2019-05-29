@@ -1,3 +1,7 @@
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<EquipmentBundle>
+
 <div class="row view-mode-content-block" :class="tableViewMode">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -11,41 +15,36 @@
                         <p>Aprašymas <i class="fas fa-sort"></i></p>
                         <p>Ar paskelbta? <i class="fas fa-sort"></i></p>
                     </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-check"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-times"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-times"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-check"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-check"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public no"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-times"></i></a></p>
-                    </div>
-                    <div class="data-row">
-                        <p>@Html.ActionLink("Įrangos komplekto pavadinimas", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Koks nors aprašymas apie įrangą...", "Details", "EquipmentBundles")</p>
-                        <p class="is-public yes"><a href="@Url.Action("Details", "EquipmentBundles")"><i class="fas fa-check"></i></a></p>
-                    </div>
+                    @foreach (var bundle in Model)
+                    {
+                        <div class="data-row">
+                            <p>@Html.ActionLink(bundle.Title, "Details", "EquipmentBundles", new { id = bundle.Id })</p>
+                            @{ 
+                                var description = "-";
+
+                                if (!string.IsNullOrWhiteSpace(bundle.Description))
+                                {
+                                    if (bundle.Description.Length > 50)
+                                    {
+                                        description = bundle.Description.Substring(0, 50) + "...";
+                                    }
+                                    else
+                                    {
+                                        description = bundle.Description;
+                                    }
+                                }
+                            }
+                            <p>@Html.ActionLink(description, "Details", "EquipmentBundles", new { id = bundle.Id })</p>
+                            @if (bundle.Status == EquipmentBundleStatus.Public)
+                            {
+                                <p class="is-public yes"><a href="@Url.Action("Details", "EquipmentBundles", new { id = bundle.Id })"><i class="fas fa-check"></i></a></p>
+                            }
+                            else
+                            {
+                                <p class="is-public no"><a href="@Url.Action("Details", "EquipmentBundles", new { id = bundle.Id })"><i class="fas fa-times"></i></a></p>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>

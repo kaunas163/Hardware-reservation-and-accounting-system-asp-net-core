@@ -19,12 +19,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var bundles = _context.EquipmentBundles.ToList();
+            return View(bundles);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var bundle = _context.EquipmentBundles.FirstOrDefault(x => x.Id == id);
+
+            if (bundle == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(bundle);
         }
     }
 }

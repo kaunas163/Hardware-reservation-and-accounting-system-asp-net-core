@@ -1,4 +1,6 @@
-@model IEnumerable<EquipmentBundle>
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<EquipmentBundle>
 
 @{
     ViewData["Title"] = "Įrangos komplektai";
@@ -73,9 +75,9 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml")
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeList.cshtml")
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml", Model)
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeList.cshtml", Model)
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeTable.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")*@
 
