@@ -1,189 +1,42 @@
+@using HardwareReservationAndAccountingSystem.Enums;
 @using HardwareReservationAndAccountingSystem.Models;
 @model List<Equipment>
 
 <div class="row view-mode-content-block" :class="listViewMode">
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="@Url.Action("Details", "Equipments")">
-                            <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
+    @foreach (var equipment in Model)
+    {
+        <div class="col-md-12 add-margin">
+            <div class="content-block">
+                <div class="title">
+                    <h3>
+                        @Html.ActionLink(equipment.Title, "Details", "Equipments", new { id = equipment.Id })
+                    </h3>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="@Url.Action("Details", "Equipments")">
-                            <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public no"><strong>Paskelbta:</strong> <i class="fas fa-times"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="@Url.Action("Details", "Equipments")">
-                            <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public no"><strong>Paskelbta:</strong> <i class="fas fa-times"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="@Url.Action("Details", "Equipments")">
-                            <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                            <a href="@Url.Action("Details", "Equipments")">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">
                                 <img src="http://via.placeholder.com/500x300" class="img-fluid">
                             </a>
-                        </p>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                            <a href="@Url.Action("Details", "Equipments")">
-                                <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
+                        </div>
+                        <div class="col-md-8">
+                            @if (equipment.Status == EquipmentStatus.Public)
+                            {
+                                <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
+                            }
+                            else
+                            {
+                                <p class="is-public no"><strong>Paskelbta:</strong> <i class="fas fa-times"></i></p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(equipment.Description))
+                            {
+                                var description = equipment.Description.Length > 300 ? equipment.Description.Substring(0, 300) + "..." : equipment.Description;
+                                <p>@description</p>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                            <a href="@Url.Action("Details", "Equipments")">
-                                <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>
-                    @Html.ActionLink("Įrangos pavadinimas", "Details", "Equipments")
-                </h3>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                            <a href="@Url.Action("Details", "Equipments")">
-                                <img src="http://via.placeholder.com/500x300" class="img-fluid">
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="is-public yes"><strong>Paskelbta:</strong> <i class="fas fa-check"></i></p>
-                        <p>trumpas įrangos aprašymas Buffalo flank jerky, picanha chicken beef ribeye pancetta doner andouille tongue pork loin.  Pastrami ground round swine capicola sausage, venison flank doner boudin t-bone kielbasa meatball sirloin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
