@@ -27,7 +27,11 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var equipment = _context.Equipments.Include(x => x.EquipmentType).FirstOrDefault(x => x.Id == id);
+            var equipment = _context.Equipments
+                .Include(x => x.EquipmentType)
+                .Include(x => x.Notifications)
+                .Include(x => x.EquipmentsInBundles).ThenInclude(b => b.EquipmentBundle)
+                .FirstOrDefault(x => x.Id == id);
 
             if (equipment == null)
             {

@@ -157,13 +157,22 @@
                 <h3>Su įranga susiję pranešimai</h3>
             </div>
             <div class="content">
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-10 13:20</span> Priminimas apie artėjančią įrangos "Pradedantysis operatorius" wggdr.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim wetggdrgrd.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sggrd.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-02 14:26</span> Jūsų rezervacija įrangai "Dvi kameros" buvo atšaukta. Priežastis afsdgtdf</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-02-27 15:09</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimafsgdfh.</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-08 08:35</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavim aewt setgdrg</a></p>
-                <p><a href="@Url.Action("Details", "Notifications")"><span>2019-03-05 09:36</span> Jūsų rezervacija įrangai "Pradedantysis operatorius" sėkmingai sawr set.</a></p>
+                @if (Model.Notifications.Any())
+                {
+                    @foreach (var notification in Model.Notifications)
+                    {
+                        <p>
+                            <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
+                                <span>@notification.CreatedOn</span>
+                                @notification.Title
+                            </a>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>Pranešimų nėra</p>
+                }
             </div>
         </div>
     </div>
@@ -172,16 +181,26 @@
             <div class="title">
                 <h3>Komplektai, kuriems priskirta</h3>
             </div>
-            <div class="content">
-                <h4>@Html.ActionLink("Komplekto pavadinimas", "Details", "EquipmentBundles")</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae qui non vident, nihil umquam magnum ac cognitione
-                    dignum amaverunt. Itaque beatior Africanus cum patria illo modo loquens: Desine, Roma, tuos hostes reliquaque
-                    praeclare: Nam tibi moenimenta mei peperere labores. Deque his rebus satis multa in nostris de re publica libris
-                    sunt dicta a Laelio. Duo Reges: constructio interrete. Quem enim ardorem studii censetis fuisse in Archimede, qui
-                    dum in pulvere quaedam describit attentius, ne patriam quidem captam esse senserit? Hanc se tuus Epicurus omnino
-                    ignorare dicit quam aut qualem esse velint qui honestate summum bonum metiantur.
-                </p>
+            <div class="content row">
+                @if (Model.EquipmentsInBundles.Any())
+                {
+                    foreach (var bundle in Model.EquipmentsInBundles.Select(b => b.EquipmentBundle))
+                    {
+                        <div class="col-md-4">
+                            <h4>@Html.ActionLink(bundle.Title, "Details", "EquipmentBundles", new { id = bundle.Id })</h4>
+                            @if (!string.IsNullOrWhiteSpace(bundle.Description))
+                            {
+                                <p>
+                                    @(bundle.Description.Length > 200 ? bundle.Description.Substring(0, 200) + "..." : bundle.Description)
+                                </p>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Įranga nepriskirta jokiam komplektui</p>
+                }
             </div>
         </div>
     </div>
