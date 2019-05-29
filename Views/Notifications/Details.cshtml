@@ -59,17 +59,18 @@
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Events")">Pranešimas susijęs su renginiu: bla bla</a></h3>
+                            <h3><a href="@Url.Action("Details", "Events", new { id = Model.Event.Id })">Pranešimas susijęs su renginiu: @Model.Event.Title</a></h3>
                         </div>
                         <div class="content">
-                            <p class="secondary-text">2019-10-05 10:00 - 2019-10-06 12:00</p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc sic expositum dissimile est superiori.
-                                Quis est tam dissimile homini. At, si voluptas esset bonum, desideraret. Quod autem ratione actum est,
-                                id officium appellamus. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Cur igitur,
-                                inquam, res tam dissimiles eodem nomine appellas? Ne tum quidem te respicies et cogitabis sibi quemque
-                                natum esse et suis voluptatibus? 
-                            </p>
+                            <p class="secondary-text" style="margin-bottom: 15px">@Model.Event.StartTime - @Model.Event.EndTime</p>
+                            @if (!string.IsNullOrWhiteSpace(Model.Event.Location))
+                            {
+                                <p><strong>Lokacija:</strong> @Model.Event.Location</p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.Event.Comment))
+                            {
+                                <p><strong>Komentaras</strong> @Model.Event.Comment</p>
+                            }
                         </div>
                     </div>
                 </div>
