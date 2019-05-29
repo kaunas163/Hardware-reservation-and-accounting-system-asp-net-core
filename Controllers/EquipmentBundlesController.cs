@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -25,7 +26,9 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var bundle = _context.EquipmentBundles.FirstOrDefault(x => x.Id == id);
+            var bundle = _context.EquipmentBundles
+                .Include(m => m.EquipmentsInBundles).ThenInclude(e => e.Equipment)
+                .FirstOrDefault(b => b.Id == id);
 
             if (bundle == null)
             {
