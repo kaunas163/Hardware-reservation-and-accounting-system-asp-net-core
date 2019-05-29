@@ -1,3 +1,6 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model ApplicationUser
+
 @{
     ViewData["Title"] = "Vartotojo informacija";
 }
@@ -20,16 +23,16 @@
                 <div class="row">
                     <div class="col-md-3">
                         <p>
-                            <img src="https://via.placeholder.com/200">
+                            <img src="https://via.placeholder.com/400" class="img-fluid">
                         </p>
                     </div>
                     <div class="col-md-3">
-                        <p>Vardas Pavardė</p>
-                        <p>El. pašto adresas</p>
+                        <p>@Model.Name @Model.Surname</p>
+                        <p>@Model.Email</p>
                     </div>
                     <div class="col-md-3">
-                        <p class="role moderator"><a href="#" data-toggle="modal" data-target="#editRoleModal">Moderatorius <i class="far fa-edit"></i></a></p>
-                        <p>Komentaras</p>
+                        <p class="role user"><a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
+                        <p>-</p>
                     </div>
                 </div>
             </div>
@@ -42,16 +45,6 @@
             </div>
             <div class="content">
                 <p>Rezervacijų sąrašas</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 add-margin">
-        <div class="content-block">
-            <div class="title">
-                <h3>Kas dar?</h3>
-            </div>
-            <div class="content">
-                <p>...</p>
             </div>
         </div>
     </div>
