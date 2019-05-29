@@ -25,7 +25,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var ev = _context.Events.Where(x => x.Id == id).FirstOrDefault();
+            var ev = _context.Events.FirstOrDefault(x => x.Id == id);
 
             if (ev == null)
             {
