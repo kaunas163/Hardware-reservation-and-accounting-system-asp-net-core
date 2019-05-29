@@ -105,20 +105,20 @@
         </div>
         <div class="view-mode">
             <p class="filter-type-text">Peržiūros būdas:</p>
-            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="[tableViewMode, {active: initialViewMode}]">
-                <i class="fas fa-table"></i>
-                Lentelė
-            </button>
-            <button class="btn btn-light mode" @@click="changeViewMode('calendar')" :class="calendarViewMode">
+            <button class="btn btn-light mode" @@click="changeViewMode('calendar')" :class="[calendarViewMode, {active: initialViewMode}]">
                 <i class="far fa-calendar-alt"></i>
                 Kalendorius
+            </button>
+            <button class="btn btn-light mode" @@click="changeViewMode('table')" :class="tableViewMode">
+                <i class="fas fa-table"></i>
+                Lentelė
             </button>
         </div>
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml")
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių rezervacijų.")*@
 
