@@ -1,3 +1,67 @@
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model Reservation
+
+@functions {
+    public string StatusClassName(ReservationStatus status)
+    {
+        switch (status)
+        {
+            case ReservationStatus.Pending:
+                return "waiting-approval";
+            case ReservationStatus.Confirmed:
+                return "approved";
+            case ReservationStatus.Cancelled:
+                return "canceled";
+            case ReservationStatus.Active:
+                return "in-progress";
+            case ReservationStatus.Untaken:
+                return "";
+            case ReservationStatus.Completed:
+                return "old";
+            case ReservationStatus.Late:
+                return "late";
+            case ReservationStatus.Stolen:
+                return "stolen";
+            case ReservationStatus.Broken:
+                return "";
+            case ReservationStatus.Undefined:
+                return "";
+            default:
+                return "";
+        }
+    }
+
+    public string StatusTitle(ReservationStatus status)
+    {
+        switch (status)
+        {
+            case ReservationStatus.Pending:
+                return "Laukianti patvirtinimo";
+            case ReservationStatus.Confirmed:
+                return "Patvirtinta";
+            case ReservationStatus.Cancelled:
+                return "Atšaukta";
+            case ReservationStatus.Active:
+                return "Vykdoma";
+            case ReservationStatus.Untaken:
+                return "Neatsiimta";
+            case ReservationStatus.Completed:
+                return "Įvykdyta";
+            case ReservationStatus.Late:
+                return "Vėluojanti";
+            case ReservationStatus.Stolen:
+                return "Įranga pavogta";
+            case ReservationStatus.Broken:
+                return "Įranga apgadinta";
+            case ReservationStatus.Undefined:
+                return "Neapibrėžta";
+            default:
+                return "";
+        }
+    }
+}
+
 @{
     ViewData["Title"] = "Rezervacijos informacija";
 }
@@ -25,25 +89,42 @@
             <div class="content base-info">
                 <div class="row">
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
-                    <div class="col-md-10"><p>2018-10-15 14:35:40</p></div>
+                    <div class="col-md-10"><p>@Model.CreatedOn</p></div>
                 </div>
+                @if (Model.CreatedOn != Model.UpdatedOn)
+                {
+                    <div class="row">
+                        <div class="col-md-2"><p>Atnaujinimo laikas:</p></div>
+                        <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
+                    </div>
+                }
                 <div class="row">
                     <div class="col-md-2"><p>Rezervacijos laikotarpis:</p></div>
-                    <div class="col-md-10"><p>2019-10-03 10:00 - 2019-10-05 10:00</p></div>
+                    <div class="col-md-10"><p>@Model.StartTime - @Model.EndTime</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Užsakovas:</p></div>
-                    <div class="col-md-10"><p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p></div>
+                    <div class="col-md-10"><p>@Html.ActionLink(String.Format("{0} {1}", Model.Customer.Name, Model.Customer.Surname), "Details", "Users", new { id = Model.Customer.Id })</p></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-2"><p>Renginys? :O</p></div>
-                    <div class="col-md-10"><p>@Html.ActionLink("Renginio pavadinimas", "Details", "Events")</p></div>
-                </div>
+                @if (Model.EventId != null)
+                {
+                    <div class="row">
+                        <div class="col-md-2"><p>Renginys:</p></div>
+                        <div class="col-md-10"><p>@Html.ActionLink(Model.Event.Title, "Details", "Events", new { id = Model.Event.Id })</p></div>
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Comment))
+                {
+                    <div class="row">
+                        <div class="col-md-2"><p>Komentaras:</p></div>
+                        <div class="col-md-10"><p>@Model.Comment</p></div>
+                    </div>
+                }
                 <div class="row">
                     <div class="col-md-2"><p>Rezervacijos būsena:</p></div>
                     <div class="col-md-10">
-                        <p class="reservation waiting-approval">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
+                        <p class="reservation @StatusClassName(Model.Status)">
+                            <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(Model.Status) <i class="far fa-edit"></i></a>
                         </p>
                     </div>
                 </div>
@@ -53,21 +134,22 @@
     <div class="col-md-12 add-margin">
         <div class="content-block">
             <div class="title with-edit less-margin">
-                <h3>@Html.ActionLink("Rezervuotas įrangos komplektas: bla bla", "Details", "EquipmentBundles")</h3>
+                <h3>@Html.ActionLink("Rezervuotas įrangos komplektas: " + Model.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.EquipmentBundle.Id })</h3>
                 <div class="edit-actions">
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editEquipmentBundleModal"><i class="far fa-edit"></i></button>
                 </div>
             </div>
-            <div class="content">
-                <p>
-                    Beef ribs cow salami tail, hamburger ham tri-tip ham hock corned beef filet mignon porchetta pancetta.
-                    Meatloaf sausage buffalo, jowl tail pork belly ham hock tri-tip alcatra andouille kielbasa chuck beef ribs.
-                    Cupim turkey shankle bresaola tri-tip spare ribs tail kielbasa cow shoulder.  Bresaola fatback meatloaf
-                    chuck corned beef andouille meatball pastrami.  Jowl flank spare ribs, bresaola shankle tail porchetta
-                    ribeye ground round sausage cow.  Alcatra pastrami bacon venison ground round, beef tail capicola turkey
-                    buffalo shank drumstick ham.  Flank jerky bacon, rump frankfurter pastrami shank salami.
-                </p>
-            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
+            {
+                <div class="content">
+                    <p>
+                        @(Model.EquipmentBundle.Description.Length > 300
+                            ? Model.EquipmentBundle.Description.Substring(0, 300) + "..."
+                            : Model.EquipmentBundle.Description)
+                    </p>
+             
+                </div>
+            }
         </div>
     </div>
     <div class="col-md-12 add-margin">
@@ -76,8 +158,7 @@
                 <h3>Kalendorius</h3>
             </div>
             <div class="content">
-                <p>Ar šioje vietoje reikalingas kalendorius?</p>
-                <p>Gal dėl vieno įrašo jame nelabai apsimoka, bet jei reik vizualaus atvaizdavimo tai sure, galima būtų įdėti</p>
+                <Calendar />
             </div>
         </div>
     </div>

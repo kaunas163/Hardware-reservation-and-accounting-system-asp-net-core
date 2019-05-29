@@ -25,14 +25,6 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            //var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            //var notifications = _context.Notifications
-            //    .Include(x => x.NotificationType)
-            //    .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
-            //    .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
-            //    .ToList();
-
             var reservations = _context.Reservations
                 .Include(x => x.Customer)
                 .Include(x => x.EquipmentBundle)
@@ -42,9 +34,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             return View(reservations);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var reservation = _context.Reservations
+                .Include(x => x.Customer)
+                .Include(x => x.EquipmentBundle)
+                .Include(x => x.Event)
+                .FirstOrDefault(x => x.Id == id);
+
+            if (reservation == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(reservation);
         }
     }
 }
