@@ -37,7 +37,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var model = _context.Notifications.Where(x => x.Id == id).Include(x => x.NotificationType).FirstOrDefault();
+            var model = _context.Notifications.Include(x => x.NotificationType).FirstOrDefault(x => x.Id == id);
 
             if (model == null)
             {
