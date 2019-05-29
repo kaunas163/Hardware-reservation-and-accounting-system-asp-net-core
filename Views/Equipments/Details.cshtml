@@ -1,3 +1,7 @@
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model Equipment
+
 @{
     ViewData["Title"] = "Įrangos informacija";
 }
@@ -25,35 +29,37 @@
             </div>
             <div class="content base-info">
                 <div class="row">
-                    <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
-                    <div class="col-md-10"><p>2018-10-15 14:35:40</p></div>
+                    <div class="col-md-2"><p>Pavadinimas:</p></div>
+                    <div class="col-md-10"><p>@Model.Title</p></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2"><p>Pavadinimas:</p></div>
-                    <div class="col-md-10"><p>Toks ir toks</p></div>
+                    <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
+                    <div class="col-md-10"><p>@Model.CreatedOn</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Įrangos tipas:</p></div>
-                    <div class="col-md-10"><p>Kamera</p></div>
+                    <div class="col-md-10"><p>@Model.EquipmentType.Title</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Paskelbtas:</p></div>
-                    <div class="col-md-10"><p class="is-public yes"><i class="fas fa-check"></i></p></div>
+                    @if (Model.Status == EquipmentStatus.Public)
+                    {
+                        <div class="col-md-10"><p class="is-public yes"><i class="fas fa-check"></i></p></div>
+                    }
+                    else
+                    {
+                        <div class="col-md-10"><p class="is-public no"><i class="fas fa-times"></i></p></div>
+                    }
                 </div>
-                <div class="row">
-                    <div class="col-md-2"><p>Aprašymas:</p></div>
-                    <div class="col-md-10">
-                        <p>
-                            Verum enim diceret, idque Socratem, qui voluptatem nullo loco numerat, audio dicentem, cibi condimentum esse famem,
-                            potionis sitim. Itaque dicunt nec dubitant: mihi sic usus est, tibi ut opus est facto, fac. Nam quicquid quaeritur, id
-                            habet aut generis ipsius sine personis temporibusque aut his adiunctis facti aut iuris aut nominis controversiam. Duo Reges:
-                            constructio interrete. Semovenda est igitur voluptas, non solum ut recta sequamini, sed etiam ut loqui deceat frugaliter. Hi
-                            curatione adhibita levantur in dies, valet alter plus cotidie, alter videt. Totum autem id externum est, et quod externum, id
-                            in casu est. Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Ut placet, inquit,
-                            etsi enim illud erat aptius, aequum cuique concedere. Quae iam oratio non a philosopho aliquo, sed a censore opprimenda est.
-                        </p>
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <div class="row">
+                        <div class="col-md-2"><p>Aprašymas:</p></div>
+                        <div class="col-md-10">
+                            <p>@Model.Description</p>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>

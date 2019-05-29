@@ -24,9 +24,16 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             return View(equipments);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var equipment = _context.Equipments.Include(x => x.EquipmentType).FirstOrDefault(x => x.Id == id);
+
+            if (equipment == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(equipment);
         }
     }
 }
