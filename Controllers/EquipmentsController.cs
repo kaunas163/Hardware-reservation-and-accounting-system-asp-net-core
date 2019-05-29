@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using HardwareReservationAndAccountingSystem.Enums;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {

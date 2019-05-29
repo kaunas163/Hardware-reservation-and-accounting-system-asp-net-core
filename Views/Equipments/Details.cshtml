@@ -6,6 +6,40 @@
     ViewData["Title"] = "Įrangos informacija";
 }
 
+@functions {
+     public string EquipmentStatusName(EquipmentStatus status)
+     {
+            string name;
+
+            switch (status)
+            {
+                case EquipmentStatus.Public:
+                    name = "Prieinamas viešai";
+                    break;
+                case EquipmentStatus.Archive:
+                    name = "Archyvuotas";
+                    break;
+                case EquipmentStatus.Broken:
+                    name = "Apgadintas";
+                    break;
+                case EquipmentStatus.Stolen:
+                    name = "Pavogtas";
+                    break;
+                case EquipmentStatus.InRepair:
+                    name = "Remontuojamas";
+                    break;
+                case EquipmentStatus.Draft:
+                    name = "Ruošiamas";
+                    break;
+                default:
+                    name = "";
+                    break;
+            }
+
+            return name;
+     }
+}
+
 @section PageHeaderTitle {
     <h2>Įrangos informacija</h2>
 }
@@ -36,6 +70,13 @@
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
                     <div class="col-md-10"><p>@Model.CreatedOn</p></div>
                 </div>
+                @if (Model.CreatedOn != Model.UpdatedOn)
+                {
+                    <div class="row">
+                        <div class="col-md-2"><p>Atnaujinimo laikas:</p></div>
+                        <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
+                    </div>
+                }
                 <div class="row">
                     <div class="col-md-2"><p>Įrangos tipas:</p></div>
                     <div class="col-md-10"><p>@Model.EquipmentType.Title</p></div>
@@ -50,6 +91,10 @@
                     {
                         <div class="col-md-10"><p class="is-public no"><i class="fas fa-times"></i></p></div>
                     }
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><p>Įrangos būsena:</p></div>
+                    <div class="col-md-10"><p>@EquipmentStatusName(Model.Status)</p></div>
                 </div>
                 @if (!string.IsNullOrWhiteSpace(Model.Description))
                 {
