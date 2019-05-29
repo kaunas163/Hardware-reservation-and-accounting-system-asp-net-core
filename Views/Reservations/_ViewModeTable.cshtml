@@ -1,3 +1,67 @@
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Reservation>
+
+@functions {
+    public string StatusClassName(ReservationStatus status)
+    {
+        switch (status)
+        {
+            case ReservationStatus.Pending:
+                return "waiting-approval";
+            case ReservationStatus.Confirmed:
+                return "approved";
+            case ReservationStatus.Cancelled:
+                return "canceled";
+            case ReservationStatus.Active:
+                return "in-progress";
+            case ReservationStatus.Untaken:
+                return "";
+            case ReservationStatus.Completed:
+                return "old";
+            case ReservationStatus.Late:
+                return "late";
+            case ReservationStatus.Stolen:
+                return "stolen";
+            case ReservationStatus.Broken:
+                return "";
+            case ReservationStatus.Undefined:
+                return "";
+            default:
+                return "";
+        }
+    }
+
+    public string StatusTitle(ReservationStatus status)
+    {
+        switch (status)
+        {
+            case ReservationStatus.Pending:
+                return "Laukianti patvirtinimo";
+            case ReservationStatus.Confirmed:
+                return "Patvirtinta";
+            case ReservationStatus.Cancelled:
+                return "Atšaukta";
+            case ReservationStatus.Active:
+                return "Vykdoma";
+            case ReservationStatus.Untaken:
+                return "Neatsiimta";
+            case ReservationStatus.Completed:
+                return "Įvykdyta";
+            case ReservationStatus.Late:
+                return "Vėluojanti";
+            case ReservationStatus.Stolen:
+                return "Įranga pavogta";
+            case ReservationStatus.Broken:
+                return "Įranga apgadinta";
+            case ReservationStatus.Undefined:
+                return "Neapibrėžta";
+            default:
+                return "";
+        }
+    }
+}
+
 <div class="row view-mode-content-block" :class="tableViewMode">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -15,134 +79,31 @@
                         <p>Įrangos komplektas <i class="fas fa-sort"></i></p>
                         <p>Renginys <i class="fas fa-sort"></i></p>
                     </div>
+                    @foreach (var reservation in Model)
+                    {
+                        <div class="data-row">
+                            <p class="reservation @StatusClassName(reservation.Status)">
+                                <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(reservation.Status) <i class="far fa-edit"></i></a>
+                            </p>
+                            <p>@Html.ActionLink(reservation.CreatedOn.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                            <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                            <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                            <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
+                            <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundle.Id })</p>
+                            @if (reservation.EventId != null)
+                            {
+                                <p>@Html.ActionLink(reservation.Event.Title, "Details", "Events", new { id = reservation.Event.Id })</p>
+                            }
+                            else
+                            {
+                                <p>-</p>
+                            }
+                        </div>
+                    }
                     <div class="data-row">
                         <p class="reservation waiting-approval">
                             <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
                         </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation old">Praėjusi</p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation approved">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Patvirtinta <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation canceled">Atšaukta</p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation waiting-approval">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation approved">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Patvirtinta <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation in-progress">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vykdoma <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation late">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vėluoja <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation old">Praėjusi</p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation in-progress">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vykdoma <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation stolen">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Pavogta <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation in-progress">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vykdoma <i class="far fa-edit"></i></a>
-                        </p>
-                        <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>
-                        <p>@Html.ActionLink("Julijus Jakutavičius", "Details", "Users")</p>
-                        <p>@Html.ActionLink("Filmavimo komplektas #1", "Details", "EquipmentBundles")</p>
-                        <p>@Html.ActionLink("Renginys", "Details", "Events")</p>
-                    </div>
-                    <div class="data-row">
-                        <p class="reservation canceled">Atšaukta</p>
                         <p>@Html.ActionLink("2019-02-20 10:32", "Details", "Reservations")</p>
                         <p>@Html.ActionLink("2019-03-10 10:00", "Details", "Reservations")</p>
                         <p>@Html.ActionLink("2019-03-15 15:00", "Details", "Reservations")</p>

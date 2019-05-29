@@ -1,4 +1,6 @@
-@model IEnumerable<Reservation>
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Reservation>
 
 @{
     ViewData["Title"] = "Rezervacijos";
@@ -117,8 +119,8 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml")
-@await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml", Model)
+@await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių rezervacijų.")*@
 
