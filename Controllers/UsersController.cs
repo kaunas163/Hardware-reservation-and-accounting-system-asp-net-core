@@ -31,7 +31,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             if (user == null)
             {
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
             return View(user);
