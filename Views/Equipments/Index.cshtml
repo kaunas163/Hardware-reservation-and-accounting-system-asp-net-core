@@ -1,4 +1,5 @@
-@model IEnumerable<Equipment>
+@using HardwareReservationAndAccountingSystem.Models;
+@model List<Equipment>
 
 @{
     ViewData["Title"] = "Atskira įranga";
@@ -73,9 +74,9 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/Equipments/_ViewModeGrid.cshtml")
-@await Html.PartialAsync("~/Views/Equipments/_ViewModeList.cshtml")
-@await Html.PartialAsync("~/Views/Equipments/_ViewModeTable.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ViewModeGrid.cshtml", Model)
+@await Html.PartialAsync("~/Views/Equipments/_ViewModeList.cshtml", Model)
+@await Html.PartialAsync("~/Views/Equipments/_ViewModeTable.cshtml", Model)
 
 @*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokios įrangos.")*@
 
