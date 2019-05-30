@@ -49,8 +49,9 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                equipment.CreatedOn = DateTime.Now;
-                equipment.UpdatedOn = DateTime.Now;
+                var now = DateTime.Now;
+                equipment.CreatedOn = now;
+                equipment.UpdatedOn = now;
                 equipment.Status = EquipmentStatus.Draft;
                 equipment.EquipmentType = _context.EquipmentTypes.FirstOrDefault();
                 _context.Add(equipment);
