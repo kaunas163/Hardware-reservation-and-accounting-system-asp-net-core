@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using HardwareReservationAndAccountingSystem.Enums;
+using HardwareReservationAndAccountingSystem.Models;
+using System.Threading.Tasks;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -37,6 +40,24 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             }
 
             return View(bundle);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Title, Description")] EquipmentBundle bundle)
+        {
+            if (ModelState.IsValid)
+            {
+                var now = DateTime.Now;
+                bundle.CreatedOn = now;
+                bundle.UpdatedOn = now;
+                bundle.Status = EquipmentBundleStatus.Draft;
+                _context.Add(bundle);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details), new { id = bundle.Id });
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
