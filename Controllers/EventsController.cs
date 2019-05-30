@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HardwareReservationAndAccountingSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using HardwareReservationAndAccountingSystem.Models;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -36,6 +38,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             }
 
             return View(ev);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Title, Location, StartTime, EndTime, Comment")] Event e)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(e);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(e);
         }
     }
 }

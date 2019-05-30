@@ -1,0 +1,42 @@
+﻿@using HardwareReservationAndAccountingSystem.Models;
+@model Event
+
+<form asp-controller="Events" asp-action="Create">
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Title">Renginio pavadinimas:</label>
+                <input asp-for="Title" type="text" class="form-control" placeholder="Koks renginio pavadinimas">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="StartTime">Pradžia:</label>
+                <input asp-for="StartTime" type="text" class="form-control" placeholder="2019-05-02 10:00">
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="EndTime">Pabaiga:</label>
+                <input asp-for="EndTime" type="text" class="form-control" placeholder="2019-05-05 18:00">
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location">Lokacija:</label>
+            <input asp-for="Location" type="text" class="form-control" placeholder="Kur vyks renginys">
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Comment">Komentaras:</label>
+            <textarea asp-for="Comment" class="form-control" rows="3" placeholder="Komentaras apie renginį arba filmavimą"></textarea>
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-success" value="Sukurti" />
+        @*<button type="button" class="btn btn-success">Sukurti</button>*@
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+    </div>
+</form>
