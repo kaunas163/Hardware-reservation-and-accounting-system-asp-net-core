@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HardwareReservationAndAccountingSystem.Enums;
 using HardwareReservationAndAccountingSystem.Models;
 using System.Threading.Tasks;
+using HardwareReservationAndAccountingSystem.ViewsModels.EquipmentBundles;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -39,7 +40,34 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(bundle);
+            //var equipments = _context.Equipments
+            //    .ToList();
+
+            //foreach (var equipment in equipments)
+            //{
+            //    if (equipment.EquipmentsInBundles.Any(x => x.EquipmentBundleId == id))
+            //    {
+            //        equipment.Remove(equipment);
+            //    }
+            //}
+
+            var equipments = new List<Equipment>();
+
+            foreach (var equipment in _context.Equipments.Include(x => x.EquipmentsInBundles))
+            {
+                if (equipment.EquipmentsInBundles.Any(x => x.EquipmentBundleId != id))
+                {
+                    equipments.Add(equipment);
+                }
+            }
+
+            var model = new EquipmentBundleDetails
+            {
+                EquipmentBundle = bundle,
+                Equipments = equipments
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -58,6 +86,35 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult AddEquipmentToBundle(EquipmentBundle bundle)
+        {
+            var unpreparedEquipmentIds = Request.Form["equipmentListItems"];
+
+            return Content(unpreparedEquipmentIds);
+
+            //var equipmentIds = unpreparedEquipmentIds.Split(',').Select(x => Convert.ToInt32(x)).ToList();
+            //var equipmentBundleInDb = _context.EquipmentBundles.Include("Equipments").Single(x => x.Id == equipmentBundle.Id);
+
+            //if (equipmentBundleInDb == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            //foreach (var equipmentId in equipmentIds)
+            //{
+            //    var equipment = _context.Equipments.Single(x => x.Id == equipmentId);
+            //    if (equipment == null)
+            //    {
+            //        return HttpNotFound();
+            //    }
+            //    equipmentBundleInDb.Equipments.Add(equipment);
+            //}
+
+            //_context.SaveChanges();
+            //return RedirectToAction("Details", new { id = equipmentBundle.Id });
         }
     }
 }

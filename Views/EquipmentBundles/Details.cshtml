@@ -1,6 +1,6 @@
 @using HardwareReservationAndAccountingSystem.Enums;
-@using HardwareReservationAndAccountingSystem.Models;
-@model EquipmentBundle
+@using HardwareReservationAndAccountingSystem.ViewsModels.EquipmentBundles;
+@model EquipmentBundleDetails
 
 @{
     ViewData["Title"] = "Įrangos komplekto informacija";
@@ -55,22 +55,22 @@
             <div class="content base-info">
                 <div class="row">
                     <div class="col-md-2"><p>Pavadinimas:</p></div>
-                    <div class="col-md-10"><p>@Model.Title</p></div>
+                    <div class="col-md-10"><p>@Model.EquipmentBundle.Title</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
-                    <div class="col-md-10"><p>@Model.CreatedOn</p></div>
+                    <div class="col-md-10"><p>@Model.EquipmentBundle.CreatedOn</p></div>
                 </div>
-                @if (Model.CreatedOn != Model.UpdatedOn)
+                @if (Model.EquipmentBundle.CreatedOn != Model.EquipmentBundle.UpdatedOn)
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Atnaujinimo laikas:</p></div>
-                        <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
+                        <div class="col-md-10"><p>@Model.EquipmentBundle.UpdatedOn</p></div>
                     </div>
                 }
                 <div class="row">
                     <div class="col-md-2"><p>Paskelbtas:</p></div>
-                    @if (Model.Status == EquipmentBundleStatus.Public)
+                    @if (Model.EquipmentBundle.Status == EquipmentBundleStatus.Public)
                     {
                         <div class="col-md-10"><p class="is-public yes"><i class="fas fa-check"></i></p></div>
                     }
@@ -81,14 +81,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Komplekto būsena:</p></div>
-                    <div class="col-md-10"><p>@BundleStatusName(Model.Status)</p></div>
+                    <div class="col-md-10"><p>@BundleStatusName(Model.EquipmentBundle.Status)</p></div>
                 </div>
-                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Aprašymas:</p></div>
                         <div class="col-md-10">
-                            <p>@Model.Description</p>
+                            <p>@Model.EquipmentBundle.Description</p>
                         </div>
                     </div>
                 }
@@ -105,7 +105,7 @@
             </div>
             <div class="content">
                 <div class="row">
-                    @foreach (var equipment in Model.EquipmentsInBundles.Select(e => e.Equipment).ToList())
+                    @foreach (var equipment in Model.EquipmentBundle.EquipmentsInBundles.Select(e => e.Equipment).ToList())
                     {
                         <div class="col-md-3 small-equipment-block add-margin">
                             <a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">
@@ -164,9 +164,9 @@
                 <h3>Su įrangos komplektu susiję pranešimai</h3>
             </div>
             <div class="content">
-                @if (Model.Notifications.Any())
+                @if (Model.EquipmentBundle.Notifications.Any())
                 {
-                    foreach (var notification in Model.Notifications)
+                    foreach (var notification in Model.EquipmentBundle.Notifications)
                     {
                         <p>
                             <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
@@ -201,6 +201,6 @@
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEditMainInfo.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEdit.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalArchive.cshtml")
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalAddEquipment.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalAddEquipment.cshtml", Model)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml", new EquipmentBundle())
