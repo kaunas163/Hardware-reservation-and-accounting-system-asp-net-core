@@ -12,14 +12,18 @@
                     <div class="headings">
                         <p>Pavadinimas <i class="fas fa-sort"></i></p>
                         <p>Data <i class="fas fa-sort"></i></p>
+                        <p>Lokacija <i class="fas fa-sort"></i></p>
                         <p>Komentaras <i class="fas fa-sort"></i></p>
                     </div>
                     @foreach (var ev in Model)
                     {
+                        var location = !string.IsNullOrWhiteSpace(ev.Location) ? ev.Location : "-";
                         var comment = !string.IsNullOrWhiteSpace(ev.Comment) ? ev.Comment : "-";
+
                         <div class="data-row">
                             <p>@Html.ActionLink(ev.Title, "Details", "Events", new { id = ev.Id })</p>
                             <p>@Html.ActionLink(ev.StartTime.ToString(), "Details", "Events", new { id = ev.Id })</p>
+                            <p>@Html.ActionLink(location, "Details", "Events", new { id = ev.Id })</p>
                             <p>@Html.ActionLink(comment, "Details", "Events", new { id = ev.Id })</p>
                         </div>
                     }
