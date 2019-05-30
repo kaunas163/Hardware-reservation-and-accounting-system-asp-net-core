@@ -29,14 +29,15 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            var notifications = _context.Notifications
-                .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
-                .ToList();
-
             var model = new HomeViewModel
             {
-                Notifications = notifications,
-                Reservations = _context.Reservations.ToList(),
+                Notifications = _context.Notifications
+                    .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
+                    .ToList(),
+                Reservations = _context.Reservations
+                    .Include(x => x.Customer)
+                    .Include(x => x.EquipmentBundle)
+                    .ToList(),
                 Events = _context.Events.ToList()
             };
 
