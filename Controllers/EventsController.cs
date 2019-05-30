@@ -48,10 +48,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             {
                 _context.Add(e);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = e.Id });
             }
 
-            return View(e);
+            //return View(e);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

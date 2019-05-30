@@ -7,10 +7,15 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Atnaujinti renginį</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @await Html.PartialAsync("_FormCreateOrUpdate.cshtml", Model);
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-success" value="Sukurti" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+            </div>
+            @*@await Html.PartialAsync("_FormCreateOrUpdate.cshtml", Model);*@
         </div>
     </div>
 </div>
