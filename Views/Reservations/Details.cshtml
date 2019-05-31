@@ -88,6 +88,10 @@
             </div>
             <div class="content base-info">
                 <div class="row">
+                    <div class="col-md-2"><p>Rezervacijos laikotarpis:</p></div>
+                    <div class="col-md-10"><p>@Model.StartTime - @Model.EndTime</p></div>
+                </div>
+                <div class="row">
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
                     <div class="col-md-10"><p>@Model.CreatedOn</p></div>
                 </div>
@@ -98,10 +102,6 @@
                         <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
                     </div>
                 }
-                <div class="row">
-                    <div class="col-md-2"><p>Rezervacijos laikotarpis:</p></div>
-                    <div class="col-md-10"><p>@Model.StartTime - @Model.EndTime</p></div>
-                </div>
                 <div class="row">
                     <div class="col-md-2"><p>Užsakovas:</p></div>
                     <div class="col-md-10"><p>@Html.ActionLink(String.Format("{0} {1}", Model.Customer.Name, Model.Customer.Surname), "Details", "Users", new { id = Model.Customer.Id })</p></div>
@@ -139,17 +139,46 @@
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editEquipmentBundleModal"><i class="far fa-edit"></i></button>
                 </div>
             </div>
-            @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
-            {
-                <div class="content">
-                    <p>
-                        @(Model.EquipmentBundle.Description.Length > 300
-                            ? Model.EquipmentBundle.Description.Substring(0, 300) + "..."
-                            : Model.EquipmentBundle.Description)
-                    </p>
-             
-                </div>
-            }
+            <div class="content">
+                @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
+                {
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                @Model.EquipmentBundle.Description
+                            </p>
+                        </div>
+                    </div>
+                }
+                @if (Model.EquipmentBundle.EquipmentsInBundles.Any())
+                {
+                    <div class="row">
+                        @foreach (var equipment in Model.EquipmentBundle.EquipmentsInBundles.Select(x => x.Equipment))
+                        {
+                            <div class="col-md-3 small-equipment-block add-margin">
+                                <a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">
+                                    <img src="http://via.placeholder.com/500x250">
+                                </a>
+                                <h4><a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">@equipment.Title</a></h4>
+                                @if (!string.IsNullOrWhiteSpace(equipment.Description))
+                                {
+                                    string description;
+
+                                    if (equipment.Description.Length > 100)
+                                    {
+                                        description = equipment.Description.Substring(0, 100) + "...";
+                                    }
+                                    else
+                                    {
+                                        description = equipment.Description;
+                                    }
+                                    <p>@description</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
         </div>
     </div>
     <div class="col-md-12 add-margin">

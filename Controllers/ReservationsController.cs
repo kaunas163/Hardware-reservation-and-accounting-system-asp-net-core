@@ -38,7 +38,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             var reservation = _context.Reservations
                 .Include(x => x.Customer)
-                .Include(x => x.EquipmentBundle)
+                .Include(x => x.EquipmentBundle).ThenInclude(t => t.EquipmentsInBundles).ThenInclude(b => b.Equipment)
                 .Include(x => x.Event)
                 .FirstOrDefault(x => x.Id == id);
 
