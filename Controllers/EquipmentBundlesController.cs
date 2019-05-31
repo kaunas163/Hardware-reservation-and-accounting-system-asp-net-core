@@ -40,31 +40,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            //var equipments = _context.Equipments
-            //    .ToList();
-
-            //foreach (var equipment in equipments)
-            //{
-            //    if (equipment.EquipmentsInBundles.Any(x => x.EquipmentBundleId == id))
-            //    {
-            //        equipment.Remove(equipment);
-            //    }
-            //}
-
-            var equipments = new List<Equipment>();
-
-            foreach (var equipment in _context.Equipments.Include(x => x.EquipmentsInBundles))
-            {
-                if (equipment.EquipmentsInBundles.Any(x => x.EquipmentBundleId != id))
-                {
-                    equipments.Add(equipment);
-                }
-            }
+            var equipmentIds = bundle.EquipmentsInBundles.Select(eb => eb.EquipmentId);
+            var availableEquipments = _context.Equipments.Where(e => !equipmentIds.Contains(e.Id)).ToList();
 
             var model = new EquipmentBundleDetails
             {
                 EquipmentBundle = bundle,
-                Equipments = equipments
+                AvailableEquipments = availableEquipments
             };
 
             return View(model);

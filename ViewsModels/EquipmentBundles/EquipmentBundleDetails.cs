@@ -10,6 +10,6 @@ namespace HardwareReservationAndAccountingSystem.ViewsModels.EquipmentBundles
     {
         public EquipmentBundle EquipmentBundle { get; set; }
 
-        public List<Equipment> Equipments { get; set; }
+        public List<Equipment> AvailableEquipments { get; set; }
     }
 }
