@@ -1,0 +1,23 @@
+﻿@using HardwareReservationAndAccountingSystem.Models;
+@model Equipment
+
+<div class="col-md-3 small-equipment-block add-margin">
+    <a href="@Url.Action("Details", "Equipments", new { id = Model.Id })">
+        <img src="http://via.placeholder.com/500x250">
+    </a>
+    <h4><a href="@Url.Action("Details", "Equipments", new { id = Model.Id })">@Model.Title</a></h4>
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+    {
+        string description;
+
+        if (Model.Description.Length > 100)
+        {
+            description = Model.Description.Substring(0, 100) + "...";
+        }
+        else
+        {
+            description = Model.Description;
+        }
+        <p>@description</p>
+    }
+</div>

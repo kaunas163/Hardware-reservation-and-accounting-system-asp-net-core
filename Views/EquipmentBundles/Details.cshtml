@@ -105,28 +105,9 @@
             </div>
             <div class="content">
                 <div class="row">
-                    @foreach (var equipment in Model.EquipmentBundle.EquipmentsInBundles.Select(e => e.Equipment).ToList())
+                    @foreach (var equipment in Model.EquipmentBundle.EquipmentsInBundles.Select(e => e.Equipment))
                     {
-                        <div class="col-md-3 small-equipment-block add-margin">
-                            <a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">
-                                <img src="http://via.placeholder.com/500x250">
-                            </a>
-                            <h4><a href="@Url.Action("Details", "Equipments", new { id = equipment.Id })">@equipment.Title</a></h4>
-                            @if (!string.IsNullOrWhiteSpace(equipment.Description))
-                            {
-                                string description;
-
-                                if (equipment.Description.Length > 100)
-                                {
-                                    description = equipment.Description.Substring(0, 100) + "...";
-                                }
-                                else
-                                {
-                                    description = equipment.Description;
-                                }
-                                <p>@description</p>
-                            }
-                        </div>
+                        @await Html.PartialAsync("_SmallEquipmentBlock", equipment)
                     }
                     <div class="col-md-3 small-equipment-block add-equipment add-margin">
                         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addEquipmentModal">
