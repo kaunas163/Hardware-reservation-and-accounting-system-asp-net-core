@@ -11,7 +11,10 @@
 
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Events")" class="btn btn-dark"><i class="fas fa-calendar-day"></i> Visi renginiai</a>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    @if (Model.Any())
+    {
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    }
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newEventModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -86,11 +89,11 @@
 {
     @await Html.PartialAsync("~/Views/Events/_ViewModeCalendar.cshtml", Model)
     @await Html.PartialAsync("~/Views/Events/_ViewModeTable.cshtml", Model)
+    @await Html.PartialAsync("~/Views/Events/_ModalExport.cshtml")
 }
 else
 {
     @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")
 }
 
-@await Html.PartialAsync("~/Views/Events/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
