@@ -22,7 +22,7 @@
             <div class="title with-edit">
                 <h3>Pagrindinė informacija</h3>
                 <div class="edit-actions">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editMainInfoModal"><i class="far fa-edit"></i></button>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></button>
                 </div>
             </div>
             <div class="content base-info">
@@ -91,9 +91,6 @@
     </div>
 </div>
 
-@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokių renginių.")*@
-
 @await Html.PartialAsync("~/Views/Events/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
 @await Html.PartialAsync("~/Views/Events/_ModalEdit.cshtml", Model)
-@await Html.PartialAsync("~/Views/Events/_ModalEditMainInfo.cshtml", Model)

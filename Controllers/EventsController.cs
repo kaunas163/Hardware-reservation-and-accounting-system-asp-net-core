@@ -56,5 +56,32 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update([Bind("Id, Title, Location, StartTime, EndTime, Comment")] Event e)
+        {
+            if (ModelState.IsValid)
+            {
+                var eventFromDb = _context.Events.Single(x => x.Id == e.Id);
+
+                if (eventFromDb == null)
+                {
+                    return RedirectToAction(nameof(Details), new { id = e.Id });
+                }
+
+                eventFromDb.Title = e.Title;
+                eventFromDb.StartTime = e.StartTime;
+                eventFromDb.EndTime = e.EndTime;
+                eventFromDb.Location = e.Location;
+                eventFromDb.Comment = e.Comment;
+
+                _context.SaveChanges();
+
+                return RedirectToAction(nameof(Details), new { id = e.Id });
+            }
+
+            return RedirectToAction(nameof(Details), new { id = e.Id });
+        }
     }
 }
