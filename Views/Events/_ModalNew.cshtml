@@ -1,5 +1,10 @@
 ﻿@using HardwareReservationAndAccountingSystem.Models;
 @model Event
+@{ 
+    var currentTime = DateTime.Now;
+    Model.StartTime = currentTime;
+    Model.EndTime = currentTime;
+}
 
 <form asp-controller="Events" asp-action="Create" method="post">
     <div class="modal fade export-modal" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel" aria-hidden="true">
