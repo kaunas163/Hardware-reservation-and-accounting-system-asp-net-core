@@ -78,6 +78,38 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(EquipmentNewOrEdit viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var equipment = viewModel.Equipment;
+
+                var equipmentFromDb = _context.Equipments.Single(x => x.Id == equipment.Id);
+
+                if (equipmentFromDb == null)
+                {
+                    RedirectToAction(nameof(Details), new { id = equipment.Id });
+                }
+
+                equipmentFromDb.Title = equipment.Title;
+                equipmentFromDb.Description = equipment.Description;
+                equipmentFromDb.Status = equipment.Status;
+
+                var type = _context.EquipmentTypes.Single(x => x.Id == equipment.EquipmentTypeId);
+                equipmentFromDb.EquipmentType = type;
+
+                equipmentFromDb.UpdatedOn = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Details), new { id = equipment.Id });
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
         public IActionResult Archive(Equipment equipment)
         {
             var equipmentInDb = _context.Equipments.Single(x => x.Id == equipment.Id);

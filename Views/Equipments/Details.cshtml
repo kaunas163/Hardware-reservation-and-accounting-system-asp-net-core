@@ -225,7 +225,7 @@
 
 @await Html.PartialAsync("~/Views/Equipments/_ModalEditMainInfo.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalEditGallery.cshtml")
-@await Html.PartialAsync("~/Views/Equipments/_ModalEdit.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ModalEdit.cshtml", new EquipmentNewOrEdit { Equipment = Model.Equipment, EquipmentTypes = Model.EquipmentTypes })
 @await Html.PartialAsync("~/Views/Equipments/_ModalArchive.cshtml", Model.Equipment)
 @await Html.PartialAsync("~/Views/Equipments/_ModalUnArchive.cshtml", Model.Equipment)
 @await Html.PartialAsync("~/Views/Equipments/_ModalExport.cshtml")
