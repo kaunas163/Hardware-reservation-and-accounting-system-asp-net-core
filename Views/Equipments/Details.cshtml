@@ -7,37 +7,37 @@
 }
 
 @functions {
-     public string EquipmentStatusName(EquipmentStatus status)
-     {
-            string name;
+    public string EquipmentStatusName(EquipmentStatus status)
+    {
+        string name;
 
-            switch (status)
-            {
-                case EquipmentStatus.Public:
-                    name = "Prieinamas viešai";
-                    break;
-                case EquipmentStatus.Archive:
-                    name = "Archyvuotas";
-                    break;
-                case EquipmentStatus.Broken:
-                    name = "Apgadintas";
-                    break;
-                case EquipmentStatus.Stolen:
-                    name = "Pavogtas";
-                    break;
-                case EquipmentStatus.InRepair:
-                    name = "Remontuojamas";
-                    break;
-                case EquipmentStatus.Draft:
-                    name = "Ruošiamas";
-                    break;
-                default:
-                    name = "";
-                    break;
-            }
+        switch (status)
+        {
+            case EquipmentStatus.Public:
+                name = "Prieinamas viešai";
+                break;
+            case EquipmentStatus.Archive:
+                name = "Archyvuotas";
+                break;
+            case EquipmentStatus.Broken:
+                name = "Apgadintas";
+                break;
+            case EquipmentStatus.Stolen:
+                name = "Pavogtas";
+                break;
+            case EquipmentStatus.InRepair:
+                name = "Remontuojamas";
+                break;
+            case EquipmentStatus.Draft:
+                name = "Ruošiamas";
+                break;
+            default:
+                name = "";
+                break;
+        }
 
-            return name;
-     }
+        return name;
+    }
 }
 
 @section PageHeaderTitle {
@@ -48,7 +48,14 @@
     <a href="@Url.Action("Index", "Equipments")" class="btn btn-dark"><i class="fas fa-camera"></i> Visa įranga</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
-    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
+    @if (Model.Equipment.Status != EquipmentStatus.Archive)
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#unArchiveModal"><i class="fas fa-archive"></i> Grąžinti iš archyvo</button>
+    }
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -219,6 +226,7 @@
 @await Html.PartialAsync("~/Views/Equipments/_ModalEditMainInfo.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalEditGallery.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalEdit.cshtml")
-@await Html.PartialAsync("~/Views/Equipments/_ModalArchive.cshtml")
+@await Html.PartialAsync("~/Views/Equipments/_ModalArchive.cshtml", Model.Equipment)
+@await Html.PartialAsync("~/Views/Equipments/_ModalUnArchive.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml", new EquipmentNewOrEdit { Equipment = new Equipment(), EquipmentTypes = Model.EquipmentTypes })

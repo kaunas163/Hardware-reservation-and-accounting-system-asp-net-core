@@ -76,5 +76,22 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public IActionResult Archive(Equipment equipment)
+        {
+            var equipmentInDb = _context.Equipments.Single(x => x.Id == equipment.Id);
+
+            if (equipmentInDb == null)
+            {
+                return RedirectToAction(nameof(Details), new { id = equipment.Id });
+            }
+
+            equipmentInDb.Status = EquipmentStatus.Archive;
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Details), new { id = equipment.Id });
+        }
     }
 }
