@@ -1,5 +1,5 @@
-@using HardwareReservationAndAccountingSystem.Models;
-@model List<Equipment>
+@using HardwareReservationAndAccountingSystem.ViewsModels.Equipments;
+@model EquipmentsIndex
 
 @{
     ViewData["Title"] = "Atskira įranga";
@@ -11,7 +11,7 @@
 
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Equipments")" class="btn btn-dark"><i class="fas fa-camera"></i> Visa įranga</a>
-    @if (Model.Any())
+    @if (Model.Equipments.Any())
     {
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     }
@@ -77,11 +77,11 @@
     </div>
 }
 
-@if (Model.Any())
+@if (Model.Equipments.Any())
 {
-    @await Html.PartialAsync("~/Views/Equipments/_ViewModeGrid.cshtml", Model)
-    @await Html.PartialAsync("~/Views/Equipments/_ViewModeList.cshtml", Model)
-    @await Html.PartialAsync("~/Views/Equipments/_ViewModeTable.cshtml", Model)
+    @await Html.PartialAsync("~/Views/Equipments/_ViewModeGrid.cshtml", Model.Equipments)
+    @await Html.PartialAsync("~/Views/Equipments/_ViewModeList.cshtml", Model.Equipments)
+    @await Html.PartialAsync("~/Views/Equipments/_ViewModeTable.cshtml", Model.Equipments)
     @await Html.PartialAsync("~/Views/Equipments/_ModalExport.cshtml")
 }
 else
@@ -89,4 +89,4 @@ else
     @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokios įrangos.")
 }
 
-@await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml", new Equipment())
+@await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml", new EquipmentNewOrEdit { Equipment = new Equipment(), EquipmentTypes = Model.EquipmentTypes })

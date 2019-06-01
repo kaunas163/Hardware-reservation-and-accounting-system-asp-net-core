@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HardwareReservationAndAccountingSystem.Enums;
 using HardwareReservationAndAccountingSystem.Models;
 using System.Threading.Tasks;
+using HardwareReservationAndAccountingSystem.ViewsModels.Equipments;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -23,8 +24,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         public IActionResult Index()
         {
-            var equipments = _context.Equipments.Include(x => x.EquipmentType).ToList();
-            return View(equipments);
+            var model = new EquipmentsIndex
+            {
+                Equipments = _context.Equipments.Include(x => x.EquipmentType).ToList(),
+                EquipmentTypes = _context.EquipmentTypes.Where(t => !t.IsArchived).ToList()
+            };
+
+            return View(model);
         }
 
         public IActionResult Details(int id)
@@ -45,17 +51,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title, Description, Status, EquipmentType")] Equipment equipment)
+        public async Task<IActionResult> Create(EquipmentNewOrEdit viewModel)
         {
             if (ModelState.IsValid)
             {
+                var equipment = viewModel.Equipment;
+
                 var now = DateTime.Now;
                 equipment.CreatedOn = now;
                 equipment.UpdatedOn = now;
-                equipment.Status = EquipmentStatus.Draft;
-                equipment.EquipmentType = _context.EquipmentTypes.FirstOrDefault();
-                _context.Add(equipment);
+
+                _context.Equipments.Add(equipment);
+
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Details), new { id = equipment.Id });
             }
 
