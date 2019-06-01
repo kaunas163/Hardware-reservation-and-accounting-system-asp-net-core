@@ -100,6 +100,14 @@ _vue["default"].component('related-to-toggler', {
   }
 });
 
+_vue["default"].component('add-equipment-to-bundle-block-element', {
+  data: function data() {
+    return {
+      checked: false
+    };
+  }
+});
+
 new _vue["default"]({
   el: '#app-root',
   data: function data() {

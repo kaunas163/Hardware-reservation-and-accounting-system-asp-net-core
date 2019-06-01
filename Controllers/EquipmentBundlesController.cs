@@ -71,32 +71,34 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddEquipmentToBundle(EquipmentBundle bundle)
+        public IActionResult AddEquipmentToBundle(EquipmentBundleDetails viewModel)
         {
+            var bundle = viewModel.EquipmentBundle;
+
             var unpreparedEquipmentIds = Request.Form["equipmentListItems"];
 
-            return Content(unpreparedEquipmentIds);
+            var bundleInDb = _context.EquipmentBundles.Include(b => b.EquipmentsInBundles).ThenInclude(c => c.Equipment).Single(b => b.Id == bundle.Id);
 
-            //var equipmentIds = unpreparedEquipmentIds.Split(',').Select(x => Convert.ToInt32(x)).ToList();
-            //var equipmentBundleInDb = _context.EquipmentBundles.Include("Equipments").Single(x => x.Id == equipmentBundle.Id);
+            if (bundleInDb == null)
+            {
+                return RedirectToAction(nameof(Details), new { id = bundle.Id });
+            }
 
-            //if (equipmentBundleInDb == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            foreach (var equipmentId in unpreparedEquipmentIds)
+            {
+                var equipment = _context.Equipments.Single(e => e.Id == Convert.ToInt32(equipmentId));
 
-            //foreach (var equipmentId in equipmentIds)
-            //{
-            //    var equipment = _context.Equipments.Single(x => x.Id == equipmentId);
-            //    if (equipment == null)
-            //    {
-            //        return HttpNotFound();
-            //    }
-            //    equipmentBundleInDb.Equipments.Add(equipment);
-            //}
+                if (equipment == null)
+                {
+                    return RedirectToAction(nameof(Details), new { id = bundle.Id });
+                }
 
-            //_context.SaveChanges();
-            //return RedirectToAction("Details", new { id = equipmentBundle.Id });
+                bundleInDb.EquipmentsInBundles.Add(new EquipmentsInBundles { Equipment = equipment, EquipmentBundle = bundleInDb });
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Details), new { id = bundle.Id });
         }
     }
 }

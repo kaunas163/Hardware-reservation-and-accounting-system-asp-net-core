@@ -114,6 +114,14 @@ Vue.component('related-to-toggler', {
     }
 });
 
+Vue.component('add-equipment-to-bundle-block-element', {
+    data() {
+        return {
+            checked: false,
+        }
+    }
+});
+
 new Vue({
     el: '#app-root',
     data() {
