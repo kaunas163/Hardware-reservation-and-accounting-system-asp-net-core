@@ -88,6 +88,25 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             }
 
             equipmentInDb.Status = EquipmentStatus.Archive;
+            equipmentInDb.UpdatedOn = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Details), new { id = equipment.Id });
+        }
+
+        [HttpPost]
+        public IActionResult UnArchive(Equipment equipment)
+        {
+            var equipmentInDb = _context.Equipments.Single(x => x.Id == equipment.Id);
+
+            if (equipmentInDb == null)
+            {
+                return RedirectToAction(nameof(Details), new { id = equipment.Id });
+            }
+
+            equipmentInDb.Status = equipment.Status;
+            equipmentInDb.UpdatedOn = DateTime.Now;
 
             _context.SaveChanges();
 
