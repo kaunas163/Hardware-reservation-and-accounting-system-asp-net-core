@@ -33,12 +33,16 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             {
                 Notifications = _context.Notifications
                     .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
+                    .Take(10)
                     .ToList(),
                 Reservations = _context.Reservations
                     .Include(x => x.Customer)
                     .Include(x => x.EquipmentBundle)
+                    .Take(10)
                     .ToList(),
-                Events = _context.Events.ToList()
+                Events = _context.Events
+                    .Take(10)
+                    .ToList()
             };
 
             return View(model);
