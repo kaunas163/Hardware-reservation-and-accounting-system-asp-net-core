@@ -46,7 +46,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(equipment);
+            var model = new EquipmentDetails
+            {
+                Equipment = equipment,
+                EquipmentTypes = _context.EquipmentTypes.Where(x => !x.IsArchived).ToList()
+            };
+
+            return View(model);
         }
 
         [HttpPost]

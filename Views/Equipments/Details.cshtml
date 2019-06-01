@@ -1,6 +1,6 @@
 @using HardwareReservationAndAccountingSystem.Enums;
-@using HardwareReservationAndAccountingSystem.Models;
-@model Equipment
+@using HardwareReservationAndAccountingSystem.ViewsModels.Equipments;
+@model EquipmentDetails
 
 @{
     ViewData["Title"] = "Įrangos informacija";
@@ -64,26 +64,26 @@
             <div class="content base-info">
                 <div class="row">
                     <div class="col-md-2"><p>Pavadinimas:</p></div>
-                    <div class="col-md-10"><p>@Model.Title</p></div>
+                    <div class="col-md-10"><p>@Model.Equipment.Title</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
-                    <div class="col-md-10"><p>@Model.CreatedOn</p></div>
+                    <div class="col-md-10"><p>@Model.Equipment.CreatedOn</p></div>
                 </div>
-                @if (Model.CreatedOn != Model.UpdatedOn)
+                @if (Model.Equipment.CreatedOn != Model.Equipment.UpdatedOn)
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Atnaujinimo laikas:</p></div>
-                        <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
+                        <div class="col-md-10"><p>@Model.Equipment.UpdatedOn</p></div>
                     </div>
                 }
                 <div class="row">
                     <div class="col-md-2"><p>Įrangos tipas:</p></div>
-                    <div class="col-md-10"><p>@Model.EquipmentType.Title</p></div>
+                    <div class="col-md-10"><p>@Model.Equipment.EquipmentType.Title</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Paskelbtas:</p></div>
-                    @if (Model.Status == EquipmentStatus.Public)
+                    @if (Model.Equipment.Status == EquipmentStatus.Public)
                     {
                         <div class="col-md-10"><p class="is-public yes"><i class="fas fa-check"></i></p></div>
                     }
@@ -94,14 +94,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Įrangos būsena:</p></div>
-                    <div class="col-md-10"><p>@EquipmentStatusName(Model.Status)</p></div>
+                    <div class="col-md-10"><p>@EquipmentStatusName(Model.Equipment.Status)</p></div>
                 </div>
-                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                @if (!string.IsNullOrWhiteSpace(Model.Equipment.Description))
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Aprašymas:</p></div>
                         <div class="col-md-10">
-                            <p>@Model.Description</p>
+                            <p>@Model.Equipment.Description</p>
                         </div>
                     </div>
                 }
@@ -157,9 +157,9 @@
                 <h3>Su įranga susiję pranešimai</h3>
             </div>
             <div class="content">
-                @if (Model.Notifications.Any())
+                @if (Model.Equipment.Notifications.Any())
                 {
-                    foreach (var notification in Model.Notifications)
+                    foreach (var notification in Model.Equipment.Notifications)
                     {
                         <p>
                             <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
@@ -182,9 +182,9 @@
                 <h3>Komplektai, kuriems priskirta</h3>
             </div>
             <div class="content row">
-                @if (Model.EquipmentsInBundles.Any())
+                @if (Model.Equipment.EquipmentsInBundles.Any())
                 {
-                    foreach (var bundle in Model.EquipmentsInBundles.Select(b => b.EquipmentBundle))
+                    foreach (var bundle in Model.Equipment.EquipmentsInBundles.Select(b => b.EquipmentBundle))
                     {
                         <div class="col-md-4">
                             <h4>@Html.ActionLink(bundle.Title, "Details", "EquipmentBundles", new { id = bundle.Id })</h4>
@@ -221,4 +221,4 @@
 @await Html.PartialAsync("~/Views/Equipments/_ModalEdit.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalArchive.cshtml")
 @await Html.PartialAsync("~/Views/Equipments/_ModalExport.cshtml")
-@await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml", new Equipment())
+@await Html.PartialAsync("~/Views/Equipments/_ModalNew.cshtml", new EquipmentNewOrEdit { Equipment = new Equipment(), EquipmentTypes = Model.EquipmentTypes })
