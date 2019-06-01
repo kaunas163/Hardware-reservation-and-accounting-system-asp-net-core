@@ -1,12 +1,12 @@
 @using HardwareReservationAndAccountingSystem.Models;
 @model EquipmentBundle
 
-<form asp-controller="EquipmentBundles" asp-action="Archive" method="post">
-    <div class="modal fade export-modal" id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="archiveModalLabel" aria-hidden="true">
+<form asp-controller="EquipmentBundles" asp-action="UnArchive" method="post">
+    <div class="modal fade export-modal" id="unArchiveModal" tabindex="-1" role="dialog" aria-labelledby="unArchiveModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalLabel">Ar tikrai norite archyvuoti šį komplektą?</h5>
+                    <h5 class="modal-title" id="unArchiveModalLabel">Ar tikrai norite archyvuoti šį komplektą?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

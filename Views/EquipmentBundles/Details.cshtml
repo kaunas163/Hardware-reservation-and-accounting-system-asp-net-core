@@ -39,7 +39,14 @@
     <a href="@Url.Action("Index", "EquipmentBundles")" class="btn btn-dark"><i class="fas fa-camera"></i> Visi komplektai</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
-    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
+    @if (Model.EquipmentBundle.Status != EquipmentBundleStatus.Archive)
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#unArchiveModal"><i class="fas fa-archive"></i> Grąžinti iš archyvo</button>
+    }
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -181,6 +188,7 @@
 
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEdit.cshtml", Model.EquipmentBundle)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalArchive.cshtml", Model.EquipmentBundle)
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalUnArchive.cshtml", Model.EquipmentBundle)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalAddEquipment.cshtml", Model)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml", new EquipmentBundle())

@@ -132,5 +132,23 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             return RedirectToAction(nameof(Details), new { id = bundle.Id });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Archive(EquipmentBundle bundle)
+        {
+            var bundleInDb = _context.EquipmentBundles.Single(x => x.Id == bundle.Id);
+
+            if (bundleInDb == null)
+            {
+                return RedirectToAction(nameof(Details), new { id = bundle.Id });
+            }
+
+            bundleInDb.Status = EquipmentBundleStatus.Archive;
+            bundleInDb.UpdatedOn = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details), new { id = bundle.Id });
+        }
     }
 }
