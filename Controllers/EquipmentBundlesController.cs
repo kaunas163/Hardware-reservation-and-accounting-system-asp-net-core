@@ -41,7 +41,10 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             }
 
             var equipmentIds = bundle.EquipmentsInBundles.Select(eb => eb.EquipmentId);
-            var availableEquipments = _context.Equipments.Where(e => !equipmentIds.Contains(e.Id)).ToList();
+
+            var availableEquipments = _context.Equipments
+                .Where(e => !equipmentIds.Contains(e.Id) && e.Status == EquipmentStatus.Public)
+                .ToList();
 
             var model = new EquipmentBundleDetails
             {
