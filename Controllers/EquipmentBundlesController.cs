@@ -57,16 +57,43 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title, Description")] EquipmentBundle bundle)
+        public async Task<IActionResult> Create([Bind("Title, Description, Status")] EquipmentBundle bundle)
         {
             if (ModelState.IsValid)
             {
                 var now = DateTime.Now;
                 bundle.CreatedOn = now;
                 bundle.UpdatedOn = now;
-                bundle.Status = EquipmentBundleStatus.Draft;
-                _context.Add(bundle);
+
+                _context.EquipmentBundles.Add(bundle);
                 await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details), new { id = bundle.Id });
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update([Bind("Id, Title, Description, Status")] EquipmentBundle bundle)
+        {
+            if (ModelState.IsValid)
+            {
+                var bundleInDb = _context.EquipmentBundles.Single(x => x.Id == bundle.Id);
+
+                if (bundleInDb == null)
+                {
+                    return RedirectToAction(nameof(Details), new { id = bundle.Id });
+                }
+
+                bundleInDb.Title = bundle.Title;
+                bundleInDb.Description = bundle.Description;
+                bundleInDb.Status = bundle.Status;
+
+                bundleInDb.UpdatedOn = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Details), new { id = bundle.Id });
             }
 

@@ -49,7 +49,7 @@
             <div class="title with-edit">
                 <h3>Pagrindinė informacija</h3>
                 <div class="edit-actions">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editMainInfoModal"><i class="far fa-edit"></i></button>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></button>
                 </div>
             </div>
             <div class="content base-info">
@@ -179,9 +179,8 @@
     </div>
 </div>
 
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEditMainInfo.cshtml")
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEdit.cshtml")
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalArchive.cshtml")
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalEdit.cshtml", Model.EquipmentBundle)
+@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalArchive.cshtml", Model.EquipmentBundle)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalAddEquipment.cshtml", Model)
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml", new EquipmentBundle())
