@@ -3,7 +3,7 @@
 
 <form asp-controller="EquipmentBundles" asp-action="AddEquipmentToBundle" method="post">
     <div class="modal fade export-modal" id="addEquipmentModal" tabindex="-1" role="dialog" aria-labelledby="addEquipmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog @(Model.AvailableEquipments.Any() ? "modal-lg" : "")" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addEquipmentModalLabel">Pridėti daugiau įrangos</h5>
@@ -43,7 +43,7 @@
                     {
                         <button type="submit" class="btn btn-success">Pridėti</button>
                     }
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@(Model.AvailableEquipments.Any() ? "Atšaukti" : "Uždaryti")</button>
                 </div>
             </div>
         </div>
