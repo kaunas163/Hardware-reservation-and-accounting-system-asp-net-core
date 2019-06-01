@@ -99,6 +99,8 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 bundleInDb.EquipmentsInBundles.Add(new EquipmentsInBundles { Equipment = equipment, EquipmentBundle = bundleInDb });
             }
 
+            bundleInDb.UpdatedOn = DateTime.Now;
+
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Details), new { id = bundle.Id });
