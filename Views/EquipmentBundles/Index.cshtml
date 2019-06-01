@@ -12,7 +12,10 @@
 
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "EquipmentBundles")" class="btn btn-dark"><i class="fas fa-camera"></i> Visi komplektai</a>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    @if (Model.Any())
+    {
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
+    }
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -75,12 +78,16 @@
     </div>
 }
 
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml", Model)
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeList.cshtml", Model)
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeTable.cshtml", Model)
+@if (Model.Any())
+{
+    @await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml", Model)
+    @await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeList.cshtml", Model)
+    @await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeTable.cshtml", Model)
+    @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
+}
+else
+{
+    @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")
+}
 
-@*@await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra pridėta jokio įrangos komplekto.")*@
-
-@await Html.PartialAsync("~/Views/EquipmentBundles/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/EquipmentBundles/_ModalNew.cshtml", new EquipmentBundle())
-
