@@ -46,20 +46,17 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(e);
+                _context.Events.Add(e);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
                 return RedirectToAction(nameof(Details), new { id = e.Id });
             }
-
-            //return View(e);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update([Bind("Id, Title, Location, StartTime, EndTime, Comment")] Event e)
+        public async Task<IActionResult> Update([Bind("Id, Title, Location, StartTime, EndTime, Comment")] Event e)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +73,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 eventFromDb.Location = e.Location;
                 eventFromDb.Comment = e.Comment;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Details), new { id = e.Id });
             }
