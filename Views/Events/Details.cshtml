@@ -85,7 +85,32 @@
                 <h3>Su renginiu susijusios rezervacijos</h3>
             </div>
             <div class="content">
-                <p>rezervacijų list</p>
+                @if (Model.Reservations.Any())
+                {
+                    <div class="flex-table styled-table">
+                        <div class="headings">
+                            <p>Būsena <i class="fas fa-sort"></i></p>
+                            <p>Nuo <i class="fas fa-sort"></i></p>
+                            <p>Iki <i class="fas fa-sort"></i></p>
+                            <p>Užsakovas <i class="fas fa-sort"></i></p>
+                            <p>Įranga <i class="fas fa-sort"></i></p>
+                        </div>
+                        @foreach (var reservation in Model.Reservations)
+                        {
+                            <div class="data-row">
+                                @await Html.PartialAsync("_ReservationStatusOnlyText", reservation.Status)
+                                <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                                <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                                <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
+                                <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundleId })</p>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>Su renginiu susijusių rezervacijų nėra.</p>
+                }
             </div>
         </div>
     </div>
@@ -94,3 +119,11 @@
 @await Html.PartialAsync("~/Views/Events/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
 @await Html.PartialAsync("~/Views/Events/_ModalEdit.cshtml", Model)
+
+@*@if (Model.Reservations.Any())
+{
+    @foreach (var reservation in Model.Reservations)
+    {
+        @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
+    }
+}*@

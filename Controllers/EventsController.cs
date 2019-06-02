@@ -30,6 +30,8 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             var ev = _context.Events
                 .Include(x => x.Notifications)
+                .Include(x => x.Reservations).ThenInclude(x => x.Customer)
+                .Include(x => x.Reservations).ThenInclude(x => x.EquipmentBundle)
                 .FirstOrDefault(x => x.Id == id);
 
             if (ev == null)
