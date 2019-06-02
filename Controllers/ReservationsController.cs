@@ -120,5 +120,11 @@ namespace HardwareReservationAndAccountingSystem.Controllers
            
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditStatus(Reservation reservation)
+        {
+            return RedirectToAction(nameof(Details), new { id = reservation.Id });
+        }
     }
 }

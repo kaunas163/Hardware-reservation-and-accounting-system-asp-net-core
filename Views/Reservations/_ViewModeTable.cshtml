@@ -2,66 +2,6 @@
 @using HardwareReservationAndAccountingSystem.Models;
 @model List<Reservation>
 
-@functions {
-    public string StatusClassName(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "waiting-approval";
-            case ReservationStatus.Confirmed:
-                return "approved";
-            case ReservationStatus.Cancelled:
-                return "canceled";
-            case ReservationStatus.Active:
-                return "in-progress";
-            case ReservationStatus.Untaken:
-                return "";
-            case ReservationStatus.Completed:
-                return "old";
-            case ReservationStatus.Late:
-                return "late";
-            case ReservationStatus.Stolen:
-                return "stolen";
-            case ReservationStatus.Broken:
-                return "";
-            case ReservationStatus.Undefined:
-                return "";
-            default:
-                return "";
-        }
-    }
-
-    public string StatusTitle(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "Laukianti patvirtinimo";
-            case ReservationStatus.Confirmed:
-                return "Patvirtinta";
-            case ReservationStatus.Cancelled:
-                return "Atšaukta";
-            case ReservationStatus.Active:
-                return "Vykdoma";
-            case ReservationStatus.Untaken:
-                return "Neatsiimta";
-            case ReservationStatus.Completed:
-                return "Įvykdyta";
-            case ReservationStatus.Late:
-                return "Vėluojanti";
-            case ReservationStatus.Stolen:
-                return "Įranga pavogta";
-            case ReservationStatus.Broken:
-                return "Įranga apgadinta";
-            case ReservationStatus.Undefined:
-                return "Neapibrėžta";
-            default:
-                return "";
-        }
-    }
-}
-
 <div class="row view-mode-content-block" :class="tableViewMode">
     <div class="col-md-12 add-margin">
         <div class="content-block">
@@ -82,9 +22,7 @@
                     @foreach (var reservation in Model)
                     {
                         <div class="data-row">
-                            <p class="reservation @StatusClassName(reservation.Status)">
-                                <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(reservation.Status) <i class="far fa-edit"></i></a>
-                            </p>
+                            @await Html.PartialAsync("_ReservationStatus", reservation.Status)
                             <p>@Html.ActionLink(reservation.CreatedOn.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                             <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                             <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>

@@ -1,0 +1,58 @@
+﻿@using HardwareReservationAndAccountingSystem.Enums;
+@model ReservationStatus
+
+@switch (Model)
+{
+    case ReservationStatus.Pending:
+        <p class="reservation waiting-approval">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Confirmed:
+        <p class="reservation approved">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Patvirtinta <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Cancelled:
+        <p class="reservation canceled">
+            Atšaukta
+        </p>
+        break;
+    case ReservationStatus.Active:
+        <p class="reservation in-progress">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vykdoma <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Untaken:
+        <p class="reservation ">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Neatsiimta <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Completed:
+        <p class="reservation old">
+            Įvykdyta
+        </p>
+        break;
+    case ReservationStatus.Late:
+        <p class="reservation late">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vėluojanti <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Stolen:
+        <p class="reservation stolen">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Įranga pavogta <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Broken:
+        <p class="reservation ">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Įranga apgadinta <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    case ReservationStatus.Undefined:
+        <p class="reservation ">
+            <a href="#" data-toggle="modal" data-target="#editStatusModal">Neapibrėžta <i class="far fa-edit"></i></a>
+        </p>
+        break;
+    default:
+        break;
+}

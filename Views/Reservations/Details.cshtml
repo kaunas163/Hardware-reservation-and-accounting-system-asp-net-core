@@ -2,66 +2,6 @@
 @using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
 @model ReservationNewOrUpdate
 
-@functions {
-    public string StatusClassName(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "waiting-approval";
-            case ReservationStatus.Confirmed:
-                return "approved";
-            case ReservationStatus.Cancelled:
-                return "canceled";
-            case ReservationStatus.Active:
-                return "in-progress";
-            case ReservationStatus.Untaken:
-                return "";
-            case ReservationStatus.Completed:
-                return "old";
-            case ReservationStatus.Late:
-                return "late";
-            case ReservationStatus.Stolen:
-                return "stolen";
-            case ReservationStatus.Broken:
-                return "";
-            case ReservationStatus.Undefined:
-                return "";
-            default:
-                return "";
-        }
-    }
-
-    public string StatusTitle(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "Laukianti patvirtinimo";
-            case ReservationStatus.Confirmed:
-                return "Patvirtinta";
-            case ReservationStatus.Cancelled:
-                return "Atšaukta";
-            case ReservationStatus.Active:
-                return "Vykdoma";
-            case ReservationStatus.Untaken:
-                return "Neatsiimta";
-            case ReservationStatus.Completed:
-                return "Įvykdyta";
-            case ReservationStatus.Late:
-                return "Vėluojanti";
-            case ReservationStatus.Stolen:
-                return "Įranga pavogta";
-            case ReservationStatus.Broken:
-                return "Įranga apgadinta";
-            case ReservationStatus.Undefined:
-                return "Neapibrėžta";
-            default:
-                return "";
-        }
-    }
-}
-
 @{
     ViewData["Title"] = "Rezervacijos informacija";
 }
@@ -123,9 +63,7 @@
                 <div class="row">
                     <div class="col-md-2"><p>Rezervacijos būsena:</p></div>
                     <div class="col-md-10">
-                        <p class="reservation @StatusClassName(Model.Reservation.Status)">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(Model.Reservation.Status) <i class="far fa-edit"></i></a>
-                        </p>
+                        @await Html.PartialAsync("_ReservationStatus", Model.Reservation.Status)
                     </div>
                 </div>
             </div>
@@ -186,7 +124,7 @@
 
 @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new ReservationNewOrUpdate { Reservation = new Reservation(), EquipmentBundles = Model.EquipmentBundles })
-@await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", Model.Reservation)
 @await Html.PartialAsync("~/Views/Reservations/_ModalEditMainInfo.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalEdit.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalEditEquipmentBundle.cshtml")
