@@ -108,6 +108,27 @@ _vue["default"].component('add-equipment-to-bundle-block-element', {
   }
 });
 
+_vue["default"].component('choose-bundle-for-reservation-block', {
+  data: function data() {
+    return {
+      selectedBundle: ''
+    };
+  }
+});
+
+_vue["default"].component('choose-bundle-for-reservation-block-item', {
+  model: {
+    prop: 'selectedBundle',
+    event: 'onUpdateSelectedBundle'
+  },
+  props: ['bundleId', 'selectedBundle'],
+  methods: {
+    updateSelectedBundle: function updateSelectedBundle() {
+      this.$emit('onUpdateSelectedBundle', this.bundleId);
+    }
+  }
+});
+
 new _vue["default"]({
   el: '#app-root',
   data: function data() {

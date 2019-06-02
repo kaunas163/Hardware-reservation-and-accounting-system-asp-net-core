@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using HardwareReservationAndAccountingSystem.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using HardwareReservationAndAccountingSystem.Enums;
+using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -31,7 +33,17 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 .Include(x => x.Event)
                 .ToList();
 
-            return View(reservations);
+            var bundles = _context.EquipmentBundles
+                .Where(x => x.Status == EquipmentBundleStatus.Public)
+                .ToList();
+
+            var model = new ReservationsIndex
+            {
+                Reservations = reservations,
+                EquipmentBundles = bundles
+            };
+
+            return View(model);
         }
 
         public IActionResult Details(int id)
@@ -47,7 +59,66 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(reservation);
+            var bundles = _context.EquipmentBundles
+                .Where(x => x.Status == EquipmentBundleStatus.Public)
+                .ToList();
+
+            var model = new ReservationNewOrUpdate
+            {
+                Reservation = reservation,
+                EquipmentBundles = bundles
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ReservationNewOrUpdate viewModel)
+        {
+            ModelState.Remove("Reservation.CustomerId");
+
+            //string messages = string.Join("; ", ModelState.Values
+            //                            .SelectMany(x => x.Errors)
+            //                            .Select(x => x.ErrorMessage));
+
+            //return Content(messages);
+
+            if (ModelState.IsValid)
+            {
+                var reservation = viewModel.Reservation;
+
+                var current = DateTime.Now;
+                reservation.CreatedOn = current;
+                reservation.UpdatedOn = current;
+
+                var selectedBundleId = Request.Form["equipmentBundles"];
+
+                if (!selectedBundleId.Any())
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                var bundle = _context.EquipmentBundles.Single(x => x.Id == Convert.ToInt32(selectedBundleId.FirstOrDefault()));
+
+                if (bundle == null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                reservation.EquipmentBundle = bundle;
+
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                reservation.CustomerId = user.Id;
+
+                reservation.Status = ReservationStatus.Pending;
+
+                _context.Reservations.Add(reservation);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details), new { id = reservation.Id });
+            }
+           
+            return RedirectToAction(nameof(Index));
         }
     }
 }

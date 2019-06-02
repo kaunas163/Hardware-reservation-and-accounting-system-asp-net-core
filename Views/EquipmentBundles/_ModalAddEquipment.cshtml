@@ -21,7 +21,7 @@
                                     <add-equipment-to-bundle-block-element inline-template>
                                         <div class="equipment-or-bundle-list-item-with-selection" @@click="checked = !checked" :class="{active: checked}">
                                             <input type="checkbox" id="@equipment.Id" name="equipmentListItems" value="@equipment.Id" v-model="checked" />
-                                            <img src="http://via.placeholder.com/200x200" />
+                                            <img src="http://via.placeholder.com/200x200" class="img-fluid" />
                                             <p>@equipment.Title</p>
                                         </div>
                                     </add-equipment-to-bundle-block-element>

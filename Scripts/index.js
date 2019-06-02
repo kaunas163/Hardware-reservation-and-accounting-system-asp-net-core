@@ -122,6 +122,27 @@ Vue.component('add-equipment-to-bundle-block-element', {
     }
 });
 
+Vue.component('choose-bundle-for-reservation-block', {
+    data() {
+        return {
+            selectedBundle: ''
+        }
+    }
+});
+
+Vue.component('choose-bundle-for-reservation-block-item', {
+    model: {
+        prop: 'selectedBundle',
+        event: 'onUpdateSelectedBundle'
+    },
+    props: ['bundleId', 'selectedBundle'],
+    methods: {
+        updateSelectedBundle() {
+            this.$emit('onUpdateSelectedBundle', this.bundleId);
+        }
+    }
+});
+
 new Vue({
     el: '#app-root',
     data() {

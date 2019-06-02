@@ -1,6 +1,6 @@
 @using HardwareReservationAndAccountingSystem.Enums;
-@using HardwareReservationAndAccountingSystem.Models;
-@model List<Reservation>
+@using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
+@model ReservationsIndex
 
 @{
     ViewData["Title"] = "Rezervacijos";
@@ -12,7 +12,7 @@
 
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Reservations")" class="btn btn-dark"><i class="fas fa-calendar-check"></i> Visos rezervacijos</a>
-    @if (Model.Any())
+    @if (Model.Reservations.Any())
     {
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     }
@@ -20,7 +20,7 @@
 }
 
 @section PageHeaderFilters {
-    @if (Model.Any())
+    @if (Model.Reservations.Any())
     {
         <div class="page-filters">
             <div class="filters">
@@ -125,10 +125,10 @@
     }
 }
 
-@if (Model.Any())
+@if (Model.Reservations.Any())
 {
-    @await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml", Model)
-    @await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml", Model)
+    @await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml", Model.Reservations)
+    @await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml", Model.Reservations)
     @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
     @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml")
 }
@@ -137,4 +137,4 @@ else
     @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių rezervacijų.")
 }
 
-@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new ReservationNewOrUpdate { Reservation = new Reservation(), EquipmentBundles = Model.EquipmentBundles })

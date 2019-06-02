@@ -1,6 +1,6 @@
 @using HardwareReservationAndAccountingSystem.Enums;
-@using HardwareReservationAndAccountingSystem.Models;
-@model Reservation
+@using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
+@model ReservationNewOrUpdate
 
 @functions {
     public string StatusClassName(ReservationStatus status)
@@ -89,42 +89,42 @@
             <div class="content base-info">
                 <div class="row">
                     <div class="col-md-2"><p>Rezervacijos laikotarpis:</p></div>
-                    <div class="col-md-10"><p>@Model.StartTime - @Model.EndTime</p></div>
+                    <div class="col-md-10"><p>@Model.Reservation.StartTime - @Model.Reservation.EndTime</p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><p>Sukūrimo laikas:</p></div>
-                    <div class="col-md-10"><p>@Model.CreatedOn</p></div>
+                    <div class="col-md-10"><p>@Model.Reservation.CreatedOn</p></div>
                 </div>
-                @if (Model.CreatedOn != Model.UpdatedOn)
+                @if (Model.Reservation.CreatedOn != Model.Reservation.UpdatedOn)
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Atnaujinimo laikas:</p></div>
-                        <div class="col-md-10"><p>@Model.UpdatedOn</p></div>
+                        <div class="col-md-10"><p>@Model.Reservation.UpdatedOn</p></div>
                     </div>
                 }
                 <div class="row">
                     <div class="col-md-2"><p>Užsakovas:</p></div>
-                    <div class="col-md-10"><p>@Html.ActionLink(String.Format("{0} {1}", Model.Customer.Name, Model.Customer.Surname), "Details", "Users", new { id = Model.Customer.Id })</p></div>
+                    <div class="col-md-10"><p>@Html.ActionLink(String.Format("{0} {1}", Model.Reservation.Customer.Name, Model.Reservation.Customer.Surname), "Details", "Users", new { id = Model.Reservation.Customer.Id })</p></div>
                 </div>
-                @if (Model.EventId != null)
+                @if (Model.Reservation.EventId != null)
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Renginys:</p></div>
-                        <div class="col-md-10"><p>@Html.ActionLink(Model.Event.Title, "Details", "Events", new { id = Model.Event.Id })</p></div>
+                        <div class="col-md-10"><p>@Html.ActionLink(Model.Reservation.Event.Title, "Details", "Events", new { id = Model.Reservation.Event.Id })</p></div>
                     </div>
                 }
-                @if (!string.IsNullOrWhiteSpace(Model.Comment))
+                @if (!string.IsNullOrWhiteSpace(Model.Reservation.Comment))
                 {
                     <div class="row">
                         <div class="col-md-2"><p>Komentaras:</p></div>
-                        <div class="col-md-10"><p>@Model.Comment</p></div>
+                        <div class="col-md-10"><p>@Model.Reservation.Comment</p></div>
                     </div>
                 }
                 <div class="row">
                     <div class="col-md-2"><p>Rezervacijos būsena:</p></div>
                     <div class="col-md-10">
-                        <p class="reservation @StatusClassName(Model.Status)">
-                            <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(Model.Status) <i class="far fa-edit"></i></a>
+                        <p class="reservation @StatusClassName(Model.Reservation.Status)">
+                            <a href="#" data-toggle="modal" data-target="#editStatusModal">@StatusTitle(Model.Reservation.Status) <i class="far fa-edit"></i></a>
                         </p>
                     </div>
                 </div>
@@ -134,26 +134,26 @@
     <div class="col-md-12 add-margin">
         <div class="content-block">
             <div class="title with-edit less-margin">
-                <h3>@Html.ActionLink("Rezervuotas įrangos komplektas: " + Model.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.EquipmentBundle.Id })</h3>
+                <h3>@Html.ActionLink("Rezervuotas įrangos komplektas: " + Model.Reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.Reservation.EquipmentBundle.Id })</h3>
                 <div class="edit-actions">
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editEquipmentBundleModal"><i class="far fa-edit"></i></button>
                 </div>
             </div>
             <div class="content">
-                @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
+                @if (!string.IsNullOrWhiteSpace(Model.Reservation.EquipmentBundle.Description))
                 {
                     <div class="row">
                         <div class="col">
                             <p>
-                                @Model.EquipmentBundle.Description
+                                @Model.Reservation.EquipmentBundle.Description
                             </p>
                         </div>
                     </div>
                 }
-                @if (Model.EquipmentBundle.EquipmentsInBundles.Any())
+                @if (Model.Reservation.EquipmentBundle.EquipmentsInBundles.Any())
                 {
                     <div class="row">
-                        @foreach (var equipment in Model.EquipmentBundle.EquipmentsInBundles.Select(x => x.Equipment))
+                        @foreach (var equipment in Model.Reservation.EquipmentBundle.EquipmentsInBundles.Select(x => x.Equipment))
                         {
                             @await Html.PartialAsync("_SmallEquipmentBlock", equipment)
                         }
@@ -185,7 +185,7 @@
 </div>
 
 @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
-@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new ReservationNewOrUpdate { Reservation = new Reservation(), EquipmentBundles = Model.EquipmentBundles })
 @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalEditMainInfo.cshtml")
 @await Html.PartialAsync("~/Views/Reservations/_ModalEdit.cshtml")
