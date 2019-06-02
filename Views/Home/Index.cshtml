@@ -1,5 +1,6 @@
 ﻿@using HardwareReservationAndAccountingSystem.Enums;
 @using HardwareReservationAndAccountingSystem.ViewsModels.Home;
+@using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
 @model HomeViewModel
 
 @{
@@ -203,4 +204,4 @@
 
 @await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
-@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new Reservation())
+@await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new ReservationNewOrUpdate { Reservation = new Reservation(), EquipmentBundles = Model.EquipmentBundles })

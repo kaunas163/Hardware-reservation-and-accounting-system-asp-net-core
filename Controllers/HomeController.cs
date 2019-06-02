@@ -10,6 +10,7 @@ using HardwareReservationAndAccountingSystem.Data;
 using HardwareReservationAndAccountingSystem.ViewsModels.Home;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using HardwareReservationAndAccountingSystem.Enums;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -42,6 +43,9 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                     .ToList(),
                 Events = _context.Events
                     .Take(10)
+                    .ToList(),
+                EquipmentBundles = _context.EquipmentBundles
+                    .Where(x => x.Status == EquipmentBundleStatus.Public)
                     .ToList()
             };
 
