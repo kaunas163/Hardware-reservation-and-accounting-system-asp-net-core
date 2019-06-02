@@ -11,5 +11,7 @@ namespace HardwareReservationAndAccountingSystem.ViewsModels.Reservations
         public Reservation Reservation { get; set; }
 
         public List<EquipmentBundle> EquipmentBundles { get; set; }
+
+        public List<ApplicationUser> Users { get; set; }
     }
 }

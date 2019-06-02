@@ -63,10 +63,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 .Where(x => x.Status == EquipmentBundleStatus.Public)
                 .ToList();
 
+            var users = _context.ApplicationUsers.ToList();
+
             var model = new ReservationNewOrUpdate
             {
                 Reservation = reservation,
-                EquipmentBundles = bundles
+                EquipmentBundles = bundles,
+                Users = users
             };
 
             return View(model);
@@ -137,6 +140,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = reservation.Id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(ReservationNewOrUpdate viewModel)
+        {
+            return RedirectToAction(nameof(Index));
         }
     }
 }

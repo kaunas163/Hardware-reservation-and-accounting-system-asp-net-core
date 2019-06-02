@@ -1,22 +1,75 @@
-<div class="modal fade export-modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Atnaujinti rezervaciją</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
+@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
+@model ReservationNewOrUpdate
+
+<form asp-controller="Reservations" asp-action="Update" method="post">
+    <div class="modal fade export-modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Atnaujinti rezervaciją</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="Reservation.StartTime">Rezervacija nuo:</label>
+                            <input asp-for="Reservation.StartTime" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col">
+                            <label asp-for="Reservation.EndTime">Rezervacija iki:</label>
+                            <input asp-for="Reservation.EndTime" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="Reservation.EquipmentBundleId">Norimas rezervuoti įrangos komplektas:</label>
+                            <div class="equipment-list">
+                                <choose-bundle-for-reservation-block inline-template>
+                                    <div class="row equipment-or-bundle-list-with-selection">
+                                        @foreach (var bundle in Model.EquipmentBundles)
+                                        {
+                                            <div class="col-md-4 column">
+                                                <choose-bundle-for-reservation-block-item v-model="selectedBundle" bundle-id="@bundle.Id" inline-template>
+                                                    <div class="equipment-or-bundle-list-item-with-selection radio" @@click="updateSelectedBundle" :class="{active: this.selectedBundle == this.bundleId }">
+                                                        <input asp-for="Reservation.EquipmentBundleId" type="radio" id="@bundle.Id" name="equipmentBundles" value="@bundle.Id" v-model="selectedBundle" />
+                                                        <img src="http://via.placeholder.com/200x200" class="img-fluid" />
+                                                        <p>@bundle.Title</p>
+                                                    </div>
+                                                </choose-bundle-for-reservation-block-item>
+                                            </div>
+                                        }
+                                    </div>
+                                </choose-bundle-for-reservation-block>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="Reservation.CustomerId">Užsakovas:</label>
+                            @Html.DropDownListFor(x => x.Reservation.CustomerId, new SelectList(Model.Users, "Id", "Email"), "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="Reservation.Status">Būsena:</label>
+                            <select asp-for="Reservation.Status" asp-items="Html.GetEnumSelectList<ReservationStatus>()" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label asp-for="Reservation.Comment">Komentaras:</label>
+                            <input asp-for="Reservation.Comment" type="text" class="form-control" placeholder="Galite parašyti papildomą komentarą prie kuriamos rezervacijos">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Atnaujinti</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Atnaujinti</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
