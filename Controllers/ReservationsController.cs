@@ -122,8 +122,20 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditStatus(Reservation reservation)
+        public async Task<IActionResult> EditStatus([Bind("Id", "Status")] Reservation reservation)
         {
+            var reservationInDb = _context.Reservations.Single(x => x.Id == reservation.Id);
+
+            if (reservationInDb == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            reservationInDb.Status = reservation.Status;
+            reservationInDb.UpdatedOn = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Details), new { id = reservation.Id });
         }
     }
