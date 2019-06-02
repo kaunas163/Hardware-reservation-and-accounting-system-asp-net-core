@@ -129,7 +129,11 @@
     @await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml", Model.Reservations)
     @await Html.PartialAsync("~/Views/Reservations/_ViewModeTable.cshtml", Model.Reservations)
     @await Html.PartialAsync("~/Views/Reservations/_ModalExport.cshtml")
-    @*@await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", Model)*@
+
+    @foreach (var reservation in Model.Reservations)
+    {
+        @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
+    }
 }
 else
 {

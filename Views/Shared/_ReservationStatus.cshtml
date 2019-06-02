@@ -1,16 +1,17 @@
 ﻿@using HardwareReservationAndAccountingSystem.Enums;
-@model ReservationStatus
+@using HardwareReservationAndAccountingSystem.Models;
+@model Reservation
 
-@switch (Model)
+@switch (Model.Status)
 {
     case ReservationStatus.Pending:
         <p class="reservation waiting-approval">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Laukianti patvirtinimo <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Confirmed:
         <p class="reservation approved">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Patvirtinta <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Patvirtinta <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Cancelled:
@@ -20,12 +21,12 @@
         break;
     case ReservationStatus.Active:
         <p class="reservation in-progress">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vykdoma <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Vykdoma <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Untaken:
         <p class="reservation untaken">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Neatsiimta <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Neatsiimta <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Completed:
@@ -35,22 +36,22 @@
         break;
     case ReservationStatus.Late:
         <p class="reservation late">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Vėluojanti <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Vėluojanti <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Stolen:
         <p class="reservation stolen">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Įranga pavogta <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Įranga pavogta <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Broken:
         <p class="reservation broken">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Įranga apgadinta <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Įranga apgadinta <i class="far fa-edit"></i></a>
         </p>
         break;
     case ReservationStatus.Undefined:
         <p class="reservation undefined">
-            <a href="#" data-toggle="modal" data-target="#editStatusModal">Neapibrėžta <i class="far fa-edit"></i></a>
+            <a href="#" data-toggle="modal" data-target="#editStatusModal-@Model.Id">Neapibrėžta <i class="far fa-edit"></i></a>
         </p>
         break;
     default:

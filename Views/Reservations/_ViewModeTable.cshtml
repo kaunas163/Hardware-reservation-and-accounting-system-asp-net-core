@@ -21,7 +21,7 @@
                     @foreach (var reservation in Model)
                     {
                         <div class="data-row">
-                            @await Html.PartialAsync("_ReservationStatus", reservation.Status)
+                            @await Html.PartialAsync("_ReservationStatus", reservation)
                             <p>@Html.ActionLink(reservation.CreatedOn.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                             <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                             <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>

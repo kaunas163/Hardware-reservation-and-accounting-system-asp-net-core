@@ -3,7 +3,7 @@
 @model Reservation
 
 <form asp-controller="Reservations" asp-action="EditStatus" method="post">
-    <div class="modal fade edit-status-modal" id="editStatusModal" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
+    <div class="modal fade edit-status-modal" id="editStatusModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,6 +60,7 @@
                             </div>
                         </div>
                     </div>
+                    @Html.HiddenFor(x => x.Id)
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Patvirtinti</button>
