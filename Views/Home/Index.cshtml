@@ -17,21 +17,21 @@
             case ReservationStatus.Confirmed:
                 return "approved";
             case ReservationStatus.Cancelled:
-                return "canceled";
+                return "cancelled";
             case ReservationStatus.Active:
                 return "in-progress";
             case ReservationStatus.Untaken:
-                return "";
+                return "untaken";
             case ReservationStatus.Completed:
-                return "old";
+                return "completed";
             case ReservationStatus.Late:
                 return "late";
             case ReservationStatus.Stolen:
                 return "stolen";
             case ReservationStatus.Broken:
-                return "";
+                return "broken";
             case ReservationStatus.Undefined:
-                return "";
+                return "undefined";
             default:
                 return "";
         }
