@@ -82,14 +82,21 @@
                         </div>
                     </div>
                     <div class="content">
-                        @foreach (var notification in Model.Notifications)
+                        @if (Model.Notifications.Any())
                         {
-                            <p>
-                                <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
-                                    <span>@notification.CreatedOn</span>
-                                    @notification.Title
-                                </a>
-                            </p>
+                            @foreach (var notification in Model.Notifications)
+                            {
+                                <p>
+                                    <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
+                                        <span>@notification.CreatedOn</span>
+                                        @notification.Title
+                                    </a>
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p>Jums skirtų pranešimų nėra.</p>
                         }
                         <!-- <p class="new"><a href="@Url.Action("Details", "Notifications")"><span>2019-03-16 21:10</span> Jūsų rezervacijos būsena įrangai "Komplektas renginio filmavimui" buvo patvirtinta.</a></p> -->
                     </div>
@@ -106,14 +113,21 @@
                         </div>
                     </div>
                     <div class="content">
-                        @foreach (var e in Model.Events)
+                        @if (Model.Events.Any())
                         {
-                            <p>
-                                <a href="@Url.Action("Details", "Events", new { id = e.Id })">
-                                    <span>@e.StartTime</span>
-                                    @e.Title
-                                </a>
-                            </p>
+                            @foreach (var e in Model.Events)
+                            {
+                                <p>
+                                    <a href="@Url.Action("Details", "Events", new { id = e.Id })">
+                                        <span>@e.StartTime</span>
+                                        @e.Title
+                                    </a>
+                                </p>
+                            }
+                        }
+                        else
+                        {
+                            <p>Šiuo metu sukurtų renginių nėra.</p>
                         }
                     </div>
                 </div>
@@ -129,52 +143,59 @@
                 </div>
             </div>
             <div class="content">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="newest-tab" data-toggle="tab" href="#newest" role="tab" aria-controls="newest" aria-selected="true">Naujausios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="todays-tab" data-toggle="tab" href="#todays" role="tab" aria-controls="todays" aria-selected="false">Šiandienos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="week-tab" data-toggle="tab" href="#week" role="tab" aria-controls="week" aria-selected="false">Savaitės</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="old-tab" data-toggle="tab" href="#old" role="tab" aria-controls="old" aria-selected="false">Praėjusios</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="newest" role="tabpanel" aria-labelledby="newest-tab">
-                        <div class="flex-table">
-                            <div class="headings">
-                                <p>Būsena</p>
-                                <p>Nuo</p>
-                                <p>Iki</p>
-                                <p>Užsakovas</p>
-                                <p>Įranga</p>
-                            </div>
-                            @foreach (var reservation in Model.Reservations)
-                            {
-                                <div class="data-row">
-                                    <p class="reservation @StatusClassName(reservation.Status)">@Html.ActionLink(StatusTitle(reservation.Status), "Details", "Reservations", new { id = reservation.Id })</p>
-                                    <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
-                                    <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
-                                    <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
-                                    <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundleId })</p>
+                @if (Model.Reservations.Any())
+                {
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="newest-tab" data-toggle="tab" href="#newest" role="tab" aria-controls="newest" aria-selected="true">Naujausios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="todays-tab" data-toggle="tab" href="#todays" role="tab" aria-controls="todays" aria-selected="false">Šiandienos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="week-tab" data-toggle="tab" href="#week" role="tab" aria-controls="week" aria-selected="false">Savaitės</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="old-tab" data-toggle="tab" href="#old" role="tab" aria-controls="old" aria-selected="false">Praėjusios</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="newest" role="tabpanel" aria-labelledby="newest-tab">
+                            <div class="flex-table">
+                                <div class="headings">
+                                    <p>Būsena</p>
+                                    <p>Nuo</p>
+                                    <p>Iki</p>
+                                    <p>Užsakovas</p>
+                                    <p>Įranga</p>
                                 </div>
-                            }
+                                @foreach (var reservation in Model.Reservations)
+                                {
+                                    <div class="data-row">
+                                        <p class="reservation @StatusClassName(reservation.Status)">@Html.ActionLink(StatusTitle(reservation.Status), "Details", "Reservations", new { id = reservation.Id })</p>
+                                        <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                                        <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+                                        <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
+                                        <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundleId })</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="todays" role="tabpanel" aria-labelledby="todays-tab">
+                            <p>Šiandienos</p>
+                        </div>
+                        <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="week-tab">
+                            <p>Savaitės</p>
+                        </div>
+                        <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tab">
+                            <p>Praėjusios</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="todays" role="tabpanel" aria-labelledby="todays-tab">
-                        <p>Šiandienos</p>
-                    </div>
-                    <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="week-tab">
-                        <p>Savaitės</p>
-                    </div>
-                    <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tab">
-                        <p>Praėjusios</p>
-                    </div>
-                </div>
+                }
+                else
+                {
+                    <p>Šiuo metu jūsų, ar jums prieinamų rezervacijų nėra.</p>
+                }
             </div>
         </div>
     </div>
