@@ -5,14 +5,16 @@ p.reservation {
         }
     }
 
-    &.approved {
+    &.approved,
+    &.completed {
         &, a {
             color: #36AE46 !important;
         }
     }
 
     &.canceled,
-    &.stolen {
+    &.stolen,
+    &.broken {
         &, a {
             color: #FF0000 !important;
         }
@@ -24,13 +26,16 @@ p.reservation {
         }
     }
 
-    &.late {
-        color: #ff6600 !important;
+    &.late,
+    &.untaken {
+        &, a {
+            color: #ff6600 !important;
+        }
     }
 
-    &.old {
+    &.undefined {
         &, a {
-            color: #929CA1 !important;
+            color: #929ca1 !important;
         }
     }
 }
