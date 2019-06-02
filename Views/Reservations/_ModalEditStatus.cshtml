@@ -48,7 +48,9 @@
                     </div>
                     <div class="row info-row">
                         <div class="col-md-6"><p>Dabartinė būsena:</p></div>
-                        <div class="col-md-6"><p class="reservation waiting-approval">Laukianti patvirtinimo</p></div>
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("_ReservationStatusOnlyText", Model.Status)
+                        </div>
                     </div>
                     <div class="row info-row">
                         <div class="col-md-6"><p>Nauja būsena:</p></div>
@@ -60,7 +62,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Patvirtinti</button>
+                    <button type="submit" class="btn btn-success">Patvirtinti</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
                 </div>
             </div>
