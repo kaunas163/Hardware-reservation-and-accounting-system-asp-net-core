@@ -1,4 +1,4 @@
-@using HardwareReservationAndAccountingSystem.Models;
+﻿@using HardwareReservationAndAccountingSystem.Models;
 @model List<ApplicationUser>
 
 <div class="row view-mode-content-block" :class="gridViewMode">
@@ -15,8 +15,8 @@
                             <img src="http://via.placeholder.com/400x300" class="img-fluid" />
                         </a>
                     </p>
-                    <p>El. pasto adresas: <a href="@Url.Action("Details", "Users", new { id = user.Id })">@user.Email</a></p>
-                    <p class="role user">Role: <a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
+                    <p>El. pašto adresas: <a href="@Url.Action("Details", "Users", new { id = user.Id })">@user.Email</a></p>
+                    <p class="role user">Rolė: <a href="#" data-toggle="modal" data-target="#editRoleModal">Vartotojas <i class="far fa-edit"></i></a></p>
                     <p>Komentaras: -</p>
                 </div>
             </div>
