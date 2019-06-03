@@ -112,6 +112,31 @@
     <div class="col-md-12 add-margin">
         <div class="content-block">
             <div class="title">
+                <h3>Su rezervacija susiję pranešimai</h3>
+            </div>
+            <div class="content">
+                @if (Model.Reservation.Notifications.Any())
+                {
+                    foreach (var notification in Model.Reservation.Notifications)
+                    {
+                        <p>
+                            <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
+                                <span>@notification.CreatedOn</span>
+                                @notification.Title
+                            </a>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>Susijusių pranešimų nėra.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 add-margin">
+        <div class="content-block">
+            <div class="title">
                 <h3>Rezervacijos istorija</h3>
             </div>
             <div class="content">

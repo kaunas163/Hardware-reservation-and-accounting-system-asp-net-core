@@ -52,6 +52,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 .Include(x => x.Customer)
                 .Include(x => x.EquipmentBundle).ThenInclude(t => t.EquipmentsInBundles).ThenInclude(b => b.Equipment)
                 .Include(x => x.Event)
+                .Include(x => x.Notifications)
                 .FirstOrDefault(x => x.Id == id);
 
             if (reservation == null)
