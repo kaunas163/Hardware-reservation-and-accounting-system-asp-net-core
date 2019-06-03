@@ -194,20 +194,12 @@
             <div class="title">
                 <h3>Komplektai, kuriems priskirta</h3>
             </div>
-            <div class="content row">
+            <div class="content">
                 @if (Model.Equipment.EquipmentsInBundles.Any())
                 {
-                    foreach (var bundle in Model.Equipment.EquipmentsInBundles.Select(b => b.EquipmentBundle))
+                    @foreach (var bundle in Model.Equipment.EquipmentsInBundles.Select(b => b.EquipmentBundle))
                     {
-                        <div class="col-md-4">
-                            <h4>@Html.ActionLink(bundle.Title, "Details", "EquipmentBundles", new { id = bundle.Id })</h4>
-                            @if (!string.IsNullOrWhiteSpace(bundle.Description))
-                            {
-                                <p>
-                                    @(bundle.Description.Length > 200 ? bundle.Description.Substring(0, 200) + "..." : bundle.Description)
-                                </p>
-                            }
-                        </div>
+                        <p>@Html.ActionLink(bundle.Title, "Details", "EquipmentBundles", new { id = bundle.Id })</p>
                     }
                 }
                 else
