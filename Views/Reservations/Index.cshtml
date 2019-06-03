@@ -124,6 +124,10 @@
     }
 }
 
+@section DataShownCount {
+    <h6>Įrašų: @Model.Reservations.Count</h6>
+}
+
 @if (Model.Reservations.Any())
 {
     @await Html.PartialAsync("~/Views/Reservations/_ViewModeCalendar.cshtml", Model.Reservations)

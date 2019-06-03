@@ -81,6 +81,10 @@
     }
 }
 
+@section DataShownCount {
+    <h6>Įrašų: @Model.Count</h6>
+}
+
 @if (Model.Any())
 {
     @await Html.PartialAsync("~/Views/EquipmentBundles/_ViewModeGrid.cshtml", Model)

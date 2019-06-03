@@ -81,6 +81,10 @@
     </div>
 }
 
+@section DataShownCount {
+    <h6>Įrašų: @Model.Count</h6>
+}
+
 @await Html.PartialAsync("~/Views/Users/_ViewModeTable.cshtml", Model)
 @await Html.PartialAsync("~/Views/Users/_ViewModeGrid.cshtml", Model)
 

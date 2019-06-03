@@ -26,6 +26,9 @@
                 </div>
 
                 <div class="page-content">
+                    <div class="data-count-row add-margin">
+                        @RenderSection("DataShownCount", required: false)
+                    </div>
                     @RenderBody()
                 </div>
             </div>

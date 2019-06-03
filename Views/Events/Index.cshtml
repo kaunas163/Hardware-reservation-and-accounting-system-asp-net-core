@@ -88,6 +88,10 @@
     }
 }
 
+@section DataShownCount {
+    <h6>Įrašų: @Model.Count</h6>
+}
+
 @if (Model.Any())
 {
     @await Html.PartialAsync("~/Views/Events/_ViewModeCalendar.cshtml", Model)
