@@ -106,7 +106,7 @@
                         @foreach (var reservation in Model.Reservations)
                         {
                             <div class="data-row">
-                                @await Html.PartialAsync("_ReservationStatusOnlyText", reservation.Status)
+                                @await Html.PartialAsync("_ReservationStatus", reservation)
                                 <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                                 <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
                                 <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
@@ -130,10 +130,10 @@
 @await Html.PartialAsync("~/Views/Events/_ModalArchive.cshtml", Model)
 @await Html.PartialAsync("~/Views/Events/_ModalUnArchive.cshtml", Model)
 
-@*@if (Model.Reservations.Any())
+@if (Model.Reservations.Any())
+{
+    @foreach (var reservation in Model.Reservations)
     {
-        @foreach (var reservation in Model.Reservations)
-        {
-            @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
-        }
-    }*@
+        @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
+    }
+}
