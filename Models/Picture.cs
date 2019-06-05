@@ -18,6 +18,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Alternatyvus tekstas")]
         public string AlternativeText { get; set; }
 
+        [Display(Name = "Ar pagrindinė nuotrauka?")]
+        public bool IsCover { get; set; }
+
         [Display(Name = "Priklauso įrangai")]
         public int EquipmentId { get; set; }
         public Equipment Equipment { get; set; }
