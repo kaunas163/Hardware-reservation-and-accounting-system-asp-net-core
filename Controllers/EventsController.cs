@@ -82,5 +82,21 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             return RedirectToAction(nameof(Details), new { id = e.Id });
         }
+
+        public async Task<IActionResult> ChangeArchive(Event ev)
+        {
+            var evInDb = _context.Events.Single(x => x.Id == ev.Id);
+
+            if (evInDb == null)
+            {
+                return RedirectToAction(nameof(Details), new { id = ev.Id });
+            }
+
+            evInDb.IsArchived = !evInDb.IsArchived;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details), new { id = ev.Id });
+        }
     }
 }

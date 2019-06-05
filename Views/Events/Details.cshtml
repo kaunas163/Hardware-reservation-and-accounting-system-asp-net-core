@@ -13,6 +13,14 @@
     <a href="@Url.Action("Index", "Events")" class="btn btn-dark"><i class="fas fa-calendar-day"></i> Visi renginiai</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i> Atnaujinti</button>
+    @if (!Model.IsArchived)
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#archiveModal"><i class="fas fa-archive"></i> Archyvuoti</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#unArchiveModal"><i class="fas fa-archive"></i> Grąžinti iš archyvo</button>
+    }
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newEventModal"><i class="fas fa-pencil-alt"></i> Sukurti naują</button>
 }
 
@@ -119,11 +127,13 @@
 @await Html.PartialAsync("~/Views/Events/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
 @await Html.PartialAsync("~/Views/Events/_ModalEdit.cshtml", Model)
+@await Html.PartialAsync("~/Views/Events/_ModalArchive.cshtml", Model)
+@await Html.PartialAsync("~/Views/Events/_ModalUnArchive.cshtml", Model)
 
 @*@if (Model.Reservations.Any())
-{
-    @foreach (var reservation in Model.Reservations)
     {
-        @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
-    }
-}*@
+        @foreach (var reservation in Model.Reservations)
+        {
+            @await Html.PartialAsync("~/Views/Reservations/_ModalEditStatus.cshtml", reservation)
+        }
+    }*@

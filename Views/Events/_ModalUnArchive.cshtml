@@ -1,0 +1,30 @@
+@using HardwareReservationAndAccountingSystem.Models;
+@model Event
+
+<form asp-controller="Events" asp-action="ChangeArchive" method="post">
+    <div class="modal fade export-modal" id="unArchiveModal" tabindex="-1" role="dialog" aria-labelledby="unArchiveModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="unArchiveModalLabel">Renginio grąžinimas iš archyvo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <p>Grąžindami renginį iš archyvo į jį vėl bus galima kurti naujas rezervacijas (jeigu renginys vis dar nepraėjęs).</p>
+                            <p>Taip pat, grąžintas iš archyvo renginys bus pasiekiamas įvairiose sistemos vietose, pavyzdžiui, naujo pranešimo kūrime.</p>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(x => x.Id)
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Grąžinti</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
