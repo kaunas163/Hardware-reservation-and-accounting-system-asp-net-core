@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HardwareReservationAndAccountingSystem.Models
 {
@@ -39,5 +40,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         public NotificationType NotificationType { get; set; }
 
         public List<NotificationsForUsers> NotificationsForUsers { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public string SenderId { get; set; }
+        public ApplicationUser Sender { get; set; }
     }
 }

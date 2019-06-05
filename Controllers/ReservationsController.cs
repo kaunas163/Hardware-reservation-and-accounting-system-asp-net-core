@@ -145,7 +145,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(ReservationNewOrUpdate viewModel)
+        public IActionResult Update(ReservationNewOrUpdate viewModel)
         {
             return RedirectToAction(nameof(Index));
         }
