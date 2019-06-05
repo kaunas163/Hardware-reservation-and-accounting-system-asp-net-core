@@ -1,9 +1,17 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 <div class="logo">
     <h1>@Html.ActionLink("Techninės įrangos rezervacija", "Index", "Home")</h1>
 </div>
 
 <div class="profile">
-    <img src="http://via.placeholder.com/150" alt="Profile picture" />
+    <p>
+        <a href="@Url.Action("Details", "Users", new { id = UserManager.GetUserId(User) })">
+            <img src="http://via.placeholder.com/150" alt="Profile picture" />
+        </a>
+    </p>
     <partial name="_LoginPartial" />
 </div>
 
@@ -46,14 +54,14 @@
             <a href="@Url.Action("Index", "Settings")"><i class="fas fa-wrench"></i> Nustatymai</a>
         </li>
         @*@if (User.IsInRole("admin"))
-        {
-            <li class="@(currentController == "EquipmentTypes" ? "active" : "")">
-                @Html.ActionLink("Įrangos tipai", "Index", "EquipmentTypes")
-            </li>
-        }
-        <li class="@(currentController == "EquipmentBundles" ? "active" : "")">
-            @Html.ActionLink("Įrangos komplektai", "Index", "EquipmentBundles")
-        </li>*@
+            {
+                <li class="@(currentController == "EquipmentTypes" ? "active" : "")">
+                    @Html.ActionLink("Įrangos tipai", "Index", "EquipmentTypes")
+                </li>
+            }
+            <li class="@(currentController == "EquipmentBundles" ? "active" : "")">
+                @Html.ActionLink("Įrangos komplektai", "Index", "EquipmentBundles")
+            </li>*@
     </ul>
 </div>
 

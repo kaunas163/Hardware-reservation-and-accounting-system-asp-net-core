@@ -4,7 +4,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <p class="logged-in-as">Prisijungta kaip <span>@User.Identity.Name</span></p>
+    <p class="logged-in-as">Prisijungta kaip <span>@Html.ActionLink(@User.Identity.Name, "Details", "Users", new { id = UserManager.GetUserId(User) })</span></p>
     <p class="logged-in-role">@(User.IsInRole("admin") ? "Administratorius" : null)</p>
 
     <form class="form-inline logout-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
