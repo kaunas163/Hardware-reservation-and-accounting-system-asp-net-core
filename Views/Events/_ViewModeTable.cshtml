@@ -1,4 +1,4 @@
-@using HardwareReservationAndAccountingSystem.Models;
+﻿@using HardwareReservationAndAccountingSystem.Models;
 @model List<Event>
 
 <div class="row view-mode-content-block" :class="tableViewMode">
@@ -11,7 +11,8 @@
                 <div class="flex-table styled-table">
                     <div class="headings">
                         <p>Pavadinimas <i class="fas fa-sort"></i></p>
-                        <p>Data <i class="fas fa-sort"></i></p>
+                        <p>Pradžia <i class="fas fa-sort"></i></p>
+                        <p>Pabaiga <i class="fas fa-sort"></i></p>
                         <p>Lokacija <i class="fas fa-sort"></i></p>
                         <p>Komentaras <i class="fas fa-sort"></i></p>
                     </div>
@@ -23,6 +24,7 @@
                         <div class="data-row">
                             <p>@Html.ActionLink(ev.Title, "Details", "Events", new { id = ev.Id })</p>
                             <p>@Html.ActionLink(ev.StartTime.ToString(), "Details", "Events", new { id = ev.Id })</p>
+                            <p>@Html.ActionLink(ev.EndTime.ToString(), "Details", "Events", new { id = ev.Id })</p>
                             <p>@Html.ActionLink(location, "Details", "Events", new { id = ev.Id })</p>
                             <p>@Html.ActionLink(comment, "Details", "Events", new { id = ev.Id })</p>
                         </div>
