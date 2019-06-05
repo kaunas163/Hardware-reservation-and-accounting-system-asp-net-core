@@ -24,6 +24,9 @@ namespace HardwareReservationAndAccountingSystem.Models
         [Display(Name = "Komentaras")]
         public string Comment { get; set; }
 
+        [Display(Name = "Ar archyvuotas?")]
+        public bool IsArchived { get; set; }
+
         [Display(Name = "Pranešimai")]
         public List<Notification> Notifications { get; set; }
 
