@@ -28,9 +28,11 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             var notifications = _context.Notifications
+                .Where(x => x.NotificationsForUsers.Any(u => u.UserId == user.Id))
+                .OrderBy(x => !x.NotificationsForUsers.Any(n => !n.IsRead && n.UserId == user.Id))
+                    .ThenByDescending(x => x.CreatedOn)
                 .Include(x => x.NotificationType)
                 .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
-                .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
                 .ToList();
 
             return View(notifications);

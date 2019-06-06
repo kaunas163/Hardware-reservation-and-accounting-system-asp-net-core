@@ -1,4 +1,9 @@
+@using Microsoft.AspNetCore.Identity;
 @using HardwareReservationAndAccountingSystem.Models;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @model List<Notification>;
 
 <div class="row view-mode-content-block" :class="tableViewMode">
@@ -17,18 +22,14 @@
                         <p>Pranešimą sukūrė <i class="fas fa-sort"></i></p>
                         <p>Kam skirtas <i class="fas fa-sort"></i></p>
                     </div>
-                    <!-- <div class="data-row notification-new">
-                        <p class="notification-status new">@Html.ActionLink("Naujas", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("2019-03-31 10:14", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Norime priminti, kad jūsų rezervacija a...", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Priminimas", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Sistema", "Details", "Notifications")</p>
-                        <p>@Html.ActionLink("Visiems sistemos vartotojams", "Details", "Notifications")</p>
-                    </div> -->
                     @foreach (var notification in Model)
                     {
-                        <div class="data-row">
-                            <p class="notification-status read">@Html.ActionLink("Skaitytas", "Details", "Notifications", new { id = notification.Id })</p>
+                        var newNotification = notification.NotificationsForUsers.Where(u => u.UserId == UserManager.GetUserId(User)).Any(x => !x.IsRead);
+
+                        <div class="data-row @(newNotification ? "notification-new" : "")">
+                            <p class="notification-status @(newNotification ? "new" : "read")">
+                                @Html.ActionLink(newNotification ? "Naujas" : "Skaitytas", "Details", "Notifications", new { id = notification.Id })
+                            </p>
                             <p>@Html.ActionLink(notification.CreatedOn.ToString(), "Details", "Notifications", new { id = notification.Id })</p>
                             <p>@Html.ActionLink(notification.Title, "Details", "Notifications", new { id = notification.Id })</p>
                             <p>@Html.ActionLink(notification.NotificationType.Title, "Details", "Notifications", new { id = notification.Id })</p>
@@ -44,7 +45,7 @@
                                 <p>@Html.ActionLink("Keliems vartotojams", "Index", "Users")</p>
                             }
                         </div>
-                    }
+                     }
                 </div>
             </div>
         </div>
