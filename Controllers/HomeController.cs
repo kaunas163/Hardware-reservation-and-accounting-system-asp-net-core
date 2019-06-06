@@ -45,7 +45,8 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 Notifications = _context.Notifications
                     .Where(x => x.NotificationsForUsers.Any(u => u.UserId == user.Id))
                     .Include(x => x.NotificationsForUsers)
-                    .OrderByDescending(x => x.CreatedOn)
+                    .OrderBy(x => !x.NotificationsForUsers.Any(n => !n.IsRead && n.UserId == user.Id))
+                        .ThenByDescending(x => x.CreatedOn)
                     .Take(10)
                     .ToList(),
                 ReservationsNewest = reservations
