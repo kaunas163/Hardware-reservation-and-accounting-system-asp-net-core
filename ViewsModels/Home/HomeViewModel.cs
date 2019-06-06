@@ -8,14 +8,23 @@ namespace HardwareReservationAndAccountingSystem.ViewsModels.Home
         public HomeViewModel()
         {
             Notifications = new List<Notification>();
-            Reservations = new List<Reservation>();
+            ReservationsNewest = new List<Reservation>();
+            ReservationsToday = new List<Reservation>();
+            ReservationsWeek = new List<Reservation>();
+            ReservationsOld = new List<Reservation>();
             Events = new List<Event>();
             EquipmentBundles = new List<EquipmentBundle>();
         }
 
         public List<Notification> Notifications { get; set; }
 
-        public List<Reservation> Reservations { get; set; }
+        public List<Reservation> ReservationsNewest { get; set; }
+
+        public List<Reservation> ReservationsToday { get; set; }
+
+        public List<Reservation> ReservationsWeek { get; set; }
+
+        public List<Reservation> ReservationsOld { get; set; }
 
         public List<Event> Events { get; set; }
 

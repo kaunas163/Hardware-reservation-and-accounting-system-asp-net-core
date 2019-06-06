@@ -1,0 +1,59 @@
+﻿@using HardwareReservationAndAccountingSystem.Enums;
+@using HardwareReservationAndAccountingSystem.Models;
+@model Reservation
+
+@switch (Model.Status)
+{
+    case ReservationStatus.Pending:
+        <p class="reservation waiting-approval">
+            @Html.ActionLink("Laukianti patvirtinimo", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Confirmed:
+        <p class="reservation approved">
+            @Html.ActionLink("Patvirtinta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Cancelled:
+        <p class="reservation cancelled">
+            @Html.ActionLink("Atšaukta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Active:
+        <p class="reservation in-progress">
+            @Html.ActionLink("Vykdoma", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Untaken:
+        <p class="reservation untaken">
+            @Html.ActionLink("Neatsiimta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Completed:
+        <p class="reservation completed">
+            @Html.ActionLink("Įvykdyta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Late:
+        <p class="reservation late">
+            @Html.ActionLink("Vėluojanti", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Stolen:
+        <p class="reservation stolen">
+            @Html.ActionLink("Įranga pavogta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Broken:
+        <p class="reservation broken">
+            @Html.ActionLink("Įranga apgadinta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    case ReservationStatus.Undefined:
+        <p class="reservation undefined">
+            @Html.ActionLink("Neapibrėžta", "Details", "Reservations", new { id = Model.Id })
+        </p>
+        break;
+    default:
+        break;
+}

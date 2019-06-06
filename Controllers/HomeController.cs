@@ -30,18 +30,44 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
+            var reservations = _context.Reservations
+                    .Include(x => x.Customer)
+                    .Include(x => x.EquipmentBundle)
+                    .ToList();
+
+            var currentTime = DateTime.Now;
+            var today = DateTime.Today;
+            var todayEnd = today.AddDays(1);
+            var weekEnd = today.AddDays(7);
+
             var model = new HomeViewModel
             {
                 Notifications = _context.Notifications
+                    .Include(x => x.NotificationsForUsers)
                     .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
+                    .OrderByDescending(x => x.CreatedOn)
                     .Take(10)
                     .ToList(),
-                Reservations = _context.Reservations
-                    .Include(x => x.Customer)
-                    .Include(x => x.EquipmentBundle)
+                ReservationsNewest = reservations
+                    .OrderByDescending(x => x.UpdatedOn)
+                    .Take(10)
+                    .ToList(),
+                ReservationsToday = reservations
+                    .Where(x => (x.StartTime >= today && x.StartTime <= todayEnd) || (x.EndTime >= today && x.EndTime <= todayEnd))
+                    .OrderBy(x => x.StartTime)
+                    .ToList(),
+                ReservationsWeek = reservations
+                    .Where(x => (x.StartTime >= today && x.StartTime <= weekEnd) || (x.EndTime >= today && x.EndTime <= weekEnd))
+                    .OrderBy(x => x.StartTime)
+                    .ToList(),
+                ReservationsOld = reservations
+                    .Where(x => today > x.EndTime)
+                    .OrderByDescending(x => x.EndTime)
                     .Take(10)
                     .ToList(),
                 Events = _context.Events
+                    .Where(x => x.EndTime > currentTime)
+                    .OrderBy(x => x.StartTime)
                     .Take(10)
                     .ToList(),
                 EquipmentBundles = _context.EquipmentBundles

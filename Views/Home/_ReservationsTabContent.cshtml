@@ -1,0 +1,22 @@
+﻿@using HardwareReservationAndAccountingSystem.Models;
+@model List<Reservation>
+
+<div class="flex-table">
+    <div class="headings">
+        <p>Būsena</p>
+        <p>Nuo</p>
+        <p>Iki</p>
+        <p>Užsakovas</p>
+        <p>Įranga</p>
+    </div>
+    @foreach (var reservation in Model)
+    {
+        <div class="data-row">
+            @await Html.PartialAsync("_ReservationStatusOnlyLink", reservation)
+            <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+            <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
+            <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
+            <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundleId })</p>
+        </div>
+    }
+</div>

@@ -20,7 +20,8 @@
                     font-size: 12px;
                 }
 
-                &.new {
+                &.new,
+                &.current {
                     font-weight: 700;
                     color: #344750;
                 }

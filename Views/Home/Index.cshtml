@@ -1,70 +1,9 @@
-﻿@using HardwareReservationAndAccountingSystem.Enums;
-@using HardwareReservationAndAccountingSystem.ViewsModels.Home;
+﻿@using HardwareReservationAndAccountingSystem.ViewsModels.Home;
 @using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
 @model HomeViewModel
 
 @{
     ViewData["Title"] = "Pradžia";
-}
-
-@functions {
-    public string StatusClassName(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "waiting-approval";
-            case ReservationStatus.Confirmed:
-                return "approved";
-            case ReservationStatus.Cancelled:
-                return "cancelled";
-            case ReservationStatus.Active:
-                return "in-progress";
-            case ReservationStatus.Untaken:
-                return "untaken";
-            case ReservationStatus.Completed:
-                return "completed";
-            case ReservationStatus.Late:
-                return "late";
-            case ReservationStatus.Stolen:
-                return "stolen";
-            case ReservationStatus.Broken:
-                return "broken";
-            case ReservationStatus.Undefined:
-                return "undefined";
-            default:
-                return "";
-        }
-    }
-
-    public string StatusTitle(ReservationStatus status)
-    {
-        switch (status)
-        {
-            case ReservationStatus.Pending:
-                return "Laukianti patvirtinimo";
-            case ReservationStatus.Confirmed:
-                return "Patvirtinta";
-            case ReservationStatus.Cancelled:
-                return "Atšaukta";
-            case ReservationStatus.Active:
-                return "Vykdoma";
-            case ReservationStatus.Untaken:
-                return "Neatsiimta";
-            case ReservationStatus.Completed:
-                return "Įvykdyta";
-            case ReservationStatus.Late:
-                return "Vėluojanti";
-            case ReservationStatus.Stolen:
-                return "Įranga pavogta";
-            case ReservationStatus.Broken:
-                return "Įranga apgadinta";
-            case ReservationStatus.Undefined:
-                return "Neapibrėžta";
-            default:
-                return "";
-        }
-    }
 }
 
 @section PageHeaderTitle {
@@ -87,7 +26,9 @@
                         {
                             @foreach (var notification in Model.Notifications)
                             {
-                                <p>
+                                var newNotification = notification.NotificationsForUsers.Any(x => !x.IsRead) ? "new" : "";
+
+                                <p class="@newNotification">
                                     <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
                                         <span>@notification.CreatedOn</span>
                                         @notification.Title
@@ -116,9 +57,13 @@
                     <div class="content">
                         @if (Model.Events.Any())
                         {
+                            var now = DateTime.Now;
+
                             @foreach (var e in Model.Events)
                             {
-                                <p>
+                                var currentEvent = e.StartTime <= now && now <= e.EndTime ? "current" : "";
+
+                                <p class="@currentEvent">
                                     <a href="@Url.Action("Details", "Events", new { id = e.Id })">
                                         <span>@e.StartTime</span>
                                         @e.Title
@@ -144,7 +89,7 @@
                 </div>
             </div>
             <div class="content">
-                @if (Model.Reservations.Any())
+                @if (Model.ReservationsNewest.Any() || Model.ReservationsToday.Any() || Model.ReservationsWeek.Any() || Model.ReservationsOld.Any())
                 {
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -162,34 +107,44 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="newest" role="tabpanel" aria-labelledby="newest-tab">
-                            <div class="flex-table">
-                                <div class="headings">
-                                    <p>Būsena</p>
-                                    <p>Nuo</p>
-                                    <p>Iki</p>
-                                    <p>Užsakovas</p>
-                                    <p>Įranga</p>
-                                </div>
-                                @foreach (var reservation in Model.Reservations)
-                                {
-                                    <div class="data-row">
-                                        <p class="reservation @StatusClassName(reservation.Status)">@Html.ActionLink(StatusTitle(reservation.Status), "Details", "Reservations", new { id = reservation.Id })</p>
-                                        <p>@Html.ActionLink(reservation.StartTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
-                                        <p>@Html.ActionLink(reservation.EndTime.ToString(), "Details", "Reservations", new { id = reservation.Id })</p>
-                                        <p>@Html.ActionLink(String.Format("{0} {1}", reservation.Customer.Name, reservation.Customer.Surname), "Details", "Users", new { id = reservation.CustomerId })</p>
-                                        <p>@Html.ActionLink(reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = reservation.EquipmentBundleId })</p>
-                                    </div>
-                                }
-                            </div>
+                            @if (Model.ReservationsNewest.Any())
+                            {
+                                @await Html.PartialAsync("~/Views/Home/_ReservationsTabContent.cshtml", Model.ReservationsNewest)
+                            }
+                            else
+                            {
+                                <p>Nėra naujų rezervacijų.</p>
+                            }
                         </div>
                         <div class="tab-pane fade" id="todays" role="tabpanel" aria-labelledby="todays-tab">
-                            <p>Šiandienos</p>
+                            @if (Model.ReservationsToday.Any())
+                            {
+                                @await Html.PartialAsync("~/Views/Home/_ReservationsTabContent.cshtml", Model.ReservationsToday)
+                            }
+                            else
+                            {
+                                <p>Šiandienai nėra sukurtų rezervacijų.</p>
+                            }
                         </div>
                         <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="week-tab">
-                            <p>Savaitės</p>
+                            @if (Model.ReservationsWeek.Any())
+                            {
+                                @await Html.PartialAsync("~/Views/Home/_ReservationsTabContent.cshtml", Model.ReservationsWeek)
+                            }
+                            else
+                            {
+                                <p>Šiai savaitei nėra sukurtų rezervacijų.</p>
+                            }
                         </div>
                         <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tab">
-                            <p>Praėjusios</p>
+                            @if (Model.ReservationsOld.Any())
+                            {
+                                @await Html.PartialAsync("~/Views/Home/_ReservationsTabContent.cshtml", Model.ReservationsOld)
+                            }
+                            else
+                            {
+                                <p>Nėra jokių praėjusių rezervacijų.</p>
+                            }
                         </div>
                     </div>
                 }
