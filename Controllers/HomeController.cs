@@ -43,8 +43,8 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             var model = new HomeViewModel
             {
                 Notifications = _context.Notifications
+                    .Where(x => x.NotificationsForUsers.Any(u => u.UserId == user.Id))
                     .Include(x => x.NotificationsForUsers)
-                    .Where(x => x.NotificationsForUsers.Any(u => u.User.Id == user.Id))
                     .OrderByDescending(x => x.CreatedOn)
                     .Take(10)
                     .ToList(),

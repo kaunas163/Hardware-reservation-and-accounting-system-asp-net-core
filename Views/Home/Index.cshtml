@@ -1,5 +1,10 @@
-﻿@using HardwareReservationAndAccountingSystem.ViewsModels.Home;
+﻿@using Microsoft.AspNetCore.Identity;
+@using HardwareReservationAndAccountingSystem.ViewsModels.Home;
 @using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @model HomeViewModel
 
 @{
@@ -26,7 +31,7 @@
                         {
                             @foreach (var notification in Model.Notifications)
                             {
-                                var newNotification = notification.NotificationsForUsers.Any(x => !x.IsRead) ? "new" : "";
+                                var newNotification = notification.NotificationsForUsers.Where(u => u.UserId == UserManager.GetUserId(User)).Any(x => !x.IsRead) ? "new" : "";
 
                                 <p class="@newNotification">
                                     <a href="@Url.Action("Details", "Notifications", new { id = notification.Id })">
