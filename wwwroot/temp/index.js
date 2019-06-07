@@ -10,6 +10,8 @@ var _timegrid = _interopRequireDefault(require("@fullcalendar/timegrid"));
 
 var _interaction = _interopRequireDefault(require("@fullcalendar/interaction"));
 
+var _lt = _interopRequireDefault(require("@fullcalendar/core/locales/lt"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // import Calendar from './Calendar.js'
@@ -18,7 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 // }).$mount('#calendar')
 // Vue.component('calendar');
 _vue["default"].component('calendar', {
-  template: "\n        <FullCalendar\n            class='demo-app-calendar'\n            ref=\"fullCalendar\"\n            defaultView=\"dayGridMonth\"\n            selectable=\"true\"\n            :header=\"{\n                left: 'prev,next today',\n                center: 'title',\n                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'\n            }\"\n            :plugins=\"calendarPlugins\"\n            :weekends=\"calendarWeekends\"\n            :events=\"calendarEvents\"\n            @@dateClick=\"handleDateClick\"\n        />\n    ",
+  template: "\n        <FullCalendar\n            class='demo-app-calendar'\n            ref=\"fullCalendar\"\n            defaultView=\"dayGridMonth\"\n            selectable=\"true\"\n            :header=\"{\n                left: 'prev,next today',\n                center: 'title',\n                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'\n            }\"\n            :plugins=\"calendarPlugins\"\n            :weekends=\"calendarWeekends\"\n            :events=\"calendarEvents\"\n            @@dateClick=\"handleDateClick\"\n            lang=\"lt\"\n        />\n    ",
   components: {
     FullCalendar: _vue2["default"] // make the <FullCalendar> tag available
 
@@ -26,8 +28,7 @@ _vue["default"].component('calendar', {
   data: function data() {
     return {
       calendarPlugins: [// plugins must be defined in the JS
-      _daygrid["default"], _timegrid["default"], _interaction["default"] // needed for dateClick
-      ],
+      _daygrid["default"], _timegrid["default"], _interaction["default"]],
       calendarWeekends: true,
       calendarEvents: [// initial event data
       {

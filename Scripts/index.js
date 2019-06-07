@@ -4,7 +4,7 @@ import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-
+import ltLocale from '@fullcalendar/core/locales/lt'
 
 // import Calendar from './Calendar.js'
 
@@ -34,6 +34,7 @@ Vue.component('calendar', {
             :weekends="calendarWeekends"
             :events="calendarEvents"
             @@dateClick="handleDateClick"
+            lang="lt"
         />
     `,
     components: {
@@ -44,12 +45,12 @@ Vue.component('calendar', {
             calendarPlugins: [ // plugins must be defined in the JS
                 dayGridPlugin,
                 timeGridPlugin,
-                interactionPlugin // needed for dateClick
+                interactionPlugin, // needed for dateClick,
             ],
             calendarWeekends: true,
             calendarEvents: [ // initial event data
                 { title: 'Event Now', start: new Date() }
-            ]
+            ],
         }
     },
     methods: {
