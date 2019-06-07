@@ -108,7 +108,18 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
                 _context.Notifications.Add(notification);
 
-                //var userFor = _context.ApplicationUsers.Single(x => x.Id == notification.NotificationsForUsers.Any(x => x.))
+                var userForId = viewModel.UserForId;
+                var userFor = _context.ApplicationUsers.Single(x => x.Id == userForId);
+
+                var notificationForUser = new NotificationsForUsers
+                {
+                    Notification = notification,
+                    User = userFor,
+                    IsRead = false,
+                    IsArchived = false,
+                };
+
+                _context.NotificationsForUsers.Add(notificationForUser);
 
                 await _context.SaveChangesAsync();
 

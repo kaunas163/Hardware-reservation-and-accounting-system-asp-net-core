@@ -12,6 +12,8 @@ namespace HardwareReservationAndAccountingSystem.ViewsModels.Notifications
 
         public List<ApplicationUser> Users { get; set; }
 
+        public string UserForId { get; set; }
+
         public List<NotificationType> NotificationTypes { get; set; }
     }
 }
