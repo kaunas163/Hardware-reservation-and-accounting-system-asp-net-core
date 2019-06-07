@@ -88,7 +88,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
 
             //return Content(messages);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && viewModel.Reservation.StartTime < viewModel.Reservation.EndTime)
             {
                 var reservation = viewModel.Reservation;
 

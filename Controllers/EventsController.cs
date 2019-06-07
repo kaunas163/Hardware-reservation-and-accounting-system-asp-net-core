@@ -46,7 +46,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title, Location, StartTime, EndTime, Comment")] Event e)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && e.StartTime < e.EndTime)
             {
                 _context.Events.Add(e);
                 await _context.SaveChangesAsync();
