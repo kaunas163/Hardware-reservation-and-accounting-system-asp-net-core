@@ -51,7 +51,7 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             return View(model);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             var notification = _context.Notifications
                 .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
@@ -66,6 +66,19 @@ namespace HardwareReservationAndAccountingSystem.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+            if (notification.NotificationsForUsers
+                .Where(u => u.UserId == _userManager.GetUserId(User))
+                .Any(x => !x.IsRead))
+            {
+                var newNotification = notification.NotificationsForUsers
+                    .Where(u => u.UserId == _userManager.GetUserId(User))
+                    .Single(x => !x.IsRead);
+
+                newNotification.IsRead = true;
+            }
+
+            await _context.SaveChangesAsync();
 
             var model = new NotificationsDetails
             {
