@@ -146,7 +146,16 @@
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimą sukūrė:</p></div>
-                            <div class="col-6"><p>@Html.ActionLink("Administratorius", "Details", "Users")</p></div>
+                            <div class="col-6">
+                                @if (Model.SenderId != null && !string.IsNullOrWhiteSpace(Model.SenderId))
+                                {
+                                    <p>@Html.ActionLink(Model.Sender.UserName, "Details", "Users", new { id = Model.SenderId })</p>
+                                }
+                                else
+                                {
+                                    <p>Pranešimą sukūrė sistema</p>
+                                }
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimo būsena:</p></div>

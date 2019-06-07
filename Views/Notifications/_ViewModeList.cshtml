@@ -24,7 +24,14 @@
                         }
                         <li>@notification.CreatedOn</li>
                         <li>@notification.NotificationType.Title</li>
-                        <!-- <li>pranešimas nuo sistemos</li> -->
+                        @if (notification.SenderId != null && !string.IsNullOrWhiteSpace(notification.SenderId))
+                        {
+                            <li>Pranešimą sukūrė @Html.ActionLink(notification.Sender.UserName, "Details", "Users", new { id = notification.SenderId })</li>
+                        }
+                        else
+                        {
+                            <li>Pranešimą sukūrė sistema</li>
+                        }
                     </ul>
                 </div>
                 <div class="content">
