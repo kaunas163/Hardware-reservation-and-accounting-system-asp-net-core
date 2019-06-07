@@ -18,6 +18,10 @@ namespace HardwareReservationAndAccountingSystem.ViewsModels.Home
 
         public List<Notification> Notifications { get; set; }
 
+        public List<ApplicationUser> Users { get; set; }
+
+        public List<NotificationType> NotificationTypes { get; set; }
+
         public List<Reservation> ReservationsNewest { get; set; }
 
         public List<Reservation> ReservationsToday { get; set; }

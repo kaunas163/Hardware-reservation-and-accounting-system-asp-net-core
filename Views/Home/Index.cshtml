@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using HardwareReservationAndAccountingSystem.ViewsModels.Home;
 @using HardwareReservationAndAccountingSystem.ViewsModels.Reservations;
+@using HardwareReservationAndAccountingSystem.ViewsModels.Notifications;
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -162,6 +163,6 @@
     </div>
 </div>
 
-@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml", new NotificationsDetails { Notification = new Notification(), Users = Model.Users, NotificationTypes = Model.NotificationTypes })
 @await Html.PartialAsync("~/Views/Events/_ModalNew.cshtml", new Event())
 @await Html.PartialAsync("~/Views/Reservations/_ModalNew.cshtml", new ReservationNewOrUpdate { Reservation = new Reservation(), EquipmentBundles = Model.EquipmentBundles })

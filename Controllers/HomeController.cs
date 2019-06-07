@@ -49,6 +49,13 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                         .ThenByDescending(x => x.CreatedOn)
                     .Take(10)
                     .ToList(),
+                Users = _context.ApplicationUsers
+                    .OrderBy(x => x.UserName)
+                    .ToList(),
+                NotificationTypes = _context.NotificationTypes
+                    .Where(x => !x.IsArchived)
+                    .OrderBy(x => x.Title)
+                    .ToList(),
                 ReservationsNewest = reservations
                     .OrderByDescending(x => x.UpdatedOn)
                     .Take(10)
