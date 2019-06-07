@@ -1,11 +1,14 @@
-<div class="modal fade export-modal" id="newNotificationModal" tabindex="-1" role="dialog" aria-labelledby="newNotificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form>
+@using HardwareReservationAndAccountingSystem.ViewsModels.Notifications;
+@model NotificationsDetails
+
+<form asp-controller="Notifications" asp-action="Create" method="post">
+    <div class="modal fade export-modal" id="newNotificationModal" tabindex="-1" role="dialog" aria-labelledby="newNotificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newNotificationModalLabel">Naujas pranešimas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -22,30 +25,24 @@
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="notificationFor">Pranešimas skirtas:</label>
-                                            <select id="notificationFor" class="form-control">
-                                                <option selected>Visiems sistemos vartotojams</option>
-                                                <option>...</option>
-                                            </select>
+                                            <label asp-for="Notification.NotificationsForUsers">Pranešimas skirtas:</label>
+                                            @Html.DropDownListFor(m => m.Notification.NotificationsForUsers, new SelectList(Model.Users, "Id", "UserName"), "", new { @class = "form-control" })
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="notificationType">Pranešimo tipas:</label>
-                                            <select id="notificationType" class="form-control">
-                                                <option selected>Naujiena</option>
-                                                <option>...</option>
-                                            </select>
+                                            <label asp-for="Notification.NotificationType">Pranešimo tipas:</label>
+                                            @Html.DropDownListFor(m => m.Notification.NotificationTypeId, new SelectList(Model.NotificationTypes, "Id", "Title"), "", new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="notificationTitle">Pranešimo pavadinimas:</label>
-                                            <input type="text" class="form-control" id="notificationTitle" placeholder="Norimas pranešimo pavadinimas">
+                                            <label asp-for="Notification.Title">Pranešimo pavadinimas:</label>
+                                            <input asp-for="Notification.Title" type="text" class="form-control" placeholder="Norimas pranešimo pavadinimas">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="notificationText">Pranešimo tekstas:</label>
-                                            <textarea class="form-control" id="notificationText" rows="3" placeholder="Įrašykite norimą pranešimo tekstą"></textarea>
+                                            <label asp-for="Notification.Description">Pranešimo tekstas:</label>
+                                            <textarea asp-for="Notification.Description" class="form-control" rows="3" placeholder="Įrašykite norimą pranešimo tekstą"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -128,10 +125,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Sukurti</button>
+                    <button type="submit" class="btn btn-success">Sukurti</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Atšaukti</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>

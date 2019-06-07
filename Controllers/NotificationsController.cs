@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using HardwareReservationAndAccountingSystem.Models;
 using System.Threading.Tasks;
+using HardwareReservationAndAccountingSystem.ViewsModels.Notifications;
 
 namespace HardwareReservationAndAccountingSystem.Controllers
 {
@@ -35,12 +36,24 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
                 .ToList();
 
-            return View(notifications);
+            var model = new NotificationsIndex
+            {
+                Notifications = notifications,
+                Users = _context.ApplicationUsers
+                    .OrderBy(x => x.UserName)
+                    .ToList(),
+                NotificationTypes = _context.NotificationTypes
+                    .Where(x => !x.IsArchived)
+                    .OrderBy(x => x.Title)
+                    .ToList()
+            };
+
+            return View(model);
         }
 
         public IActionResult Details(int id)
         {
-            var model = _context.Notifications
+            var notification = _context.Notifications
                 .Include(x => x.NotificationsForUsers).ThenInclude(u => u.User)
                 .Include(x => x.NotificationType)
                 .Include(x => x.Reservation).ThenInclude(b => b.EquipmentBundle)
@@ -49,12 +62,47 @@ namespace HardwareReservationAndAccountingSystem.Controllers
                 .Include(x => x.Event)
                 .FirstOrDefault(x => x.Id == id);
 
-            if (model == null)
+            if (notification == null)
             {
                 return RedirectToAction("Index");
             }
 
+            var model = new NotificationsDetails
+            {
+                Notification = notification,
+                Users = _context.ApplicationUsers
+                    .OrderBy(x => x.UserName)
+                    .ToList(),
+                NotificationTypes = _context.NotificationTypes
+                    .Where(x => !x.IsArchived)
+                    .OrderBy(x => x.Title)
+                    .ToList()
+            };
+
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(NotificationsDetails viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var notification = viewModel.Notification;
+
+                notification.CreatedOn = DateTime.Now;
+                notification.Sender = await _userManager.GetUserAsync(HttpContext.User);
+
+                _context.Notifications.Add(notification);
+
+                //var userFor = _context.ApplicationUsers.Single(x => x.Id == notification.NotificationsForUsers.Any(x => x.))
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Details), new { id = notification.Id });
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

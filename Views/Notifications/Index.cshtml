@@ -1,5 +1,5 @@
-@using HardwareReservationAndAccountingSystem.Models;
-@model List<Notification>
+@using HardwareReservationAndAccountingSystem.ViewsModels.Notifications;
+@model NotificationsIndex
 
 @{
     ViewData["Title"] = "Pranešimai";
@@ -11,7 +11,7 @@
 
 @section PageHeaderSubNavLinks {
     <a href="@Url.Action("Index", "Notifications")" class="btn btn-dark"><i class="fas fa-bell"></i> Visi pranešimai</a>
-    @if (Model.Any())
+    @if (Model.Notifications.Any())
     {
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportModal"><i class="fas fa-download"></i> Eksportuoti</button>
     }
@@ -19,7 +19,7 @@
 }
 
 @section PageHeaderFilters {
-    @if (Model.Any())
+    @if (Model.Notifications.Any())
     {
         <div class="page-filters">
             <div class="filters">
@@ -113,13 +113,13 @@
 }
 
 @section DataShownCount {
-    <h6>Įrašų: @Model.Count</h6>
+    <h6>Įrašų: @Model.Notifications.Count</h6>
 }
 
-@if (Model.Any())
+@if (Model.Notifications.Any())
 {
-    @await Html.PartialAsync("~/Views/Notifications/_ViewModeList.cshtml", Model)
-    @await Html.PartialAsync("~/Views/Notifications/_ViewModeTable.cshtml", Model)
+    @await Html.PartialAsync("~/Views/Notifications/_ViewModeList.cshtml", Model.Notifications)
+    @await Html.PartialAsync("~/Views/Notifications/_ViewModeTable.cshtml", Model.Notifications)
     @await Html.PartialAsync("~/Views/Notifications/_ModalExport.cshtml")
 }
 else
@@ -127,4 +127,4 @@ else
     @await Html.PartialAsync("~/Views/Shared/_NoContent.cshtml", "Šiuo metu nėra jokių jums skirtų pranešimų.")
 }
 
-@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml", new NotificationsDetails { Notification = new Notification(), Users = Model.Users, NotificationTypes = Model.NotificationTypes })

@@ -1,5 +1,5 @@
-@using HardwareReservationAndAccountingSystem.Models;
-@model Notification
+@using HardwareReservationAndAccountingSystem.ViewsModels.Notifications;
+@model NotificationsDetails
 
 @{
     ViewData["Title"] = "Pranešimo informacija";
@@ -22,12 +22,12 @@
             <div class="col add-margin">
                 <div class="content-block">
                     <div class="title">
-                        <h3>@Model.Title</h3>
+                        <h3>@Model.Notification.Title</h3>
                     </div>
                     <div class="content">
-                        @if (!string.IsNullOrWhiteSpace(Model.Description))
+                        @if (!string.IsNullOrWhiteSpace(Model.Notification.Description))
                         {
-                            <p>@Model.Description</p>
+                            <p>@Model.Notification.Description</p>
                         }
                         else
                         {
@@ -37,69 +37,69 @@
                 </div>
             </div>
         </div>
-        @if (Model.ReservationId != null)
+        @if (Model.Notification.ReservationId != null)
         {
             <div class="row">
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Reservations", new { id = Model.Reservation.Id })">Pranešimas susijęs su rezervacija</a></h3>
+                            <h3><a href="@Url.Action("Details", "Reservations", new { id = Model.Notification.Reservation.Id })">Pranešimas susijęs su rezervacija</a></h3>
                         </div>
                         <div class="content">
-                            <p class="secondary-text">@Model.Reservation.StartTime - @Model.Reservation.EndTime</p>
-                            <p><strong>Įrangos komplektas: </strong> @Html.ActionLink(Model.Reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.Reservation.EquipmentBundle.Id })</p>
+                            <p class="secondary-text">@Model.Notification.Reservation.StartTime - @Model.Notification.Reservation.EndTime</p>
+                            <p><strong>Įrangos komplektas: </strong> @Html.ActionLink(Model.Notification.Reservation.EquipmentBundle.Title, "Details", "EquipmentBundles", new { id = Model.Notification.Reservation.EquipmentBundle.Id })</p>
                         </div>
                     </div>
                 </div>
             </div>
         }
-        @if (Model.EventId != null)
+        @if (Model.Notification.EventId != null)
         {
             <div class="row">
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Events", new { id = Model.Event.Id })">Pranešimas susijęs su renginiu: @Model.Event.Title</a></h3>
+                            <h3><a href="@Url.Action("Details", "Events", new { id = Model.Notification.Event.Id })">Pranešimas susijęs su renginiu: @Model.Notification.Event.Title</a></h3>
                         </div>
                         <div class="content">
-                            <p class="secondary-text" style="margin-bottom: 15px">@Model.Event.StartTime - @Model.Event.EndTime</p>
-                            @if (!string.IsNullOrWhiteSpace(Model.Event.Location))
+                            <p class="secondary-text" style="margin-bottom: 15px">@Model.Notification.Event.StartTime - @Model.Notification.Event.EndTime</p>
+                            @if (!string.IsNullOrWhiteSpace(Model.Notification.Event.Location))
                             {
-                                <p><strong>Lokacija:</strong> @Model.Event.Location</p>
+                                <p><strong>Lokacija:</strong> @Model.Notification.Event.Location</p>
                             }
-                            @if (!string.IsNullOrWhiteSpace(Model.Event.Comment))
+                            @if (!string.IsNullOrWhiteSpace(Model.Notification.Event.Comment))
                             {
-                                <p><strong>Komentaras</strong> @Model.Event.Comment</p>
+                                <p><strong>Komentaras</strong> @Model.Notification.Event.Comment</p>
                             }
                         </div>
                     </div>
                 </div>
             </div>
         }
-        @if (Model.EquipmentId != null)
+        @if (Model.Notification.EquipmentId != null)
         {
             <div class="row">
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "Equipments", new { id = Model.Equipment.Id })">Pranešimas susijęs su įranga: @Model.Equipment.Title</a></h3>
+                            <h3><a href="@Url.Action("Details", "Equipments", new { id = Model.Notification.Equipment.Id })">Pranešimas susijęs su įranga: @Model.Notification.Equipment.Title</a></h3>
                         </div>
                         <div class="content">
                             <div class="row">
                                 <div class="col-md-4">
                                     <p>
-                                        <a href="@Url.Action("Details", "Equipments", new { id = Model.Equipment.Id })">
+                                        <a href="@Url.Action("Details", "Equipments", new { id = Model.Notification.Equipment.Id })">
                                             <img src="http://via.placeholder.com/500x300" class="img-fluid">
                                         </a>
                                     </p>
                                 </div>
-                                @if (!string.IsNullOrWhiteSpace(Model.Equipment.Description))
+                                @if (!string.IsNullOrWhiteSpace(Model.Notification.Equipment.Description))
                                 {
                                     <div class="col-md-8">
                                         <p>
-                                            @(Model.Equipment.Description.Length > 300
-                                                ? Model.Equipment.Description.Substring(0, 300) + "..."
-                                                : Model.Equipment.Description)
+                                            @(Model.Notification.Equipment.Description.Length > 300
+                                                ? Model.Notification.Equipment.Description.Substring(0, 300) + "..."
+                                                : Model.Notification.Equipment.Description)
                                         </p>
                                     </div>
                                 }
@@ -109,21 +109,21 @@
                 </div>
             </div>
         }
-        @if (Model.EquipmentBundleId != null)
+        @if (Model.Notification.EquipmentBundleId != null)
         {
             <div class="row">
                 <div class="col add-margin">
                     <div class="content-block">
                         <div class="title">
-                            <h3><a href="@Url.Action("Details", "EquipmentBundles", new { id = Model.EquipmentBundle.Id })">Pranešimas susijęs su įrangos komplektu: @Model.EquipmentBundle.Title</a></h3>
+                            <h3><a href="@Url.Action("Details", "EquipmentBundles", new { id = Model.Notification.EquipmentBundle.Id })">Pranešimas susijęs su įrangos komplektu: @Model.Notification.EquipmentBundle.Title</a></h3>
                         </div>
-                        @if (!string.IsNullOrWhiteSpace(Model.EquipmentBundle.Description))
+                        @if (!string.IsNullOrWhiteSpace(Model.Notification.EquipmentBundle.Description))
                         {
                             <div class="content">
                                 <p>
-                                    @(Model.EquipmentBundle.Description.Length > 300
-                                        ? Model.EquipmentBundle.Description.Substring(0, 300) + "..."
-                                        : Model.EquipmentBundle.Description)
+                                    @(Model.Notification.EquipmentBundle.Description.Length > 300
+                                        ? Model.Notification.EquipmentBundle.Description.Substring(0, 300) + "..."
+                                        : Model.Notification.EquipmentBundle.Description)
                                 </p>
                             </div>
                         }
@@ -142,14 +142,14 @@
                     <div class="content base-info">
                         <div class="row">
                             <div class="col-6"><p>Pranešimas sukurtas:</p></div>
-                            <div class="col-6"><p>@Model.CreatedOn</p></div>
+                            <div class="col-6"><p>@Model.Notification.CreatedOn</p></div>
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimą sukūrė:</p></div>
                             <div class="col-6">
-                                @if (Model.SenderId != null && !string.IsNullOrWhiteSpace(Model.SenderId))
+                                @if (Model.Notification.SenderId != null && !string.IsNullOrWhiteSpace(Model.Notification.SenderId))
                                 {
-                                    <p>@Html.ActionLink(Model.Sender.UserName, "Details", "Users", new { id = Model.SenderId })</p>
+                                    <p>@Html.ActionLink(Model.Notification.Sender.UserName, "Details", "Users", new { id = Model.Notification.SenderId })</p>
                                 }
                                 else
                                 {
@@ -163,7 +163,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6"><p>Pranešimo tipas:</p></div>
-                            <div class="col-6"><p>@Model.NotificationType.Title</p></div>
+                            <div class="col-6"><p>@Model.Notification.NotificationType.Title</p></div>
                         </div>
                     </div>
                 </div>
@@ -177,9 +177,9 @@
                     </div>
                     <div class="content">
                         <p>
-                            @foreach (var user in Model.NotificationsForUsers
-                                .Select(u => u.User)
-                                .Where(u => u.NotificationsForUsers.Any(x => x.IsRead)))
+                            @foreach (var user in Model.Notification.NotificationsForUsers
+                               .Select(u => u.User)
+                               .Where(u => u.NotificationsForUsers.Any(x => x.IsRead)))
                             {
                                 @Html.ActionLink(String.Format("{0} {1}", user.Name, user.Surname), "Details", "Users", new { id = user.Id })
                             }
@@ -196,9 +196,9 @@
                     </div>
                     <div class="content">
                         <p>
-                            @foreach (var user in Model.NotificationsForUsers
-                               .Select(u => u.User)
-                               .Where(u => u.NotificationsForUsers.Any(x => !x.IsRead)))
+                            @foreach (var user in Model.Notification.NotificationsForUsers
+                              .Select(u => u.User)
+                              .Where(u => u.NotificationsForUsers.Any(x => !x.IsRead)))
                             {
                                 @Html.ActionLink(String.Format("{0} {1}", user.Name, user.Surname), "Details", "Users", new { id = user.Id })
                             }
@@ -212,4 +212,4 @@
 
 @await Html.PartialAsync("~/Views/Notifications/_ModalExport.cshtml")
 @await Html.PartialAsync("~/Views/Notifications/_ModalArchive.cshtml")
-@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml")
+@await Html.PartialAsync("~/Views/Notifications/_ModalNew.cshtml", new NotificationsDetails { Notification = new Notification(), Users = Model.Users, NotificationTypes = Model.NotificationTypes })
