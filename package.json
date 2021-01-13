@@ -44,7 +44,7 @@
     "@fullcalendar/vue": "^4.1.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.0",
-    "jquery-validation": "^1.19.0",
+    "jquery-validation": "^1.19.3",
     "lightbox2": "^2.11.0",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10"
